@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>COLP.BEPS.Servicios</groupId>
+	<artifactId>COLP.BEPS.Servicios</artifactId>
+	<version>0.0.1-PRO</version>
+	<packaging>pom</packaging>
+	<name>COLP.BEPS.Servicios</name>
+	<description>Parent of Beps Services projects</description>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<maven.compiler.source>1.7</maven.compiler.source>
+		<maven.compiler.target>1.7</maven.compiler.target>
+	</properties>
+	<modules>
+		<module>COLP.BEPS.Servicios.Comunes.DataContracts</module>
+		<module>COLP.BEPS.Servicios.Util</module>
+		<module>COLP.BEPS.Servicios.Personas.DataContracts</module>
+		<module>COLP.BEPS.Servicios.Personas.BL</module>
+		<module>COLP.BEPS.Servicios.Previnculado</module>
+    	<module>COLP.BEPS.Servicios.Vinculado</module>
+    	<module>COLP.BEPS.Servicios.Beneficios</module>
+	    <module>COLP.BEPS.Servicios.PrestacionesEconomicas.DataContracts</module>
+	    <module>COLP.BEPS.Servicios.IndicioPrestacionesOBP.Proxy</module>
+		<module>COLP.BEPS.Servicios.AfiliadoColpensiones.Proxy</module>
+	    <module>COLP.BEPS.Servicios.PrestacionesEconomicas.BL</module>
+	    <module>COLP.BEPS.Servicios.NominaBeneficios.Proxy</module>
+	    <module>COLP.BEPS.Servicios.GeneradorNovedadesBUC.Proxy</module>
+	    <module>COLP.BEPS.Servicios.OtorgamientoMDB</module>
+    	<module>COLP.BEPS.Servicios.Certificados</module>
+		<module>COLP.BEPS.Servicios.Certificados.BL</module>
+		<module>COLP.BEPS.Servicios.Certificados.DataContracts</module>
+		<module>COLP.BEPS.Servicios.VinculadoAsofondos</module>
+		<module>COLP.BEPS.Servicios.VinculadoAsofondos.BL</module>
+		<module>COLP.BEPS.Servicios.VinculadoAsofondos.DataContracts</module>
+  </modules>
+</project>

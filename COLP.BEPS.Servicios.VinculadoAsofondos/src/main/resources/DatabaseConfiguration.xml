@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:DatabaseConfiguration
+    xmlns:tns="http://www.example.org/DatabaseConfiguration" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.example.org/DatabaseConfiguration DatabaseConfiguration.xsd ">
+    <tns:DriverClass></tns:DriverClass>
+    <tns:ConnectionURL></tns:ConnectionURL>
+    <tns:User></tns:User>
+    <tns:Password></tns:Password>
+    <tns:MetadataQueries>
+    
+		<!-- Consulta los parametros que deben ser visualizados -->
+		<tns:MetadataQuery>
+			<tns:QueryName>SP_consultaCamposVisibles</tns:QueryName>
+			<tns:CommandText>BEPS_TRANSACCIONAL.vinculacion.pr_vinc_consultaCamposVisibles(?)</tns:CommandText>
+		</tns:MetadataQuery>
+		
+		<!-- Consulta los la descripcion de Colombia mayor -->
+		<tns:MetadataQuery>
+			<tns:QueryName>SP_consultaDescripcionColombiaMayor</tns:QueryName>
+			<tns:CommandText>SELECT vcm_valor as descripcion
+					FROM BEPS_TRANSACCIONAL.parametricas.vinc_colombia_mayor
+					WHERE vcm_pk_id=?</tns:CommandText>
+			<tns:Parameters>
+                <tns:Parameter>
+                    <tns:ParameterName>@id</tns:ParameterName>
+                    <tns:ParameterType>BIGINT</tns:ParameterType>
+					<tns:ParameterScale></tns:ParameterScale>
+                </tns:Parameter>
+            </tns:Parameters>
+		</tns:MetadataQuery>
+		
+		<!-- Consulta las descripciones de Causales de no viabilidad -->
+		<tns:MetadataQuery>
+			<tns:QueryName>SP_consultaCausalNoViabilidad</tns:QueryName>
+			<tns:CommandText>SELECT vvv_descripcion_viabilidad as descripcion
+					FROM BEPS_TRANSACCIONAL.prevalidacion.vinc_valores_viabilidad
+					WHERE vvv_id_viabilidad=?</tns:CommandText>
+			<tns:Parameters>
+                <tns:Parameter>
+                    <tns:ParameterName>@id</tns:ParameterName>
+                    <tns:ParameterType>BIGINT</tns:ParameterType>
+					<tns:ParameterScale></tns:ParameterScale>
+                </tns:Parameter>
+            </tns:Parameters>
+		</tns:MetadataQuery>
+		
+		<!-- Consulta las descripciones de Causales de no viabilidad -->
+		<tns:MetadataQuery>
+			<tns:QueryName>SP_consultaDescrpcionEstado</tns:QueryName>
+			<tns:CommandText>SELECT vev_descripcion_estado as descripcion
+					FROM BEPS_TRANSACCIONAL.parametricas.vinc_estado_vinculado
+					WHERE vev_pk_estado=?</tns:CommandText>
+			<tns:Parameters>
+                <tns:Parameter>
+                    <tns:ParameterName>@id</tns:ParameterName>
+                    <tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+                </tns:Parameter>
+            </tns:Parameters>
+		</tns:MetadataQuery>
+		
+		<!-- Consulta el saldo total de la cuenta -->
+		<tns:MetadataQuery>
+			<tns:QueryName>SP_consultaSaldoTotal</tns:QueryName>
+			<tns:CommandText>BEPS_TRANSACCIONAL.vinculacion.pr_vinc_consultaSaldoTotalCuenta(?,?)</tns:CommandText>
+			 <tns:Parameters>
+                <tns:Parameter>
+                    <tns:ParameterName>@numeroDocumento</tns:ParameterName>
+                    <tns:ParameterType>VARCHAR</tns:ParameterType>
+                    <tns:ParameterScale>15</tns:ParameterScale>
+                </tns:Parameter>
+            </tns:Parameters>
+		</tns:MetadataQuery>
+		
+		 <!-- Ejecucion de un SP que consulta la viabilidad de un vinculado sobre 
+            el sistema BEPS -->
+        <tns:MetadataQuery>
+            <tns:QueryName>StoredProcedure_Consulta_Viabilidad</tns:QueryName>
+            <tns:CommandText>vinculacion.pr_vinc_consultar_viabilidad(? , ? , ? )
+            </tns:CommandText>
+            <tns:Parameters>
+                <tns:Parameter>
+                    <tns:ParameterName>@tipoDocumento</tns:ParameterName>
+                    <tns:ParameterType>CHAR</tns:ParameterType>
+                    <tns:ParameterScale>2</tns:ParameterScale>
+                </tns:Parameter>
+                <tns:Parameter>
+                    <tns:ParameterName>@numeroDocumento</tns:ParameterName>
+                    <tns:ParameterType>VARCHAR</tns:ParameterType>
+                    <tns:ParameterScale>15</tns:ParameterScale>
+                </tns:Parameter>
+                <tns:Parameter>
+                    <tns:ParameterName>@tipoDatos</tns:ParameterName>
+                    <tns:ParameterType>CHAR</tns:ParameterType>
+                    <tns:ParameterScale>2</tns:ParameterScale>
+                </tns:Parameter>
+            </tns:Parameters>
+        </tns:MetadataQuery>
+		
+		
+		<!-- Procedimiento almacenado que consulta la información de saldos y movimientos. -->
+        <tns:MetadataQuery>
+            <tns:QueryName>AS400StoredProcedure_ConsultarSaldosMovimientos</tns:QueryName>
+            <tns:CommandText>COLPROE070.SP_Consulta_Saldos_Tipo_Aporte(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+            </tns:CommandText>
+            <tns:Parameters>
+                <tns:Parameter>
+                    <tns:ParameterName>ZETIPODOCUMENTO</tns:ParameterName>
+                    <tns:ParameterType>CHAR</tns:ParameterType>
+                    <tns:ParameterScale>4</tns:ParameterScale>
+                </tns:Parameter>
+                <tns:Parameter>
+                    <tns:ParameterName>ZEIDENTIFICA</tns:ParameterName>
+                    <tns:ParameterType>CHAR</tns:ParameterType>
+                    <tns:ParameterScale>11</tns:ParameterScale>
+                </tns:Parameter>
+                <tns:Parameter>
+                    <tns:ParameterName>ZEFECHAINICIAL</tns:ParameterName>
+                    <tns:ParameterType>CHAR</tns:ParameterType>
+                    <tns:ParameterScale>8</tns:ParameterScale>
+                </tns:Parameter>
+                <tns:Parameter>
+                    <tns:ParameterName>ZEFECHAFINAL</tns:ParameterName>
+                    <tns:ParameterType>CHAR</tns:ParameterType>
+                    <tns:ParameterScale>8</tns:ParameterScale>
+                </tns:Parameter>
+                <tns:Parameter>
+                    <tns:ParameterName>ZNUMCUENTA</tns:ParameterName>
+                    <tns:ParameterType>DECIMAL</tns:ParameterType>
+                    <tns:ParameterScale>11</tns:ParameterScale>
+                </tns:Parameter>
+                <tns:Parameter>
+                    <tns:ParameterName>ZSESTADOCUENTA</tns:ParameterName>
+                    <tns:ParameterType>CHAR</tns:ParameterType>
+                    <tns:ParameterScale>1</tns:ParameterScale>
+                </tns:Parameter>
+                <tns:Parameter>
+                    <tns:ParameterName>ZSFECHAAPERTURA</tns:ParameterName>
+                    <tns:ParameterType>CHAR</tns:ParameterType>
+                    <tns:ParameterScale>8</tns:ParameterScale>
+                </tns:Parameter>
+                <tns:Parameter>
+                    <tns:ParameterName>ZSFECHACANCELA</tns:ParameterName>
+                    <tns:ParameterType>CHAR</tns:ParameterType>
+                    <tns:ParameterScale>8</tns:ParameterScale>
+                </tns:Parameter>
+                <tns:Parameter>
+                    <tns:ParameterName>ZSMOTIVOCANCELA</tns:ParameterName>
+                    <tns:ParameterType>CHAR</tns:ParameterType>
+                    <tns:ParameterScale>30</tns:ParameterScale>
+                </tns:Parameter>
+                <tns:Parameter>
+                    <tns:ParameterName>ZSVALTASAEANUAL</tns:ParameterName>
+                    <tns:ParameterType>DECIMAL</tns:ParameterType>
+                    <tns:ParameterScale>5</tns:ParameterScale>
+                </tns:Parameter>
+                <tns:Parameter>
+                    <tns:ParameterName>ZSAPORTESANTES</tns:ParameterName>
+                    <tns:ParameterType>DECIMAL</tns:ParameterType>
+                    <tns:ParameterScale>15</tns:ParameterScale>
+                </tns:Parameter>
+                <tns:Parameter>
+                    <tns:ParameterName>ZSAPORTESDURANT</tns:ParameterName>
+                    <tns:ParameterType>DECIMAL</tns:ParameterType>
+                    <tns:ParameterScale>15</tns:ParameterScale>
+                </tns:Parameter>
+                <tns:Parameter>
+                    <tns:ParameterName>ZSTOTALAPORTES</tns:ParameterName>
+                    <tns:ParameterType>DECIMAL</tns:ParameterType>
+                    <tns:ParameterScale>15</tns:ParameterScale>
+                </tns:Parameter>
+                <tns:Parameter>
+                    <tns:ParameterName>ZSALACUMINTANT</tns:ParameterName>
+                    <tns:ParameterType>DECIMAL</tns:ParameterType>
+                    <tns:ParameterScale>15</tns:ParameterScale>
+                </tns:Parameter>
+                <tns:Parameter>
+                    <tns:ParameterName>ZSALACUMINTDUR</tns:ParameterName>
+                    <tns:ParameterType>DECIMAL</tns:ParameterType>
+                    <tns:ParameterScale>15</tns:ParameterScale>
+                </tns:Parameter>
+                <tns:Parameter>
+                    <tns:ParameterName>ZSALACUMINTTOT</tns:ParameterName>
+                    <tns:ParameterType>DECIMAL</tns:ParameterType>
+                    <tns:ParameterScale>15</tns:ParameterScale>
+                </tns:Parameter>
+                <tns:Parameter>
+                    <tns:ParameterName>ZSADMINISTRACIO</tns:ParameterName>
+                    <tns:ParameterType>DECIMAL</tns:ParameterType>
+                    <tns:ParameterScale>15</tns:ParameterScale>
+                </tns:Parameter>
+                <tns:Parameter>
+                    <tns:ParameterName>ZSGMF</tns:ParameterName>
+                    <tns:ParameterType>DECIMAL</tns:ParameterType>
+                    <tns:ParameterScale>15</tns:ParameterScale>
+                </tns:Parameter>
+                <tns:Parameter>
+                    <tns:ParameterName>ZRETIROSDURANTE</tns:ParameterName>
+                    <tns:ParameterType>DECIMAL</tns:ParameterType>
+                    <tns:ParameterScale>15</tns:ParameterScale>
+                </tns:Parameter>
+                <tns:Parameter>
+                    <tns:ParameterName>ZSALDOFINTOT</tns:ParameterName>
+                    <tns:ParameterType>DECIMAL</tns:ParameterType>
+                    <tns:ParameterScale>15</tns:ParameterScale>
+                </tns:Parameter>
+                <tns:Parameter>
+                    <tns:ParameterName>ZSINCENTIVOPER</tns:ParameterName>
+                    <tns:ParameterType>DECIMAL</tns:ParameterType>
+                    <tns:ParameterScale>15</tns:ParameterScale>
+                </tns:Parameter>
+                <tns:Parameter>
+                    <tns:ParameterName>ZSALACUMUNIANT</tns:ParameterName>
+                    <tns:ParameterType>DECIMAL</tns:ParameterType>
+                    <tns:ParameterScale>21</tns:ParameterScale>
+                </tns:Parameter>
+                <tns:Parameter>
+                    <tns:ParameterName>ZSVALORUNIINI</tns:ParameterName>
+                    <tns:ParameterType>DECIMAL</tns:ParameterType>
+                    <tns:ParameterScale>21</tns:ParameterScale>
+                </tns:Parameter>
+                <tns:Parameter>
+                    <tns:ParameterName>ZSTOTAUNIAPORT</tns:ParameterName>
+                    <tns:ParameterType>DECIMAL</tns:ParameterType>
+                    <tns:ParameterScale>21</tns:ParameterScale>
+                </tns:Parameter>
+                <tns:Parameter>
+                    <tns:ParameterName>ZSVALORUNIFINAL</tns:ParameterName>
+                    <tns:ParameterType>DECIMAL</tns:ParameterType>
+                    <tns:ParameterScale>21</tns:ParameterScale>
+                </tns:Parameter>
+                <tns:Parameter>
+                    <tns:ParameterName>ZSCODERROR</tns:ParameterName>
+                    <tns:ParameterType>CHAR</tns:ParameterType>
+                    <tns:ParameterScale>7</tns:ParameterScale>
+                </tns:Parameter>
+                <tns:Parameter>
+                    <tns:ParameterName>ZSMENSAJEERROR</tns:ParameterName>
+                    <tns:ParameterType>CHAR</tns:ParameterType>
+                    <tns:ParameterScale>132</tns:ParameterScale>
+                </tns:Parameter>
+            </tns:Parameters>
+        </tns:MetadataQuery>
+      	
+    </tns:MetadataQueries>
+</tns:DatabaseConfiguration>

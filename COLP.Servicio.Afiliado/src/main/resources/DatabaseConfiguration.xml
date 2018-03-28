@@ -1,0 +1,4459 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:DatabaseConfiguration
+	xmlns:tns="http://www.example.org/DatabaseConfiguration" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.example.org/DatabaseConfiguration DatabaseConfiguration.xsd ">
+	<tns:DriverClass></tns:DriverClass>
+	<tns:ConnectionURL></tns:ConnectionURL>
+	<tns:User></tns:User>
+	<tns:Password></tns:Password>
+	<tns:MetadataQueries>
+	<!-- Este query se utiliza para consultar una SUCURSAL -->
+		<tns:MetadataQuery>
+			<tns:QueryName>PR_sucursalConsultada</tns:QueryName>
+			<tns:CommandText>
+				select * from sabass..Sucursal where ap_NumeroDocumento = ? and ap_TipoDocumento = ? and ap_TipoAportante = ? and su_Sucursal = ?
+			</tns:CommandText>
+			<tns:Parameters>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_NumeroDocumento</tns:ParameterName>
+					<tns:ParameterType>DECIMAL</tns:ParameterType>
+					<tns:ParameterScale>15</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_TipoDocumento</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_TipoAportante</tns:ParameterName>
+					<tns:ParameterType>DECIMAL</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@su_Sucursal</tns:ParameterName>
+					<tns:ParameterType>DECIMAL</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+			</tns:Parameters>
+		</tns:MetadataQuery>
+		<!-- Consulta la información de la relacion laboral en la base de datos 
+			SABASS. -->
+		<tns:MetadataQuery>
+			<tns:QueryName>PR_ConsultarRelacionLaboralTipoAportante</tns:QueryName>
+			<tns:CommandText>SELECT ap_TipoAportante FROM sabass..RelacionLaboral
+				WHERE ap_TipoDocumento = ? AND
+				ap_NumeroDocumento = ? AND
+				af_TipoDocumento = ? AND
+				af_NumeroDocumento = ? AND
+				rl_TipoAfiliacion
+				= 2
+			</tns:CommandText>
+			<tns:Parameters>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_TipoDocumento</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_NumeroDocumento</tns:ParameterName>
+					<tns:ParameterType>DECIMAL</tns:ParameterType>
+					<tns:ParameterScale>12</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@af_TipoDocumento</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@af_NumeroDocumento</tns:ParameterName>
+					<tns:ParameterType>DECIMAL</tns:ParameterType>
+					<tns:ParameterScale>12</tns:ParameterScale>
+				</tns:Parameter>
+			</tns:Parameters>
+		</tns:MetadataQuery>
+
+		<!-- Este query se utiliza para insertar un APORTANTE -->
+		<tns:MetadataQuery>
+			<tns:QueryName>PR_InsertarAportante</tns:QueryName>
+			<tns:CommandText>INSERT INTO sabass..Aportante
+				(ap_NumeroDocumento,ap_TipoDocumento,ap_TipoAportante,ap_RazonSocial,ap_ModoPresentacion,ap_Naturaleza,ae_ActividadEconomica,ap_FechaVinculacion,ap_Estado,ap_FechaCierreVinculacion,ap_NumeroEmpleados,ap_ARPActual,ap_FechaModificacion)
+				VALUES (?,?,?,?,?,?,?,?,?,?,?,?, GETDATE())
+			</tns:CommandText>
+
+
+			<tns:Parameters>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_NumeroDocumento</tns:ParameterName>
+					<tns:ParameterType>NUMERIC</tns:ParameterType>
+					<tns:ParameterScale>15</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_TipoDocumento</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_TipoAportante</tns:ParameterName>
+					<tns:ParameterType>TINYINT</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_RazonSocial</tns:ParameterName>
+					<tns:ParameterType>VARCHAR</tns:ParameterType>
+					<tns:ParameterScale>60</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_ModoPresentacion</tns:ParameterName>
+					<tns:ParameterType>BIT</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_Naturaleza</tns:ParameterName>
+					<tns:ParameterType>TINYINT</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ae_ActividadEconomica</tns:ParameterName>
+					<tns:ParameterType>NUMERIC</tns:ParameterType>
+					<tns:ParameterScale>7</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_FechaVinculacion</tns:ParameterName>
+					<tns:ParameterType>DATE</tns:ParameterType>
+					<tns:ParameterScale></tns:ParameterScale>
+				</tns:Parameter>
+
+
+				<tns:Parameter>
+					<tns:ParameterName>@ap_Estado</tns:ParameterName>
+					<tns:ParameterType>TINYINT</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+
+				<tns:Parameter>
+					<tns:ParameterName>@ap_fechaCierre</tns:ParameterName>
+					<tns:ParameterType>DATE</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+
+				<tns:Parameter>
+					<tns:ParameterName>@ap_NumeroEmpleados</tns:ParameterName>
+					<tns:ParameterType>INTEGER</tns:ParameterType>
+					<tns:ParameterScale>6</tns:ParameterScale>
+				</tns:Parameter>
+
+				<tns:Parameter>
+					<tns:ParameterName>@ap_ARPActual</tns:ParameterName>
+					<tns:ParameterType>TINYINT</tns:ParameterType>
+					<tns:ParameterScale>6</tns:ParameterScale>
+				</tns:Parameter>
+
+
+			</tns:Parameters>
+		</tns:MetadataQuery>
+
+		<!--Este query se utiliza para actualizar un APORTANTE -->
+		<tns:MetadataQuery>
+			<tns:QueryName>PR_ActualizarAportante</tns:QueryName>
+			<tns:CommandText>Update sabass..Aportante set ap_RazonSocial = ?,
+				ap_Naturaleza = ?, ae_ActividadEconomica = ?, ap_FechaModificacion =
+				GETDATE() where ap_NumeroDocumento = ? and ap_TipoDocumento = ? and
+				ap_TipoAportante= ?
+			</tns:CommandText>
+
+			<tns:Parameters>
+
+
+				<tns:Parameter>
+					<tns:ParameterName>@ap_RazonSocial</tns:ParameterName>
+					<tns:ParameterType>VARCHAR</tns:ParameterType>
+					<tns:ParameterScale>60</tns:ParameterScale>
+				</tns:Parameter>
+
+				<tns:Parameter>
+					<tns:ParameterName>@ap_Naturaleza</tns:ParameterName>
+					<tns:ParameterType>TINYINT</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ae_ActividadEconomica</tns:ParameterName>
+					<tns:ParameterType>NUMERIC</tns:ParameterType>
+					<tns:ParameterScale>7</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_NumeroDocumento</tns:ParameterName>
+					<tns:ParameterType>NUMERIC</tns:ParameterType>
+					<tns:ParameterScale>15</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_TipoDocumento</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_TipoAportante</tns:ParameterName>
+					<tns:ParameterType>TINYINT</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+			</tns:Parameters>
+		</tns:MetadataQuery>
+		<!-- Este query se utiliza para ver si existe un APORTANTE CON LAS 3 VARIABLES 
+			NUMERO DOCUMENTO, TIPO DOCUMENTO Y TIPO APORTANTE -->
+		<tns:MetadataQuery>
+			<tns:QueryName>PR_ConsultaExisteAportante3</tns:QueryName>
+			<tns:CommandText>
+				select * from sabass..Aportante where ap_NumeroDocumento = ?
+				and ap_TipoDocumento = ? and ap_TipoAportante = ?
+			</tns:CommandText>
+			<tns:Parameters>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_NumeroDocumento</tns:ParameterName>
+					<tns:ParameterType>DECIMAL</tns:ParameterType>
+					<tns:ParameterScale>15</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_TipoDocumento</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_TipoAportante</tns:ParameterName>
+					<tns:ParameterType>DECIMAL</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+			</tns:Parameters>
+		</tns:MetadataQuery>
+
+		<!-- Este query se utiliza para ver si existe un APORTANTE CON LAS 2 VARIABLES 
+			DOCUMENTO Y TIPO DOCUMENTO -->
+		<tns:MetadataQuery>
+			<tns:QueryName>PR_ConsultaExisteAportante2</tns:QueryName>
+			<tns:CommandText>
+				select * from sabass..Aportante where ap_NumeroDocumento = ?
+				and ap_TipoDocumento = ?
+			</tns:CommandText>
+			<tns:Parameters>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_NumeroDocumento</tns:ParameterName>
+					<tns:ParameterType>DECIMAL</tns:ParameterType>
+					<tns:ParameterScale>15</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_TipoDocumento</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+			</tns:Parameters>
+		</tns:MetadataQuery>
+
+		<!--Este query se utiliza para consultar un APORTANTE -->
+		<tns:MetadataQuery>
+			<tns:QueryName>PR_ConsultarInformacionGeneralAportante</tns:QueryName>
+			<tns:CommandText>SELECT ap_NumeroDocumento 'NumIdentificacion',
+				ap_TipoDocumento 'TipoIdentificacion',
+				ap_RazonSocial 'RazonSocial',
+				ap_Naturaleza 'Naturaleza',
+				ap_Estado 'Estado',
+				ap_FechaVinculacion
+				'FechaVinculacion',
+				ap_TipoAportante 'TipoAportante',
+				ae_ActividadEconomica 'ActividadEconomica'
+				FROM sabass..Aportante
+				WHERE
+				ap_NumeroDocumento = ? AND
+				ap_TipoDocumento = ?
+			</tns:CommandText>
+			<tns:Parameters>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_NumeroDocumento</tns:ParameterName>
+					<tns:ParameterType>DECIMAL</tns:ParameterType>
+					<tns:ParameterScale>15</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_TipoDocumento</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+			</tns:Parameters>
+		</tns:MetadataQuery>
+
+		<!--Este query se utiliza para consultar la informacion de ubicacion de 
+			un APORTANTE -->
+		<tns:MetadataQuery>
+			<tns:QueryName>PR_ConsultarInformacionUbicacionAportante</tns:QueryName>
+			<tns:CommandText>SELECT suc.su_Direccion 'Direccion',
+				suc.dp_Departamento 'Departamento',
+				suc.mu_Municipio 'Ciudad',
+				suc.lc_Localidad 'Localidad',
+				suc.su_Telefono 'Telefono',
+				suc.su_Email 'Email',
+				DP.dp_Nombre 'dp_Nombre',
+				MU.mu_Nombre
+				'mu_Nombre',
+				LOC.lc_Nombre 'lc_Nombre'
+				FROM sabass..Sucursal suc INNER JOIN
+				sabass..Aportante apte ON suc.ap_NumeroDocumento =
+				apte.ap_NumeroDocumento
+				AND
+				suc.ap_TipoDocumento = apte.ap_TipoDocumento AND
+				suc.ap_TipoAportante = apte.ap_TipoAportante
+				INNER JOIN sabass..Departamento
+				AS DP ON suc.dp_Departamento = DP.dp_Departamento
+				INNER JOIN
+				sabass..Municipio AS MU ON suc.mu_Municipio = MU.mu_Municipio AND
+				suc.dp_Departamento = MU.dp_Departamento
+				LEFT OUTER JOIN sabass..Localidad AS
+				LOC ON suc.lc_Localidad =LOC.lc_Localidad
+				AND suc.mu_Municipio =
+				LOC.mu_Municipio AND suc.dp_Departamento =
+				LOC.dp_Departamento
+				WHERE
+				suc.ap_NumeroDocumento = ? AND
+				suc.ap_TipoDocumento = ? AND
+				suc.ap_TipoAportante = ? AND
+				suc.su_Sucursal in(select
+				min(s.su_Sucursal) from sabass..Sucursal s WHERE
+				s.ap_NumeroDocumento = ? AND
+				s.ap_TipoDocumento = ?
+				AND s.ap_TipoAportante = ?)
+			</tns:CommandText>
+			<tns:Parameters>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_NumeroDocumento</tns:ParameterName>
+					<tns:ParameterType>DECIMAL</tns:ParameterType>
+					<tns:ParameterScale>15</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_TipoDocumento</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_TipoAportante</tns:ParameterName>
+					<tns:ParameterType>DECIMAL</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@sub_ap_NumeroDocumento</tns:ParameterName>
+					<tns:ParameterType>DECIMAL</tns:ParameterType>
+					<tns:ParameterScale>15</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@sub_ap_TipoDocumento</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@sub_ap_TipoAportante</tns:ParameterName>
+					<tns:ParameterType>DECIMAL</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+			</tns:Parameters>
+		</tns:MetadataQuery>
+
+
+		<!-- Este query se utiliza para consultar los datos de las SUCURSALES -->
+		<tns:MetadataQuery>
+			<tns:QueryName>PR_ConsultarDatosSucursales</tns:QueryName>
+			<tns:CommandText>SELECT su_Sucursal 'Codigo',
+				suc.su_Direccion
+				'Direccion',
+				suc.dp_Departamento 'Departamento',
+				suc.mu_Municipio
+				'Ciudad',
+				suc.lc_Localidad 'Localidad',
+				suc.su_Telefono 'Telefono',
+				suc.su_Email 'Email',
+				DP.dp_Nombre 'dp_Nombre',
+				MU.mu_Nombre
+				'mu_Nombre',
+				LOC.lc_Nombre 'lc_Nombre'
+				FROM sabass..Sucursal suc INNER JOIN
+				sabass..Aportante apte ON suc.ap_NumeroDocumento =
+				apte.ap_NumeroDocumento
+				AND
+				suc.ap_TipoDocumento = apte.ap_TipoDocumento AND
+				suc.ap_TipoAportante = apte.ap_TipoAportante
+				INNER JOIN sabass..Departamento
+				AS DP ON suc.dp_Departamento = DP.dp_Departamento
+				INNER JOIN
+				sabass..Municipio AS MU ON suc.mu_Municipio = MU.mu_Municipio AND
+				suc.dp_Departamento = MU.dp_Departamento
+				LEFT OUTER JOIN sabass..Localidad AS
+				LOC ON suc.lc_Localidad =LOC.lc_Localidad
+				AND suc.mu_Municipio =
+				LOC.mu_Municipio AND suc.dp_Departamento =
+				LOC.dp_Departamento
+				WHERE
+				suc.ap_NumeroDocumento = ? AND
+				suc.ap_TipoDocumento = ? AND
+				suc.ap_TipoAportante = ?
+			</tns:CommandText>
+			<tns:Parameters>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_NumeroDocumento</tns:ParameterName>
+					<tns:ParameterType>NUMERIC</tns:ParameterType>
+					<tns:ParameterScale>15</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_TipoDocumento</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_TipoAportante</tns:ParameterName>
+					<tns:ParameterType>DECIMAL</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+
+			</tns:Parameters>
+		</tns:MetadataQuery>
+
+
+		<!-- Este query se utiliza para insertar la SUCURSAL -->
+		<tns:MetadataQuery>
+			<tns:QueryName>PR_InsertarSurcursal</tns:QueryName>
+			<tns:CommandText>INSERT INTO sabass..Sucursal
+				(ap_NumeroDocumento,ap_TipoDocumento,ap_TipoAportante,su_Sucursal,dp_Departamento,mu_Municipio,lc_Localidad,su_Direccion,su_Telefono,su_Email,su_Fax,su_Zona,su_Sector)
+				VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)
+			</tns:CommandText>
+			<tns:Parameters>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_NumeroDocumento</tns:ParameterName>
+					<tns:ParameterType>NUMERIC</tns:ParameterType>
+					<tns:ParameterScale>15</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_TipoDocumento</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_TipoAportante</tns:ParameterName>
+					<tns:ParameterType>TINYINT</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@su_Sucursal</tns:ParameterName>
+					<tns:ParameterType>SMALLINT</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@dp_Departamento</tns:ParameterName>
+					<tns:ParameterType>TINYINT</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@mu_Municipio</tns:ParameterName>
+					<tns:ParameterType>SMALLINT</tns:ParameterType>
+					<tns:ParameterScale></tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@lc_Localidad</tns:ParameterName>
+					<tns:ParameterType>SMALLINT</tns:ParameterType>
+					<tns:ParameterScale></tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@su_Direccion</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>35</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@su_Telefono</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>35</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@su_Email</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>100</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@su_Fax</tns:ParameterName>
+					<tns:ParameterType>NUMERIC</tns:ParameterType>
+					<tns:ParameterScale>10</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@su_Zona</tns:ParameterName>
+					<tns:ParameterType>TINYINT</tns:ParameterType>
+					<tns:ParameterScale></tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@su_Sector</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+
+
+			</tns:Parameters>
+		</tns:MetadataQuery>
+
+		<!-- Este query se utiliza para actualizar una SUCURSAL -->
+		<tns:MetadataQuery>
+			<tns:QueryName>PR_ActualizarSucursal</tns:QueryName>
+			<tns:CommandText>Update sabass..Sucursal set su_Sucursal = ? ,
+				dp_Departamento = ?, mu_Municipio = ?, lc_Localidad = ?,
+				su_Direccion = ?, su_telefono = ?, su_Email = ? where
+				ap_NumeroDocumento = ? and ap_TipoDocumento = ? and ap_TipoAportante
+				= ? and su_Sucursal = ?
+			</tns:CommandText>
+			<tns:Parameters></tns:Parameters>
+			<tns:Parameters>
+
+				<tns:Parameter>
+					<tns:ParameterName>@su_Sucursal_update</tns:ParameterName>
+					<tns:ParameterType>SMALLINT</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@dp_Departamento</tns:ParameterName>
+					<tns:ParameterType>TINYINT</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@mu_Municipio</tns:ParameterName>
+					<tns:ParameterType>SMALLINT</tns:ParameterType>
+					<tns:ParameterScale></tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@lc_Localidad</tns:ParameterName>
+					<tns:ParameterType>SMALLINT</tns:ParameterType>
+					<tns:ParameterScale></tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@su_Direccion</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>35</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@su_Telefono</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>35</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@su_Email</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>100</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_NumeroDocumento</tns:ParameterName>
+					<tns:ParameterType>NUMERIC</tns:ParameterType>
+					<tns:ParameterScale>15</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_TipoDocumento</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_TipoAportante</tns:ParameterName>
+					<tns:ParameterType>TINYINT</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@su_Sucursal</tns:ParameterName>
+					<tns:ParameterType>SMALLINT</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+
+
+
+			</tns:Parameters>
+		</tns:MetadataQuery>
+
+
+		<!-- Este query se utiliza para consultar una SUCURSAL -->
+
+		<tns:MetadataQuery>
+			<tns:QueryName>PR_ConsultaSucursal_TipoDocumento_NumeroDocumento_TipoAportante</tns:QueryName>
+			<tns:CommandText>
+				select * from sabass..Sucursal where ap_NumeroDocumento = ?
+				and ap_TipoDocumento = ? and ap_TipoAportante = ?
+			</tns:CommandText>
+			<tns:Parameters>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_NumeroDocumento</tns:ParameterName>
+					<tns:ParameterType>DECIMAL</tns:ParameterType>
+					<tns:ParameterScale>15</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_TipoDocumento</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_TipoAportante</tns:ParameterName>
+					<tns:ParameterType>DECIMAL</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+			</tns:Parameters>
+		</tns:MetadataQuery>
+
+		<!-- Este query se utiliza para insertar una NOVEDAD APORTANTE -->
+		<tns:MetadataQuery>
+			<tns:QueryName>PR_InsertarNovedadAportante</tns:QueryName>
+			<tns:CommandText>
+				INSERT INTO sabass..NovedadAportante
+				(ap_numeroDocumento,ap_TipoDocumento,ap_TipoAportante,np_Consecutivo,tn_TipoNovedad,np_fechaNovedad,np_ValorNovedad,np_Referencia,us_login)
+				VALUES (?,?,?,?,?,?,?,?,?)
+			</tns:CommandText>
+			<tns:Parameters>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_NumeroDocumento</tns:ParameterName>
+					<tns:ParameterType>DECIMAL</tns:ParameterType>
+					<tns:ParameterScale>8</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_TipoDocumento</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_TipoAportante</tns:ParameterName>
+					<tns:ParameterType>DECIMAL</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@np_Consecutivo</tns:ParameterName>
+					<tns:ParameterType>DECIMAL</tns:ParameterType>
+					<tns:ParameterScale>8</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@tn_TipoNovedad</tns:ParameterName>
+					<tns:ParameterType>TINYINT</tns:ParameterType>
+					<tns:ParameterScale>8</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@np_FechaNovedad</tns:ParameterName>
+					<tns:ParameterType>DATE</tns:ParameterType>
+					<tns:ParameterScale>8</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@np_ValorNovedad</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>30</tns:ParameterScale>
+				</tns:Parameter>
+
+				<tns:Parameter>
+					<tns:ParameterName>@np_Referencia</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>15</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@us_Login</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>30</tns:ParameterScale>
+				</tns:Parameter>
+			</tns:Parameters>
+		</tns:MetadataQuery>
+
+		<!-- Este query se utiliza para obtener valor del consecutivo de la tabla 
+			NOVERADAPORTANTE -->
+		<tns:MetadataQuery>
+			<tns:QueryName>PR_ConsultarConsecutivoNovedadAportante</tns:QueryName>
+			<tns:CommandText>SELECT (MAX(np_Consecutivo) + 1) np_Consecutivo FROM
+				sabass..NovedadAportante
+			</tns:CommandText>
+		</tns:MetadataQuery>
+
+		<!-- Este query se utiliza para consultar el aportante -->
+
+
+		<tns:MetadataQuery>
+
+
+			<tns:QueryName>PR_ConsultaSucursal_TipoDocumento_NumeroDocumento_TipoAportante</tns:QueryName>
+			<tns:CommandText>Select * from sabass..NovedadAportante where
+				ap_NumeroDocumento = ? and ap_TipoDocumento = ? and
+				ap_TipoAportante= ?
+			</tns:CommandText>
+			<tns:Parameters>
+
+				<tns:Parameter>
+					<tns:ParameterName>@ap_NumeroDocumento</tns:ParameterName>
+					<tns:ParameterType>DECIMAL</tns:ParameterType>
+					<tns:ParameterScale>15</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_TipoDocumento</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_TipoAportante</tns:ParameterName>
+					<tns:ParameterType>DECIMAL</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+
+
+			</tns:Parameters>
+
+		</tns:MetadataQuery>
+
+
+		<!-- Verifica en historico novedades la existencia de la tupla tn_TipoCambio=212 
+			y tn_Nombre = Creación Aportante -->
+		<tns:MetadataQuery>
+			<tns:QueryName>PR_ConsultaHistoricoNovedades_TipoCambio_CrearAportante</tns:QueryName>
+			<tns:CommandText>SELECT * FROM sabass..TipoNovedad where tn_TipoNovedad = 212
+				and tn_Nombre = 'Creación Aportante'
+			</tns:CommandText>
+		</tns:MetadataQuery>
+
+		<!-- Verifica en historico novedades la existencia de la tupla tn_TipoCambio=51 
+			y tn_Nombre = Actualización Razón Social Aportante -->
+
+		<tns:MetadataQuery>
+			<tns:QueryName>PR_ConsultaHistoricoNovedades_TipoCambio_ActualizarAportante</tns:QueryName>
+			<tns:CommandText>SELECT * FROM sabass..TipoNovedad where tn_TipoNovedad = 51
+				and tn_Nombre = 'Actualización Razón Social Aportante'
+			</tns:CommandText>
+		</tns:MetadataQuery>
+
+		<!-- Este query se utiliza para mirar el numero de empleados de un APORTANTE -->
+		<tns:MetadataQuery>
+			<tns:QueryName>PR_Numero_Empleados_Confecamaras_Filtrar_Aportante</tns:QueryName>
+			<tns:CommandText>
+				select empleados from sabass..Tabla_bd_confecamaras where
+				NUMERO_IDENTIFICACION = ?
+
+			</tns:CommandText>
+			<tns:Parameters>
+				<tns:Parameter>
+					<tns:ParameterName>@numero_identificacion</tns:ParameterName>
+					<tns:ParameterType>DECIMAL</tns:ParameterType>
+					<tns:ParameterScale>15</tns:ParameterScale>
+				</tns:Parameter>
+			</tns:Parameters>
+		</tns:MetadataQuery>
+		<!-- ConsultartablaAfiliado -->
+		<tns:MetadataQuery>
+			<tns:QueryName>PR_ConsultaAfiliado</tns:QueryName>
+			<tns:CommandText>SELECT
+				AF.af_NumeroDocumento,
+				AF.af_TipoDocumento,
+				AF.af_PrimerApellido,
+				AF.af_SegundoApellido,
+				AF.af_PrimerNombre,
+				AF.af_SegundoNombre,
+				AF.af_Sexo,
+				AF.af_FechaNacimiento,
+				AF.dp_Departamento,
+				AF.mu_Municipio,
+				AF.lc_Localidad,
+				AF.af_Direccion,
+				AF.af_Telefono,
+				AF.af_Email,
+				AF.gs_GrupoSanguineo,
+				AF.gp_GrupoPoblacion,
+				AF.af_Sector,
+				AF.af_GrupEtnico,
+				AF.na_Nacionalidad,
+				AF.af_Estrato,
+				AF.af_Estado,
+				AF.af_Depura,
+				AF.af_FechaModificacion,
+				AF.af_Zona,
+				AF.af_EstadoCarnet,
+				AF.af_NumeroCarnet
+				FROM sabass..Afiliado AS AF
+				where
+				AF.af_NumeroDocumento=? AND AF.af_TipoDocumento=?
+			</tns:CommandText>
+			<tns:Parameters>
+				<tns:Parameter>
+					<tns:ParameterName>@af_NumeroDocumento</tns:ParameterName>
+					<tns:ParameterType>DECIMAL</tns:ParameterType>
+					<tns:ParameterScale>8</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@af_TipoDocumento</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+			</tns:Parameters>
+		</tns:MetadataQuery>
+		<!-- Consultar tabla AfiliadoDetalle -->
+		<tns:MetadataQuery>
+			<tns:QueryName>PR_ConsultaAfiliadoDetalle</tns:QueryName>
+			<tns:CommandText>SELECT AF.afd_EnvioInfo
+				FROM SABASS..afiliado_Detalle
+				AS AF
+				where
+				AF.af_NumeroDocumento=? AND AF.af_TipoDocumento=?
+			</tns:CommandText>
+			<tns:Parameters>
+				<tns:Parameter>
+					<tns:ParameterName>@af_NumeroDocumento</tns:ParameterName>
+					<tns:ParameterType>DECIMAL</tns:ParameterType>
+					<tns:ParameterScale>8</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@af_TipoDocumento</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+			</tns:Parameters>
+		</tns:MetadataQuery>
+		<!-- Consultar tabla AfiliadoNacimiento -->
+		<tns:MetadataQuery>
+			<tns:QueryName>PR_ConsultaAfiliadoNacimiento</tns:QueryName>
+			<tns:CommandText>SELECT AF.dp_Departamento,AF.mu_Municipio
+				FROM
+				SABASS..AfiliadoNacimiento AS AF
+				where
+				AF.af_NumeroDocumento=? AND
+				AF.af_TipoDocumento=?
+			</tns:CommandText>
+			<tns:Parameters>
+				<tns:Parameter>
+					<tns:ParameterName>@af_NumeroDocumento</tns:ParameterName>
+					<tns:ParameterType>DECIMAL</tns:ParameterType>
+					<tns:ParameterScale>8</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@af_TipoDocumento</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+			</tns:Parameters>
+		</tns:MetadataQuery>
+		<!-- Creación logica procedimiento almacenado cp_RegistroHistoricoNovAfil. -->
+		<tns:MetadataQuery>
+			<tns:QueryName>StoredProcedure_HistoricoNovedadesAfiliado</tns:QueryName>
+			<tns:CommandText>sabass..hbt_cp_RegistroHistoricoNovAfil(?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+			</tns:CommandText>
+			<tns:Parameters>
+				<tns:Parameter>
+					<tns:ParameterName>@af_NumeroDocumento</tns:ParameterName>
+					<tns:ParameterType>NUMERIC</tns:ParameterType>
+					<tns:ParameterScale>15</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@af_TipoDocumento</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@as_TipoAfiliado</tns:ParameterName>
+					<tns:ParameterType>BIT</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@hc_TipoCambio</tns:ParameterName>
+					<tns:ParameterType>TINYINT</tns:ParameterType>
+					<tns:ParameterScale></tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ha_ValorAntes</tns:ParameterName>
+					<tns:ParameterType>VARCHAR</tns:ParameterType>
+					<tns:ParameterScale>120</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ha_ValorDespues</tns:ParameterName>
+					<tns:ParameterType>VARCHAR</tns:ParameterType>
+					<tns:ParameterScale>120</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ha_FechaAuxiliar</tns:ParameterName>
+					<tns:ParameterType>DATE</tns:ParameterType>
+					<tns:ParameterScale></tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ha_Hostname</tns:ParameterName>
+					<tns:ParameterType>VARCHAR</tns:ParameterType>
+					<tns:ParameterScale>50</tns:ParameterScale>
+				</tns:Parameter>
+
+				<tns:Parameter>
+					<tns:ParameterName>@ha_Documento</tns:ParameterName>
+					<tns:ParameterType>VARCHAR</tns:ParameterType>
+					<tns:ParameterScale>50</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ha_FechaDocumento</tns:ParameterName>
+					<tns:ParameterType>DATE</tns:ParameterType>
+					<tns:ParameterScale></tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ha_Responsable</tns:ParameterName>
+					<tns:ParameterType>VARCHAR</tns:ParameterType>
+					<tns:ParameterScale>50</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ha_Entidad</tns:ParameterName>
+					<tns:ParameterType>TINYINT</tns:ParameterType>
+					<tns:ParameterScale></tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ha_FechaDesde</tns:ParameterName>
+					<tns:ParameterType>VARCHAR</tns:ParameterType>
+					<tns:ParameterScale></tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@us_Login</tns:ParameterName>
+					<tns:ParameterType>VARCHAR</tns:ParameterType>
+					<tns:ParameterScale></tns:ParameterScale>
+				</tns:Parameter>
+			</tns:Parameters>
+		</tns:MetadataQuery>
+		
+		<!--Este query se utiliza para actualizar la fecha de ingreso de la relacion laboral -->
+		<tns:MetadataQuery>
+			<tns:QueryName>PR_ActualizarFechaIngreso</tns:QueryName>
+			<tns:CommandText>Update sabass..RelacionSeguro set rs_FechaIngreso = ? where ap_NumeroDocumento = ?
+			and ap_TipoDocumento = ? and ap_TipoAportante= ? and af_NumeroDocumento = ? 
+			and af_TipoDocumento = ? and ts_TipoSeguro = 'P'
+			</tns:CommandText>
+			<tns:Parameters>
+				<tns:Parameter>
+					<tns:ParameterName>@rs_FechaIngreso</tns:ParameterName>
+					<tns:ParameterType>VARCHAR</tns:ParameterType>
+					<tns:ParameterScale>8</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_NumeroDocumento</tns:ParameterName>
+					<tns:ParameterType>NUMERIC</tns:ParameterType>
+					<tns:ParameterScale>15</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_TipoDocumento</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_TipoAportante</tns:ParameterName>
+					<tns:ParameterType>TINYINT</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@af_NumeroDocumento</tns:ParameterName>
+					<tns:ParameterType>NUMERIC</tns:ParameterType>
+					<tns:ParameterScale>15</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@af_TipoDocumento</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+			</tns:Parameters>
+		</tns:MetadataQuery>
+		
+		<!--Este query se utiliza para actualizar la fecha de modificacion de la relacion seguro -->
+		<tns:MetadataQuery>
+			<tns:QueryName>PR_ActualizarFechaModificacionSeguro</tns:QueryName>
+			<tns:CommandText>Update sabass..RelacionSeguro set rs_FechaModificacion = GETDATE() where ap_NumeroDocumento = ?
+			and ap_TipoDocumento = ? and ap_TipoAportante= ? and af_NumeroDocumento = ? 
+			and af_TipoDocumento = ? and ts_TipoSeguro = 'P'
+			</tns:CommandText>
+			<tns:Parameters>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_NumeroDocumento</tns:ParameterName>
+					<tns:ParameterType>NUMERIC</tns:ParameterType>
+					<tns:ParameterScale>15</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_TipoDocumento</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_TipoAportante</tns:ParameterName>
+					<tns:ParameterType>TINYINT</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@af_NumeroDocumento</tns:ParameterName>
+					<tns:ParameterType>NUMERIC</tns:ParameterType>
+					<tns:ParameterScale>15</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@af_TipoDocumento</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+			</tns:Parameters>
+		</tns:MetadataQuery>
+		
+		<!--Este query se utiliza para actualizar la fecha de modificacion de la relacion laboral -->
+		<tns:MetadataQuery>
+			<tns:QueryName>PR_ActualizarFechaModificacionLaboral</tns:QueryName>
+			<tns:CommandText>Update sabass..RelacionLaboral set rl_FechaModificacion = GETDATE() where ap_NumeroDocumento = ?
+			and ap_TipoDocumento = ? and ap_TipoAportante= ? and af_NumeroDocumento = ? 
+			and af_TipoDocumento = ? 
+			</tns:CommandText>
+			<tns:Parameters>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_NumeroDocumento</tns:ParameterName>
+					<tns:ParameterType>NUMERIC</tns:ParameterType>
+					<tns:ParameterScale>15</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_TipoDocumento</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_TipoAportante</tns:ParameterName>
+					<tns:ParameterType>TINYINT</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@af_NumeroDocumento</tns:ParameterName>
+					<tns:ParameterType>NUMERIC</tns:ParameterType>
+					<tns:ParameterScale>15</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@af_TipoDocumento</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+			</tns:Parameters>
+		</tns:MetadataQuery>
+
+		<!-- Consultar tabla Afiliado -->
+		<tns:MetadataQuery>
+			<tns:QueryName>PR_ConsultaAfiliado</tns:QueryName>
+			<tns:CommandText>SELECT
+				AF.af_NumeroDocumento,
+				AF.af_TipoDocumento,
+				AF.af_PrimerApellido,
+				AF.af_SegundoApellido,
+				AF.af_PrimerNombre,
+				AF.af_SegundoNombre,
+				AF.af_Sexo,
+				AF.af_FechaNacimiento,
+				AF.dp_Departamento,
+				AF.mu_Municipio,
+				AF.lc_Localidad,
+				AF.af_Direccion,
+				AF.af_Telefono,
+				AF.af_Email,
+				AF.gs_GrupoSanguineo,
+				AF.gp_GrupoPoblacion,
+				AF.af_Sector,
+				AF.af_GrupEtnico,
+				AF.na_Nacionalidad,
+				AF.af_Estrato,
+				AF.af_Estado,
+				AF.af_Depura,
+				AF.af_FechaModificacion,
+				AF.af_Zona,
+				AF.af_EstadoCarnet,
+				AF.af_NumeroCarnet,
+				AF.af_NUIP, 'Colombia' AS pa_Nombre,
+				'CO' AS
+				pa_Pais
+
+				FROM sabass..Afiliado AS AF
+				where
+				AF.af_NumeroDocumento=?
+				AND AF.af_TipoDocumento=?
+			</tns:CommandText>
+			<tns:Parameters>
+				<tns:Parameter>
+					<tns:ParameterName>@af_NumeroDocumento</tns:ParameterName>
+					<tns:ParameterType>DECIMAL</tns:ParameterType>
+					<tns:ParameterScale>8</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@af_TipoDocumento</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+			</tns:Parameters>
+		</tns:MetadataQuery>
+		<!-- Consultar tabla AfiliadoDetalle -->
+		<tns:MetadataQuery>
+			<tns:QueryName>PR_ConsultaAfiliadoDetalle</tns:QueryName>
+			<tns:CommandText>SELECT AF.afd_EnvioInfo
+				FROM SABASS..afiliado_Detalle
+				AS AF
+				where
+				AF.af_NumeroDocumento=? AND AF.af_TipoDocumento=?
+			</tns:CommandText>
+			<tns:Parameters>
+				<tns:Parameter>
+					<tns:ParameterName>@af_NumeroDocumento</tns:ParameterName>
+					<tns:ParameterType>DECIMAL</tns:ParameterType>
+					<tns:ParameterScale>8</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@af_TipoDocumento</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+			</tns:Parameters>
+		</tns:MetadataQuery>
+		<!-- Consultar tabla AfiliadoNacimiento -->
+		<tns:MetadataQuery>
+			<tns:QueryName>PR_ConsultaAfiliadoNacimiento</tns:QueryName>
+			<tns:CommandText>SELECT AF.dp_Departamento,AF.mu_Municipio
+				FROM
+				SABASS..AfiliadoNacimiento AS AF
+				where
+				AF.af_NumeroDocumento=? AND
+				AF.af_TipoDocumento=?
+			</tns:CommandText>
+			<tns:Parameters>
+				<tns:Parameter>
+					<tns:ParameterName>@af_NumeroDocumento</tns:ParameterName>
+					<tns:ParameterType>DECIMAL</tns:ParameterType>
+					<tns:ParameterScale>8</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@af_TipoDocumento</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+			</tns:Parameters>
+		</tns:MetadataQuery>
+		<!-- Este query se utiliza para consultar la informaciÃ³n general de un 
+			AFILIADO -->
+		<tns:MetadataQuery>
+			<tns:QueryName>PR_ConsultarInformacionGeneralAfiliado</tns:QueryName>
+			<tns:CommandText>sabass..PR_ConsultarInfoAfiliado(?,?)</tns:CommandText>
+			<tns:CommandType>StoredProcedure</tns:CommandType>
+			<tns:Parameters>
+				<tns:Parameter>
+					<tns:ParameterName>@af_NumeroDocumento</tns:ParameterName>
+					<tns:ParameterType>DECIMAL</tns:ParameterType>
+					<tns:ParameterScale>15</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@af_TipoDocumento</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+
+			</tns:Parameters>
+		</tns:MetadataQuery>
+
+		<tns:MetadataQuery>
+			<tns:QueryName>PR_ConsultarInformacionRelacionLaboralAfiliado</tns:QueryName>
+			<tns:CommandText>sabass..PR_ConsultarInfoRLAfiliado(?,?)</tns:CommandText>
+			<tns:CommandType>StoredProcedure</tns:CommandType>
+			<tns:Parameters>
+				<tns:Parameter>
+					<tns:ParameterName>@af_NumeroDocumento</tns:ParameterName>
+					<tns:ParameterType>DECIMAL</tns:ParameterType>
+					<tns:ParameterScale>15</tns:ParameterScale>
+				</tns:Parameter>
+
+				<tns:Parameter>
+					<tns:ParameterName>@af_TipoDocumento</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+
+			</tns:Parameters>
+		</tns:MetadataQuery>
+
+		<!-- Registrar Datos Insertar Historico Relacion laboral -->
+		<tns:MetadataQuery>
+			<tns:QueryName>cp_RegistroHistoricoRelacionLaboral</tns:QueryName>
+			<tns:CommandText>INSERT INTO sabass..HistoricoRelacionLaboral
+				(ha_Consecutivo, ap_NumeroDocumento,
+				ap_TipoDocumento,
+				ap_TipoAportante, af_NumeroDocumento, af_TipoDocumento,
+				hc_TipoCambio,
+				ts_TipoSeguro, rl_TipoVinculado, ht_FechaDesde,
+				ht_FechaModificacion, us_Login,
+				us_idSeguridad, ht_Hostname,
+				ht_Documento, ht_Responsable)
+				VALUES (?, ?, ?, ?, ?, ?, ?, 'P', ?, ?,
+				GETDATE(), ?, ?, ?, ?, ?)
+			</tns:CommandText>
+			<tns:Parameters>
+				<tns:Parameter>
+					<tns:ParameterName>@ha_Consecutivo</tns:ParameterName>
+					<tns:ParameterType>NUMERIC</tns:ParameterType>
+					<tns:ParameterScale>18</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_NumeroDocumento</tns:ParameterName>
+					<tns:ParameterType>DECIMAL</tns:ParameterType>
+					<tns:ParameterScale>12</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_TipoDocumento</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_TipoAportante</tns:ParameterName>
+					<tns:ParameterType>TINYINT</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@af_NumeroDocumento</tns:ParameterName>
+					<tns:ParameterType>DECIMAL</tns:ParameterType>
+					<tns:ParameterScale>12</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@af_TipoDocumento</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@hc_TipoCambio</tns:ParameterName>
+					<tns:ParameterType>TINYINT</tns:ParameterType>
+					<tns:ParameterScale>4</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@rl_TipoVinculado</tns:ParameterName>
+					<tns:ParameterType>INTEGER</tns:ParameterType>
+					<tns:ParameterScale>2</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ht_FechaDesde</tns:ParameterName>
+					<tns:ParameterType>VARCHAR</tns:ParameterType>
+					<tns:ParameterScale>8</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@us_Login</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>30</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@us_idSeguridad</tns:ParameterName>
+					<tns:ParameterType>INTEGER</tns:ParameterType>
+					<tns:ParameterScale>5</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ht_Hostname</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ht_Documento</tns:ParameterName>
+					<tns:ParameterType>VARCHAR</tns:ParameterType>
+					<tns:ParameterScale>50</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ht_Responsable</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+
+			</tns:Parameters>
+		</tns:MetadataQuery>
+		<!-- Reactivar Estado de Afiliacion -->
+		<tns:MetadataQuery>
+			<tns:QueryName>PR_ReactivarEstadoAfiliacion</tns:QueryName>
+			<tns:CommandText>UPDATE sabass..AfiliadoSeguro
+				set as_EstadoSeguro= 1
+				where
+				af_NumeroDocumento=? and af_TipoDocumento=? AND ts_TipoSeguro=?
+			</tns:CommandText>
+			<tns:Parameters>
+				<tns:Parameter>
+					<tns:ParameterName>@af_NumeroDocumento</tns:ParameterName>
+					<tns:ParameterType>DECIMAL</tns:ParameterType>
+					<tns:ParameterScale>8</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@af_TipoDocumento</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ts_TipoSeguro</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+			</tns:Parameters>
+		</tns:MetadataQuery>
+
+		<!-- Este query no permite consultar la actividad economica -->
+		<tns:MetadataQuery>
+			<tns:QueryName>PR_ExisteActividad_Economica_Codigo</tns:QueryName>
+			<tns:CommandText>SELECT * FROM sabass..ActividadEconomica where
+				ae_ActividadEconomica = ?
+			</tns:CommandText>
+			<tns:Parameters>
+
+				<tns:Parameter>
+					<tns:ParameterName>@ae_ActividadEconomica</tns:ParameterName>
+					<tns:ParameterType>NUMERIC</tns:ParameterType>
+					<tns:ParameterScale>15</tns:ParameterScale>
+				</tns:Parameter>
+			</tns:Parameters>
+		</tns:MetadataQuery>
+		<!-- Registro de Beneficiarios -->
+
+		<!-- <tns:MetadataQuery> <tns:QueryName>PR_RegistroBeneficiario</tns:QueryName> 
+			<tns:CommandText>INSERT INTO sabass..cargue_beneficiarios (tipo_identificacion_a,numero_identificacion_a,tipo_identificacion 
+			,numero_identificacion,primer_nombre,segundo_nombre,primer_apellido,segundo_apellido,fecha_nacimiento,nacionalidad, 
+			departamento_residencia,municipio_residencia,barrio_vereda_residencia,direccion,telefono_fijo,celular,fax,parentesco, 
+			correo_electronico,tipo_novedad,numero_consecutivo_formulario,notificacion_correo,tipo_formulario,fecha_ejecucion_cargue,fecha_gen_archivo_plano) 
+			VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)</tns:CommandText> 
+			<tns:Parameters> <tns:Parameter> <tns:ParameterName>@tipo_identificacion_a</tns:ParameterName> 
+			<tns:ParameterType>CHAR</tns:ParameterType> <tns:ParameterScale>1</tns:ParameterScale> 
+			</tns:Parameter> <tns:Parameter> <tns:ParameterName>@numero_identificacion_a</tns:ParameterName> 
+			<tns:ParameterType>VARCHAR</tns:ParameterType> <tns:ParameterScale>15</tns:ParameterScale> 
+			</tns:Parameter> <tns:Parameter> <tns:ParameterName>@tipo_identificacion</tns:ParameterName> 
+			<tns:ParameterType>CHAR</tns:ParameterType> <tns:ParameterScale>1</tns:ParameterScale> 
+			</tns:Parameter> <tns:Parameter> <tns:ParameterName>@numero_identificacion</tns:ParameterName> 
+			<tns:ParameterType>NUMERIC</tns:ParameterType> <tns:ParameterScale>15</tns:ParameterScale> 
+			</tns:Parameter> <tns:Parameter> <tns:ParameterName>@primer_nombre</tns:ParameterName> 
+			<tns:ParameterType>VARCHAR</tns:ParameterType> <tns:ParameterScale>25</tns:ParameterScale> 
+			</tns:Parameter> <tns:Parameter> <tns:ParameterName>@segundo_nombre</tns:ParameterName> 
+			<tns:ParameterType>VARCHAR</tns:ParameterType> <tns:ParameterScale>25</tns:ParameterScale> 
+			</tns:Parameter> <tns:Parameter> <tns:ParameterName>@primer_apellido</tns:ParameterName> 
+			<tns:ParameterType>VARCHAR</tns:ParameterType> <tns:ParameterScale>25</tns:ParameterScale> 
+			</tns:Parameter> <tns:Parameter> <tns:ParameterName>@segundo_apellido</tns:ParameterName> 
+			<tns:ParameterType>VARCHAR</tns:ParameterType> <tns:ParameterScale>25</tns:ParameterScale> 
+			</tns:Parameter> <tns:Parameter> <tns:ParameterName>@fecha_nacimiento</tns:ParameterName> 
+			<tns:ParameterType>DATE</tns:ParameterType> <tns:ParameterScale></tns:ParameterScale> 
+			</tns:Parameter> <tns:Parameter> <tns:ParameterName>@nacionalidad</tns:ParameterName> 
+			<tns:ParameterType>VARCHAR</tns:ParameterType> <tns:ParameterScale>10</tns:ParameterScale> 
+			</tns:Parameter> <tns:Parameter> <tns:ParameterName>@departamento_residencia</tns:ParameterName> 
+			<tns:ParameterType>VARCHAR</tns:ParameterType> <tns:ParameterScale>10</tns:ParameterScale> 
+			</tns:Parameter> <tns:Parameter> <tns:ParameterName>@municipio_residencia</tns:ParameterName> 
+			<tns:ParameterType>VARCHAR</tns:ParameterType> <tns:ParameterScale>10</tns:ParameterScale> 
+			</tns:Parameter> <tns:Parameter> <tns:ParameterName>@barrio_vereda_residencia</tns:ParameterName> 
+			<tns:ParameterType>VARCHAR</tns:ParameterType> <tns:ParameterScale>20</tns:ParameterScale> 
+			</tns:Parameter> <tns:Parameter> <tns:ParameterName>@direccion</tns:ParameterName> 
+			<tns:ParameterType>VARCHAR</tns:ParameterType> <tns:ParameterScale>35</tns:ParameterScale> 
+			</tns:Parameter> <tns:Parameter> <tns:ParameterName>@telefono_fijo</tns:ParameterName> 
+			<tns:ParameterType>VARCHAR</tns:ParameterType> <tns:ParameterScale>35</tns:ParameterScale> 
+			</tns:Parameter> <tns:Parameter> <tns:ParameterName>@celular</tns:ParameterName> 
+			<tns:ParameterType>VARCHAR</tns:ParameterType> <tns:ParameterScale>35</tns:ParameterScale> 
+			</tns:Parameter> <tns:Parameter> <tns:ParameterName>@fax</tns:ParameterName> 
+			<tns:ParameterType>NUMERIC</tns:ParameterType> <tns:ParameterScale>15</tns:ParameterScale> 
+			</tns:Parameter> <tns:Parameter> <tns:ParameterName>@parentesco</tns:ParameterName> 
+			<tns:ParameterType>NUMERIC</tns:ParameterType> <tns:ParameterScale>10</tns:ParameterScale> 
+			</tns:Parameter> <tns:Parameter> <tns:ParameterName>@correo_electronico</tns:ParameterName> 
+			<tns:ParameterType>VARCHAR</tns:ParameterType> <tns:ParameterScale>100</tns:ParameterScale> 
+			</tns:Parameter> <tns:Parameter> <tns:ParameterName>@tipo_novedad</tns:ParameterName> 
+			<tns:ParameterType>NUMERIC</tns:ParameterType> <tns:ParameterScale>10</tns:ParameterScale> 
+			</tns:Parameter> <tns:Parameter> <tns:ParameterName>@numero_consecutivo_formulario</tns:ParameterName> 
+			<tns:ParameterType>VARCHAR</tns:ParameterType> <tns:ParameterScale>10</tns:ParameterScale> 
+			</tns:Parameter> <tns:Parameter> <tns:ParameterName>@notificacion_correo</tns:ParameterName> 
+			<tns:ParameterType>VARCHAR</tns:ParameterType> <tns:ParameterScale>10</tns:ParameterScale> 
+			</tns:Parameter> <tns:Parameter> <tns:ParameterName>@tipo_formulario</tns:ParameterName> 
+			<tns:ParameterType>TINYINT</tns:ParameterType> <tns:ParameterScale></tns:ParameterScale> 
+			</tns:Parameter> <tns:Parameter> <tns:ParameterName>@fecha_ejecucion_cargue</tns:ParameterName> 
+			<tns:ParameterType>DATE</tns:ParameterType> <tns:ParameterScale></tns:ParameterScale> 
+			</tns:Parameter> <tns:Parameter> <tns:ParameterName>@fecha_gen_archivo_plano</tns:ParameterName> 
+			<tns:ParameterType>DATE</tns:ParameterType> <tns:ParameterScale></tns:ParameterScale> 
+			</tns:Parameter> </tns:Parameters> </tns:MetadataQuery> -->
+
+		<tns:MetadataQuery>
+			<tns:QueryName>PR_RegistroBeneficiario</tns:QueryName>
+			<tns:CommandText>INSERT INTO basica..cargue_beneficiarios
+				(barrio_vereda_residencia,celular,correo_electronico,departamento_residencia,direccion,fax,fecha_cargue,fecha_ejecucion_carga,fecha_nacimiento,
+				municipio_residencia,nacionalidad,notificacion_por_correo,numero_caso_bizagi,numero_consecutivo_formulario,numero_identificacion,numero_identificacion_af,numero_identificacion_ap,
+				numero_identificacion_st,numero_radicacion,parentesco,primer_apellido,primer_nombre,segundo_apellido,segundo_nombre,telefono_fijo,tipo_de_formulario,
+				tipo_de_novedad,tipo_identificacion,tipo_identificacion_af,tipo_identificacion_ap,tipo_identificacion_st,version)
+				VALUES
+				(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+			</tns:CommandText>
+			<tns:Parameters>
+				<tns:Parameter>
+					<tns:ParameterName>@barrio_vereda_residencia</tns:ParameterName>
+					<tns:ParameterType>VARCHAR</tns:ParameterType>
+					<tns:ParameterScale>15</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@celular</tns:ParameterName>
+					<tns:ParameterType>DECIMAL</tns:ParameterType>
+					<tns:ParameterScale>10</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@correo_electronico</tns:ParameterName>
+					<tns:ParameterType>VARCHAR</tns:ParameterType>
+					<tns:ParameterScale>100</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@departamento_residencia</tns:ParameterName>
+					<tns:ParameterType>INTEGER</tns:ParameterType>
+					<tns:ParameterScale>2</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@direccion</tns:ParameterName>
+					<tns:ParameterType>VARCHAR</tns:ParameterType>
+					<tns:ParameterScale>100</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@fax</tns:ParameterName>
+					<tns:ParameterType>NUMERIC</tns:ParameterType>
+					<tns:ParameterScale>10</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@fecha_cargue</tns:ParameterName>
+					<tns:ParameterType>DATE</tns:ParameterType>
+					<tns:ParameterScale></tns:ParameterScale>
+				</tns:Parameter>
+
+				<tns:Parameter>
+					<tns:ParameterName>@fecha_ejecucion_carga</tns:ParameterName>
+					<tns:ParameterType>DATE</tns:ParameterType>
+					<tns:ParameterScale></tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@fecha_nacimiento</tns:ParameterName>
+					<tns:ParameterType>DATE</tns:ParameterType>
+					<tns:ParameterScale></tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@municipio_residencia</tns:ParameterName>
+					<tns:ParameterType>INTEGER</tns:ParameterType>
+					<tns:ParameterScale>3</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@nacionalidad</tns:ParameterName>
+					<tns:ParameterType>INTEGER</tns:ParameterType>
+					<tns:ParameterScale>3</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@notificacion_por_correo</tns:ParameterName>
+					<tns:ParameterType>VARCHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+
+				<tns:Parameter>
+					<tns:ParameterName>@numero_caso_bizagi</tns:ParameterName>
+					<tns:ParameterType>NUMERIC</tns:ParameterType>
+					<tns:ParameterScale>30</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@numero_consecutivo_formulario</tns:ParameterName>
+					<tns:ParameterType>VARCHAR</tns:ParameterType>
+					<tns:ParameterScale>100</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@numero_identificacion</tns:ParameterName>
+					<tns:ParameterType>NUMERIC</tns:ParameterType>
+					<tns:ParameterScale>15</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@numero_identificacion_af</tns:ParameterName>
+					<tns:ParameterType>NUMERIC</tns:ParameterType>
+					<tns:ParameterScale>15</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@numero_identificacion_ap</tns:ParameterName>
+					<tns:ParameterType>NUMERIC</tns:ParameterType>
+					<tns:ParameterScale>15</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@numero_identificacion_st</tns:ParameterName>
+					<tns:ParameterType>NUMERIC</tns:ParameterType>
+					<tns:ParameterScale>15</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@numero_radicacion</tns:ParameterName>
+					<tns:ParameterType>VARCHAR</tns:ParameterType>
+					<tns:ParameterScale>50</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@parentesco</tns:ParameterName>
+					<tns:ParameterType>NUMERIC</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@primer_apellido</tns:ParameterName>
+					<tns:ParameterType>VARCHAR</tns:ParameterType>
+					<tns:ParameterScale>25</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@primer_nombre</tns:ParameterName>
+					<tns:ParameterType>VARCHAR</tns:ParameterType>
+					<tns:ParameterScale>25</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@segundo_apellido</tns:ParameterName>
+					<tns:ParameterType>VARCHAR</tns:ParameterType>
+					<tns:ParameterScale>25</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@segundo_nombre</tns:ParameterName>
+					<tns:ParameterType>VARCHAR</tns:ParameterType>
+					<tns:ParameterScale>25</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@telefono_fijo</tns:ParameterName>
+					<tns:ParameterType>NUMERIC</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@tipo_de_formulario</tns:ParameterName>
+					<tns:ParameterType>NUMERIC</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@tipo_de_novedad</tns:ParameterName>
+					<tns:ParameterType>NUMERIC</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@tipo_identificacion</tns:ParameterName>
+					<tns:ParameterType>VARCHAR</tns:ParameterType>
+					<tns:ParameterScale>2</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@tipo_identificacion_af</tns:ParameterName>
+					<tns:ParameterType>VARCHAR</tns:ParameterType>
+					<tns:ParameterScale>2</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@tipo_identificacion_ap</tns:ParameterName>
+					<tns:ParameterType>VARCHAR</tns:ParameterType>
+					<tns:ParameterScale>2</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@tipo_identificacion_st</tns:ParameterName>
+					<tns:ParameterType>VARCHAR</tns:ParameterType>
+					<tns:ParameterScale>2</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@version</tns:ParameterName>
+					<tns:ParameterType>NUMERIC</tns:ParameterType>
+					<tns:ParameterScale>19</tns:ParameterScale>
+				</tns:Parameter>
+			</tns:Parameters>
+		</tns:MetadataQuery>
+
+
+		<tns:MetadataQuery>
+			<tns:QueryName>PR_ConsultarExisteAfiliado</tns:QueryName>
+			<tns:CommandText>SELECT af_NumeroDocumento, af_TipoDocumento
+				FROM
+				sabass..Afiliado
+				where
+				af_NumeroDocumento=? and af_TipoDocumento=?
+			</tns:CommandText>
+			<tns:Parameters>
+				<tns:Parameter>
+					<tns:ParameterName>@af_NumeroDocumento</tns:ParameterName>
+					<tns:ParameterType>NUMERIC</tns:ParameterType>
+					<tns:ParameterScale>8</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@af_TipoDocumento</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+			</tns:Parameters>
+		</tns:MetadataQuery>
+		<!-- Consulta si existe un afiliado en la tabla afiliadoSeguro -->
+		<tns:MetadataQuery>
+			<tns:QueryName>PR_ConsultarExisteAfiliadoSeguro</tns:QueryName>
+			<tns:CommandText>SELECT af_NumeroDocumento, af_TipoDocumento
+				FROM
+				sabass..AfiliadoSeguro
+				where
+				af_NumeroDocumento=? and af_TipoDocumento=? and ts_TipoSeguro = 'P'
+			</tns:CommandText>
+			<tns:Parameters>
+				<tns:Parameter>
+					<tns:ParameterName>@af_NumeroDocumento</tns:ParameterName>
+					<tns:ParameterType>NUMERIC</tns:ParameterType>
+					<tns:ParameterScale>8</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@af_TipoDocumento</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+			</tns:Parameters>
+		</tns:MetadataQuery>
+
+		<!-- Actualizar tabla Afiliado Detalle -->
+		<tns:MetadataQuery>
+			<tns:QueryName>PR_ActualizaAfiliadoDetalle</tns:QueryName>
+			<tns:CommandText>UPDATE sabass..afiliado_Detalle
+				set afd_EnvioInfo= ?
+				where af_NumeroDocumento=? and af_TipoDocumento=?
+			</tns:CommandText>
+			<tns:Parameters>
+				<tns:Parameter>
+					<tns:ParameterName>@afd_EnvioInfo</tns:ParameterName>
+					<tns:ParameterType>TINYINT</tns:ParameterType>
+					<tns:ParameterScale></tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@af_NumeroDocumento</tns:ParameterName>
+					<tns:ParameterType>DECIMAL</tns:ParameterType>
+					<tns:ParameterScale>8</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@af_TipoDocumento</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+
+			</tns:Parameters>
+		</tns:MetadataQuery>
+		<!-- Actualizar Tabla de Afiliacion Nacionalidad-->
+		<tns:MetadataQuery>
+			<tns:QueryName>PR_ActualizacionTablaAfiliadoNacionalidad</tns:QueryName>
+			<tns:CommandText>UPDATE sabass..Afiliado
+				set 
+				na_Nacionalidad=?,
+				af_FechaModificacion=?
+				where
+				af_NumeroDocumento=? and af_TipoDocumento=?
+			</tns:CommandText>
+			<tns:Parameters>				
+				<tns:Parameter>
+					<tns:ParameterName>@na_Nacionalidad</tns:ParameterName>
+					<tns:ParameterType>NUMERIC</tns:ParameterType>
+					<tns:ParameterScale>10</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@af_FechaModificacion</tns:ParameterName>
+					<tns:ParameterType>DATE</tns:ParameterType>
+					<tns:ParameterScale></tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@af_NumeroDocumento</tns:ParameterName>
+					<tns:ParameterType>NUMERIC</tns:ParameterType>
+					<tns:ParameterScale>15</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@af_TipoDocumento</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+
+			</tns:Parameters>
+		</tns:MetadataQuery>
+		<!-- Actualizar Tabla de Afiliacion -->
+		<tns:MetadataQuery>
+			<tns:QueryName>PR_ActualizacionTablaAfiliado</tns:QueryName>
+			<tns:CommandText>UPDATE sabass..Afiliado
+				set dp_Departamento= ?,
+				mu_Municipio=?,
+				lc_Localidad=?,
+				af_Direccion=?,
+				af_Telefono=?,
+				af_Email=?,
+				<!--  na_Nacionalidad=?,-->
+				af_FechaModificacion=?
+				where
+				af_NumeroDocumento=? and af_TipoDocumento=?
+			</tns:CommandText>
+			<tns:Parameters>
+				<tns:Parameter>
+					<tns:ParameterName>@dp_Departamento</tns:ParameterName>
+					<tns:ParameterType>TINYINT</tns:ParameterType>
+					<tns:ParameterScale></tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@mu_Municipio</tns:ParameterName>
+					<tns:ParameterType>SMALLINT</tns:ParameterType>
+					<tns:ParameterScale></tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@lc_Localidad</tns:ParameterName>
+					<tns:ParameterType>SMALLINT</tns:ParameterType>
+					<tns:ParameterScale></tns:ParameterScale>
+				</tns:Parameter>
+
+				<tns:Parameter>
+					<tns:ParameterName>@af_Direccion</tns:ParameterName>
+					<tns:ParameterType>VARCHAR</tns:ParameterType>
+					<tns:ParameterScale>35</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@af_Telefono</tns:ParameterName>
+					<tns:ParameterType>VARCHAR</tns:ParameterType>
+					<tns:ParameterScale>35</tns:ParameterScale>
+				</tns:Parameter>
+
+				<tns:Parameter>
+					<tns:ParameterName>@af_Email</tns:ParameterName>
+					<tns:ParameterType>VARCHAR</tns:ParameterType>
+					<tns:ParameterScale>100</tns:ParameterScale>
+				</tns:Parameter>
+				<!--<tns:Parameter>
+					<tns:ParameterName>@na_Nacionalidad</tns:ParameterName>
+					<tns:ParameterType>NUMERIC</tns:ParameterType>
+					<tns:ParameterScale>10</tns:ParameterScale>
+				</tns:Parameter>-->
+				<tns:Parameter>
+					<tns:ParameterName>@af_FechaModificacion</tns:ParameterName>
+					<tns:ParameterType>DATE</tns:ParameterType>
+					<tns:ParameterScale></tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@af_NumeroDocumento</tns:ParameterName>
+					<tns:ParameterType>NUMERIC</tns:ParameterType>
+					<tns:ParameterScale>15</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@af_TipoDocumento</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+
+			</tns:Parameters>
+		</tns:MetadataQuery>
+		<!-- Consultar el estado de afiliacion -->
+		<tns:MetadataQuery>
+			<tns:QueryName>PR_ConsultarEstadoAfiliacion</tns:QueryName>
+			<tns:CommandText>SELECT AF.af_NumeroDocumento,
+				AF.af_TipoDocumento,AF.ts_TipoSeguro,AF.as_EstadoSeguro,AF.as_TipoAfiliado
+				FROM sabass..AfiliadoSeguro AS AF
+				where
+				AF.af_NumeroDocumento=? AND
+				AF.af_TipoDocumento=? AND AF.ts_TipoSeguro=?
+			</tns:CommandText>
+			<tns:Parameters>
+				<tns:Parameter>
+					<tns:ParameterName>@af_NumeroDocumento</tns:ParameterName>
+					<tns:ParameterType>NUMERIC</tns:ParameterType>
+					<tns:ParameterScale>8</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@af_TipoDocumento</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ts_TipoSeguro</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+			</tns:Parameters>
+		</tns:MetadataQuery>
+		<!-- Consultar el Telefono de un afiliado -->
+		<tns:MetadataQuery>
+			<tns:QueryName>PR_ConsultarTelefonoAfiliado</tns:QueryName>
+			<tns:CommandText>SELECT af_NumeroDocumento,
+				af_TipoDocumento,af_Telefono
+				FROM sabass..Afiliado
+				where
+				af_NumeroDocumento=? and af_TipoDocumento=?
+			</tns:CommandText>
+			<tns:Parameters>
+				<tns:Parameter>
+					<tns:ParameterName>@af_NumeroDocumento</tns:ParameterName>
+					<tns:ParameterType>DECIMAL</tns:ParameterType>
+					<tns:ParameterScale>8</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@af_TipoDocumento</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+
+			</tns:Parameters>
+		</tns:MetadataQuery>
+		<!-- Actualizar Tabla AfiliadoNacimiento -->
+		<tns:MetadataQuery>
+			<tns:QueryName>PR_ActualizacionTablaAfiliadoNacimiento</tns:QueryName>
+			<tns:CommandText>UPDATE sabass..AfiliadoNacimiento
+				set
+				dp_Departamento= ?,
+				mu_Municipio=?,
+				aln_FechaModificacion=?
+				where
+				af_NumeroDocumento=? and af_TipoDocumento=?
+			</tns:CommandText>
+			<tns:Parameters>
+				<tns:Parameter>
+					<tns:ParameterName>@dp_Departamento</tns:ParameterName>
+					<tns:ParameterType>TINYINT</tns:ParameterType>
+					<tns:ParameterScale></tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@mu_Municipio</tns:ParameterName>
+					<tns:ParameterType>SMALLINT</tns:ParameterType>
+					<tns:ParameterScale></tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@af_FechaModificacion</tns:ParameterName>
+					<tns:ParameterType>DATE</tns:ParameterType>
+					<tns:ParameterScale></tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@af_NumeroDocumento</tns:ParameterName>
+					<tns:ParameterType>DECIMAL</tns:ParameterType>
+					<tns:ParameterScale>8</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@af_TipoDocumento</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+
+			</tns:Parameters>
+		</tns:MetadataQuery>
+		<!-- Consulta si existe un afiliado -->
+		<tns:MetadataQuery>
+			<tns:QueryName>PR_ConsultarExisteAfiliado</tns:QueryName>
+			<tns:CommandText>SELECT af_NumeroDocumento, af_TipoDocumento
+				FROM
+				sabass..Afiliado
+				where
+				af_NumeroDocumento=? and af_TipoDocumento=?
+			</tns:CommandText>
+			<tns:Parameters>
+				<tns:Parameter>
+					<tns:ParameterName>@af_NumeroDocumento</tns:ParameterName>
+					<tns:ParameterType>NUMERIC</tns:ParameterType>
+					<tns:ParameterScale>8</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@af_TipoDocumento</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+			</tns:Parameters>
+		</tns:MetadataQuery>
+
+		<!-- Este query no permite consultar la actividad economica -->
+		<tns:MetadataQuery>
+			<tns:QueryName>PR_ExisteActividad_Economica_Codigo</tns:QueryName>
+			<tns:CommandText>SELECT * FROM sabass..ActividadEconomica where
+				ae_ActividadEconomica = ?
+			</tns:CommandText>
+			<tns:Parameters>
+
+				<tns:Parameter>
+					<tns:ParameterName>@ae_ActividadEconomica</tns:ParameterName>
+					<tns:ParameterType>NUMERIC</tns:ParameterType>
+					<tns:ParameterScale>15</tns:ParameterScale>
+				</tns:Parameter>
+
+
+
+			</tns:Parameters>
+
+		</tns:MetadataQuery>
+
+		<tns:MetadataQuery>
+			<tns:QueryName>PR_ConsultarExisteAfiliado</tns:QueryName>
+			<tns:CommandText>SELECT af_NumeroDocumento, af_TipoDocumento
+				FROM
+				sabass..Afiliado
+				where
+				af_NumeroDocumento=? and af_TipoDocumento=?
+			</tns:CommandText>
+			<tns:Parameters>
+				<tns:Parameter>
+					<tns:ParameterName>@af_NumeroDocumento</tns:ParameterName>
+					<tns:ParameterType>NUMERIC</tns:ParameterType>
+					<tns:ParameterScale>8</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@af_TipoDocumento</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+			</tns:Parameters>
+		</tns:MetadataQuery>
+
+
+
+		<!-- Consulta si existe un afiliado -->
+		<tns:MetadataQuery>
+			<tns:QueryName>PR_ConsultarExisteAfiliado</tns:QueryName>
+			<tns:CommandText>SELECT af_NumeroDocumento, af_TipoDocumento
+				FROM
+				sabass..Afiliado
+				where
+				af_NumeroDocumento=? and af_TipoDocumento=?
+			</tns:CommandText>
+			<tns:Parameters>
+				<tns:Parameter>
+					<tns:ParameterName>@af_NumeroDocumento</tns:ParameterName>
+					<tns:ParameterType>NUMERIC</tns:ParameterType>
+					<tns:ParameterScale>8</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@af_TipoDocumento</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+			</tns:Parameters>
+		</tns:MetadataQuery>
+
+
+		<!-- Traer usuario BD -->
+
+		<tns:MetadataQuery>
+			<tns:QueryName>PR_TraerUsuario</tns:QueryName>
+			<tns:CommandText>SELECT us_idSeguridad = us_id,us_Login
+				FROM sabass..Usuario
+				WHERE us_Login = SUSER_NAME()
+			</tns:CommandText>
+			<tns:Parameters>
+				<tns:Parameter>
+				</tns:Parameter>
+			</tns:Parameters>
+		</tns:MetadataQuery>
+		<!-- Registro de la información de Afiliado -->
+		<tns:MetadataQuery>
+			<tns:QueryName>PR_RegistrarTablaAfiliado</tns:QueryName>
+			<tns:CommandText>INSERT INTO sabass..Afiliado
+				(af_TipoDocumento,af_NumeroDocumento,af_PrimerApellido,af_SegundoApellido,af_PrimerNombre,af_SegundoNombre,af_FechaNacimiento,
+				af_Sexo,na_Nacionalidad,af_Direccion, mu_Municipio,lc_Localidad,
+				dp_Departamento,af_Telefono,af_Email,af_Estado,af_FechaModificacion)
+				VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+			</tns:CommandText>
+			<tns:Parameters>
+				<tns:Parameter>
+					<tns:ParameterName>@af_TipoDocumento</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@af_NumeroDocumento</tns:ParameterName>
+					<tns:ParameterType>NUMERIC</tns:ParameterType>
+					<tns:ParameterScale>15</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@af_PrimerApellido</tns:ParameterName>
+					<tns:ParameterType>VARCHAR</tns:ParameterType>
+					<tns:ParameterScale>25</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@af_SegundoApellido</tns:ParameterName>
+					<tns:ParameterType>VARCHAR</tns:ParameterType>
+					<tns:ParameterScale>25</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@af_PrimerNombre</tns:ParameterName>
+					<tns:ParameterType>VARCHAR</tns:ParameterType>
+					<tns:ParameterScale>25</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@af_SegundoNombre</tns:ParameterName>
+					<tns:ParameterType>VARCHAR</tns:ParameterType>
+					<tns:ParameterScale>25</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@af_FechaNacimiento</tns:ParameterName>
+					<tns:ParameterType>DATE</tns:ParameterType>
+					<tns:ParameterScale></tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@af_Sexo</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@na_Nacionalidad</tns:ParameterName>
+					<tns:ParameterType>NUMERIC</tns:ParameterType>
+					<tns:ParameterScale>3</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@af_Direccion</tns:ParameterName>
+					<tns:ParameterType>VARCHAR</tns:ParameterType>
+					<tns:ParameterScale>35</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@mu_Municipio</tns:ParameterName>
+					<tns:ParameterType>SMALLINT</tns:ParameterType>
+					<tns:ParameterScale></tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@lc_Localidad</tns:ParameterName>
+					<tns:ParameterType>SMALLINT</tns:ParameterType>
+					<tns:ParameterScale></tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@dp_Departamento</tns:ParameterName>
+					<tns:ParameterType>TINYINT</tns:ParameterType>
+					<tns:ParameterScale></tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@af_Telefono</tns:ParameterName>
+					<tns:ParameterType>VARCHAR</tns:ParameterType>
+					<tns:ParameterScale>35</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@af_Email</tns:ParameterName>
+					<tns:ParameterType>VARCHAR</tns:ParameterType>
+					<tns:ParameterScale>100</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@af_Estado</tns:ParameterName>
+					<tns:ParameterType>TINYINT</tns:ParameterType>
+					<tns:ParameterScale></tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@af_FechaModificacion</tns:ParameterName>
+					<tns:ParameterType>DATE</tns:ParameterType>
+					<tns:ParameterScale></tns:ParameterScale>
+				</tns:Parameter>
+			</tns:Parameters>
+		</tns:MetadataQuery>
+		<!-- Registro de la información de AfiliadoNacimiento -->
+		<tns:MetadataQuery>
+			<tns:QueryName>PR_RegistrarAfiliadoNacimiento</tns:QueryName>
+			<tns:CommandText>INSERT INTO sabass..AfiliadoNacimiento
+				(af_NumeroDocumento, af_TipoDocumento,
+				dp_Departamento, mu_Municipio,
+				aln_FechaModificacion)
+				VALUES (?, ?, ?, ?, ?)
+			</tns:CommandText>
+			<tns:Parameters>
+				<tns:Parameter>
+					<tns:ParameterName>@af_NumeroDocumento</tns:ParameterName>
+					<tns:ParameterType>DECIMAL</tns:ParameterType>
+					<tns:ParameterScale>15</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@af_TipoDocumento</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@dp_Departamento_nac</tns:ParameterName>
+					<tns:ParameterType>TINYINT</tns:ParameterType>
+					<tns:ParameterScale></tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@mu_Municipio_nac</tns:ParameterName>
+					<tns:ParameterType>SMALLINT</tns:ParameterType>
+					<tns:ParameterScale></tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@aln_FechaModificacion</tns:ParameterName>
+					<tns:ParameterType>DATE</tns:ParameterType>
+					<tns:ParameterScale>0</tns:ParameterScale>
+				</tns:Parameter>
+			</tns:Parameters>
+		</tns:MetadataQuery>
+		<!-- Registro de la información de AfiliadoDetalle -->
+		<tns:MetadataQuery>
+			<tns:QueryName>PR_RegistrarAfiliadoDetalle</tns:QueryName>
+			<tns:CommandText>INSERT INTO sabass..afiliado_Detalle
+				(af_TipoDocumento,af_NumeroDocumento,afd_EnvioInfo,afd_departamentoExpe
+				,afd_municipioExpe,afd_RdPublico,afd_Fechatras,afd_FechaExp)
+				VALUES
+				(?,?,?,?,?,?,?,?)
+			</tns:CommandText>
+			<tns:Parameters>
+				<tns:Parameter>
+					<tns:ParameterName>@af_TipoDocumento</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@af_NumeroDocumento</tns:ParameterName>
+					<tns:ParameterType>TINYINT</tns:ParameterType>
+					<tns:ParameterScale></tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@afd_EnvioInfo</tns:ParameterName>
+					<tns:ParameterType>TINYINT</tns:ParameterType>
+					<tns:ParameterScale></tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@afd_departamentoExpe</tns:ParameterName>
+					<tns:ParameterType>TINYINT</tns:ParameterType>
+					<tns:ParameterScale></tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@afd_municipioExpe</tns:ParameterName>
+					<tns:ParameterType>TINYINT</tns:ParameterType>
+					<tns:ParameterScale></tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@afd_RdPublico</tns:ParameterName>
+					<tns:ParameterType>TINYINT</tns:ParameterType>
+					<tns:ParameterScale></tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@afd_Fechatras</tns:ParameterName>
+					<tns:ParameterType>DATE</tns:ParameterType>
+					<tns:ParameterScale></tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@afd_FechaExp</tns:ParameterName>
+					<tns:ParameterType>DATE</tns:ParameterType>
+					<tns:ParameterScale></tns:ParameterScale>
+				</tns:Parameter>
+			</tns:Parameters>
+		</tns:MetadataQuery>
+		<!-- Registro de la información de AfiliadoSeguro -->
+		<tns:MetadataQuery>
+			<tns:QueryName>PR_RegistrarAfiliadoSeguro</tns:QueryName>
+			<tns:CommandText>INSERT INTO sabass..AfiliadoSeguro (
+				af_TipoDocumento,af_NumeroDocumento, as_FechaVinculacion,
+				po_NumeroDocumento,
+				po_TipoDocumento, dp_Departamento, mu_Municipio,
+				pv_PuntoVinculacion, ts_TipoSeguro,
+				as_Regimen,na_Nacionalidad,
+				as_PrimeraVez,
+				as_TipoAfiliado, as_EstadoPension,
+				as_EstadoNacimiento, as_EstadoSeguro) VALUES (?, ?, ?, ?, ?, ?,?,
+				?, ?, ?, ?, ?,?, ?,
+				?,?)
+			</tns:CommandText>
+			<tns:Parameters>
+				<tns:Parameter>
+					<tns:ParameterName>@af_TipoDocumento</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@af_NumeroDocumento</tns:ParameterName>
+					<tns:ParameterType>NUMERIC</tns:ParameterType>
+					<tns:ParameterScale>15</tns:ParameterScale>
+				</tns:Parameter>
+
+
+				<tns:Parameter>
+					<tns:ParameterName>@as_FechaVinculacion</tns:ParameterName>
+					<tns:ParameterType>DATE</tns:ParameterType>
+					<tns:ParameterScale></tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@po_NumeroDocumento</tns:ParameterName><!-- falta 
+						el campo -->
+					<tns:ParameterType>NUMERIC</tns:ParameterType>
+					<tns:ParameterScale>13</tns:ParameterScale>
+				</tns:Parameter>
+
+				<tns:Parameter>
+					<tns:ParameterName>@po_TipoDocumento</tns:ParameterName><!-- falta el 
+						campo -->
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+
+				<tns:Parameter>
+					<tns:ParameterName>@dp_Departamento</tns:ParameterName>
+					<tns:ParameterType>SMALLINT</tns:ParameterType>
+					<tns:ParameterScale></tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@mu_Municipio</tns:ParameterName>
+					<tns:ParameterType>SMALLINT</tns:ParameterType>
+					<tns:ParameterScale></tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@pv_PuntoVinculacion</tns:ParameterName><!-- falta 
+						el campo -->
+					<tns:ParameterType>SMALLINT</tns:ParameterType>
+					<tns:ParameterScale></tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ts_TipoSeguro</tns:ParameterName><!-- falta el campo -->
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>3</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@as_Regimen</tns:ParameterName><!-- falta el campo -->
+					<tns:ParameterType>BIT</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@na_Nacionalidad</tns:ParameterName>
+					<tns:ParameterType>NUMERIC</tns:ParameterType>
+					<tns:ParameterScale>3</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@as_PrimeraVez</tns:ParameterName><!-- falta el campo -->
+					<tns:ParameterType>BIT</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@as_TipoAfiliado</tns:ParameterName><!-- falta el 
+						campo -->
+					<tns:ParameterType>BIT</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@as_EstadoPension</tns:ParameterName><!-- falta el 
+						campo -->
+					<tns:ParameterType>BIT</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@as_EstadoNacimiento</tns:ParameterName><!-- falta 
+						el campo -->
+					<tns:ParameterType>BIT</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@as_EstadoSeguro</tns:ParameterName><!-- falta 
+						el campo -->
+					<tns:ParameterType>BIT</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+			</tns:Parameters>
+		</tns:MetadataQuery>
+		<!-- Registro de la informacion de AfiliadoHistorico_Afp -->
+		<tns:MetadataQuery>
+			<tns:QueryName>PR_RegistrarAfiliadoHistorico_AFP</tns:QueryName>
+			<tns:CommandText>INSERT INTO sabass..AfiliadoHistorico_Afp
+				(ahs_id,af_TipoDocumento,af_NumeroDocumento,ahs_estado,ahs_Fuentedato,
+				ahs_FechaEfectiva,ahs_FechaModificacion,us_Login)
+				VALUES (?,?,?,?,?,?,?,?)
+			</tns:CommandText>
+			<tns:Parameters>
+				<tns:Parameter><!-- se adiciono este campo que no permite valores nulos 
+						es la llave primaria de la tabla -->
+					<tns:ParameterName>@ahs_id</tns:ParameterName>
+					<tns:ParameterType>NUMERIC</tns:ParameterType>
+					<tns:ParameterScale>3</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@af_TipoDocumento</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@af_NumeroDocumento</tns:ParameterName>
+					<tns:ParameterType>DECIMAL</tns:ParameterType>
+					<tns:ParameterScale>8</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ahs_Estado</tns:ParameterName>
+					<tns:ParameterType>TINYINT</tns:ParameterType>
+					<tns:ParameterScale></tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ahs_fuentedato</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ahs_FechaEfectiva</tns:ParameterName>
+					<tns:ParameterType>VARCHAR</tns:ParameterType>
+					<tns:ParameterScale>8</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ahs_FechaModificacion</tns:ParameterName>
+					<tns:ParameterType>VARCHAR</tns:ParameterType>
+					<tns:ParameterScale>8</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@us_Login</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+			</tns:Parameters>
+		</tns:MetadataQuery>
+
+		<!-- Creación logica procedimiento almacenado cp_RegistroHistoricoNovAfil. -->
+		<tns:MetadataQuery>
+			<tns:QueryName>cp_RegistroHistoricoNovAfil</tns:QueryName>
+			<tns:CommandText>INSERT INTO sabass..HistoricoNovedadesAfiliado
+				(af_NumeroDocumento, af_TipoDocumento, ts_TipoSeguro,
+				as_TipoAfiliado, hc_TipoCambio,
+				ha_FechaDesde, ha_FechaHasta,
+				ha_ValorAntes, ha_ValorDespues, ha_FechaAuxiliar,
+				ha_FechaModificacion, us_Login, us_idSeguridad, ha_Hostname,
+				ha_Documento,
+				ha_FechaDocumento, ha_Responsable, ha_Entidad,
+				ha_FechaDos) VALUES (?,
+				?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+			</tns:CommandText>
+			<tns:Parameters>
+				<tns:Parameter>
+					<tns:ParameterName>@af_NumeroDocumento</tns:ParameterName>
+					<tns:ParameterType>NUMERIC</tns:ParameterType>
+					<tns:ParameterScale>15</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@af_TipoDocumento</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+
+				<tns:Parameter>
+					<tns:ParameterName>@ts_TipoSeguro</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@as_TipoAfiliado</tns:ParameterName>
+					<tns:ParameterType>BIT</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@hc_TipoCambio</tns:ParameterName>
+					<tns:ParameterType>TINYINT</tns:ParameterType>
+					<tns:ParameterScale></tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ha_FechaDesde</tns:ParameterName>
+					<tns:ParameterType>DATE</tns:ParameterType>
+					<tns:ParameterScale></tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ha_FechaHasta</tns:ParameterName>
+					<tns:ParameterType>DATE</tns:ParameterType>
+					<tns:ParameterScale></tns:ParameterScale>
+				</tns:Parameter>
+
+				<tns:Parameter>
+					<tns:ParameterName>@ha_ValorAntes</tns:ParameterName>
+					<tns:ParameterType>VARCHAR</tns:ParameterType>
+					<tns:ParameterScale>120</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ha_ValorDespues</tns:ParameterName>
+					<tns:ParameterType>VARCHAR</tns:ParameterType>
+					<tns:ParameterScale>120</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ha_FechaAuxiliar</tns:ParameterName>
+					<tns:ParameterType>DATE</tns:ParameterType>
+					<tns:ParameterScale></tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ha_FechaModificacion</tns:ParameterName>
+					<tns:ParameterType>DATE</tns:ParameterType>
+					<tns:ParameterScale></tns:ParameterScale>
+				</tns:Parameter>
+
+				<tns:Parameter>
+					<tns:ParameterName>@us_Login</tns:ParameterName>
+					<tns:ParameterType>VARCHAR</tns:ParameterType>
+					<tns:ParameterScale>50</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@us_idSeguridad</tns:ParameterName>
+					<tns:ParameterType>NUMERIC</tns:ParameterType>
+					<tns:ParameterScale>5</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ha_Hostname</tns:ParameterName>
+					<tns:ParameterType>VARCHAR</tns:ParameterType>
+					<tns:ParameterScale>50</tns:ParameterScale>
+				</tns:Parameter>
+
+				<tns:Parameter>
+					<tns:ParameterName>@ha_Documento</tns:ParameterName>
+					<tns:ParameterType>VARCHAR</tns:ParameterType>
+					<tns:ParameterScale>50</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ha_FechaDocumento</tns:ParameterName>
+					<tns:ParameterType>DATE</tns:ParameterType>
+					<tns:ParameterScale></tns:ParameterScale>
+				</tns:Parameter>
+
+				<tns:Parameter>
+					<tns:ParameterName>@ha_Responsable</tns:ParameterName>
+					<tns:ParameterType>VARCHAR</tns:ParameterType>
+					<tns:ParameterScale>50</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ha_Entidad</tns:ParameterName>
+					<tns:ParameterType>TINYINT</tns:ParameterType>
+					<tns:ParameterScale></tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ha_FechaDos</tns:ParameterName>
+					<tns:ParameterType>DATE</tns:ParameterType>
+					<tns:ParameterScale></tns:ParameterScale>
+				</tns:Parameter>
+			</tns:Parameters>
+		</tns:MetadataQuery>
+
+
+		<!-- Consulta en la base de datos SABASS el monto máximo de cotización 
+			para la fecha de radicación del formulario. -->
+		<tns:MetadataQuery>
+			<tns:QueryName>PR_ConsultarMontoMaximoCotizacion</tns:QueryName>
+			<tns:CommandText>SELECT sl_Maximo 'MontoCotizacion' FROM
+				sabass..Salario
+				WHERE YEAR(sl_Fecha) = YEAR(?)
+			</tns:CommandText>
+			<tns:Parameters>
+				<tns:Parameter>
+					<tns:ParameterName>@sl_Fecha</tns:ParameterName>
+					<tns:ParameterType>VARCHAR</tns:ParameterType>
+					<tns:ParameterScale>8</tns:ParameterScale>
+				</tns:Parameter>
+			</tns:Parameters>
+		</tns:MetadataQuery>
+
+
+		<!-- Consulta en la base de datos SABASS al aportante independiente identificado 
+			con el tipo y numero de identificación recibidos. -->
+		<tns:MetadataQuery>
+			<tns:QueryName>PR_ConsultarAportanteIndependiente</tns:QueryName>
+			<tns:CommandText>SELECT * FROM sabass..Aportante
+				WHERE
+				ap_TipoDocumento = ? AND
+				ap_NumeroDocumento = ? AND
+				ap_TipoAportante =
+				3
+			</tns:CommandText>
+			<tns:Parameters>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_TipoDocumento</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_NumeroDocumento</tns:ParameterName>
+					<tns:ParameterType>DECIMAL</tns:ParameterType>
+					<tns:ParameterScale>12</tns:ParameterScale>
+				</tns:Parameter>
+			</tns:Parameters>
+		</tns:MetadataQuery>
+
+
+		<!-- Consulta la base de datos SABASS el tipo de aportante asociado al 
+			empleador a partir del tipo y numero de identificación recibidos. -->
+		<tns:MetadataQuery>
+			<tns:QueryName>PR_ConsultarTipoAportante</tns:QueryName>
+			<tns:CommandText>SELECT ap_TipoAportante 'TipoAportante' FROM
+				sabass..Aportante
+				WHERE ap_TipoDocumento = ? AND
+				ap_NumeroDocumento =
+				?
+			</tns:CommandText>
+			<tns:Parameters>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_TipoDocumento</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_NumeroDocumento</tns:ParameterName>
+					<tns:ParameterType>DECIMAL</tns:ParameterType>
+					<tns:ParameterScale>12</tns:ParameterScale>
+				</tns:Parameter>
+			</tns:Parameters>
+		</tns:MetadataQuery>
+
+
+		<!-- Consulta el número de empleados del aportante en la base de datos 
+			de Confecámaras a partir del tipo y número de identificación recibidos como 
+			datos de entrada. -->
+		<tns:MetadataQuery>
+			<tns:QueryName>PR_ConsultarNumeroEmpleadosAportante</tns:QueryName>
+			<tns:CommandText>SELECT EMPLEADOS 'Empleados' FROM
+				sabass..Tabla_bd_confecamaras
+				WHERE CODIGO_CLASE_IDENTIFICACION = ?
+				AND
+				NUMERO_IDENTIFICACION = ?
+			</tns:CommandText>
+			<tns:Parameters>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_TipoDocumento</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_NumeroDocumento</tns:ParameterName>
+					<tns:ParameterType>DECIMAL</tns:ParameterType>
+					<tns:ParameterScale>12</tns:ParameterScale>
+				</tns:Parameter>
+			</tns:Parameters>
+		</tns:MetadataQuery>
+
+
+		<!-- Consulta la información de la relacion laboral en la base de datos 
+			SABASS. -->
+		<tns:MetadataQuery>
+			<tns:QueryName>PR_ConsultarRelacionLaboral</tns:QueryName>
+			<tns:CommandText>SELECT * FROM sabass..RelacionLaboral
+				WHERE
+				ap_TipoAportante = ? AND
+				ap_TipoDocumento = ? AND
+				ap_NumeroDocumento =
+				? AND
+				af_TipoDocumento = ? AND
+				af_NumeroDocumento = ?
+			</tns:CommandText>
+			<tns:Parameters>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_TipoAportante</tns:ParameterName>
+					<tns:ParameterType>TINYINT</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_TipoDocumento</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_NumeroDocumento</tns:ParameterName>
+					<tns:ParameterType>DECIMAL</tns:ParameterType>
+					<tns:ParameterScale>12</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@af_TipoDocumento</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@af_NumeroDocumento</tns:ParameterName>
+					<tns:ParameterType>DECIMAL</tns:ParameterType>
+					<tns:ParameterScale>12</tns:ParameterScale>
+				</tns:Parameter>
+			</tns:Parameters>
+		</tns:MetadataQuery>
+
+		<!-- Consulta la información de la relacion laboral en la base de datos 
+			SABASS. -->
+		<tns:MetadataQuery>
+			<tns:QueryName>PR_ConsultarRelacionLaboralTipoVinculacion</tns:QueryName>
+			<tns:CommandText>SELECT * FROM sabass..RelacionLaboral
+				WHERE
+				ap_TipoAportante = ? AND
+				ap_TipoDocumento = ? AND
+				ap_NumeroDocumento =
+				? AND
+				af_TipoDocumento = ? AND
+				af_NumeroDocumento = ? AND
+				rl_TipoAfiliacion in (1,2,4,7)
+			</tns:CommandText>
+			<tns:Parameters>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_TipoAportante</tns:ParameterName>
+					<tns:ParameterType>TINYINT</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_TipoDocumento</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_NumeroDocumento</tns:ParameterName>
+					<tns:ParameterType>DECIMAL</tns:ParameterType>
+					<tns:ParameterScale>12</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@af_TipoDocumento</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@af_NumeroDocumento</tns:ParameterName>
+					<tns:ParameterType>DECIMAL</tns:ParameterType>
+					<tns:ParameterScale>12</tns:ParameterScale>
+				</tns:Parameter>
+			</tns:Parameters>
+		</tns:MetadataQuery>
+
+
+
+		<!-- Consulta la información de la relacion laboral en la base de datos 
+			SABASS sin tener en cuenta el tipo de aportante. -->
+		<tns:MetadataQuery>
+			<tns:QueryName>PR_ConsultarRelacionLaboralSinTipoAportante</tns:QueryName>
+			<tns:CommandText>SELECT * FROM sabass..RelacionLaboral
+				WHERE
+				ap_TipoDocumento = ? AND
+				ap_NumeroDocumento = ? AND
+				af_TipoDocumento =
+				? AND
+				af_NumeroDocumento = ?
+			</tns:CommandText>
+			<tns:Parameters>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_TipoDocumento</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_NumeroDocumento</tns:ParameterName>
+					<tns:ParameterType>DECIMAL</tns:ParameterType>
+					<tns:ParameterScale>12</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@af_TipoDocumento</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@af_NumeroDocumento</tns:ParameterName>
+					<tns:ParameterType>DECIMAL</tns:ParameterType>
+					<tns:ParameterScale>12</tns:ParameterScale>
+				</tns:Parameter>
+			</tns:Parameters>
+		</tns:MetadataQuery>
+
+
+		<!-- Consulta en la base de datos SABASS el código asociado a la sucursal 
+			principal del aportante (El menor valor de su_Sucursal de todas las sucursales 
+			asociadas al aportante). -->
+		<tns:MetadataQuery>
+			<tns:QueryName>PR_ConsultarSucursalAportante</tns:QueryName>
+			<tns:CommandText>SELECT MIN(su_Sucursal) 'Sucursal' FROM
+				sabass..Sucursal
+				WHERE ap_TipoDocumento = ? AND
+				ap_NumeroDocumento = ?
+				AND
+				ap_TipoAportante = ?
+			</tns:CommandText>
+			<tns:Parameters>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_TipoDocumento</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_NumeroDocumento</tns:ParameterName>
+					<tns:ParameterType>DECIMAL</tns:ParameterType>
+					<tns:ParameterScale>12</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_TipoAportante</tns:ParameterName>
+					<tns:ParameterType>TINYINT</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+			</tns:Parameters>
+		</tns:MetadataQuery>
+
+
+		<!-- Agrega la información de la relación laboral y relacion seguro en 
+			la base de datos SABASS. -->
+		<tns:MetadataQuery>
+			<tns:QueryName>PR_AgregarRelacionLaboral</tns:QueryName>
+			<tns:CommandText>INSERT INTO
+				sabass..RelacionLaboral(af_NumeroDocumento, af_TipoDocumento,
+				ap_NumeroDocumento, ap_TipoDocumento, ap_TipoAportante, su_Sucursal,
+				ct_CentroTrabajo, ol_OcupacionLaboral, rl_SalarioBase, rl_Regimen,
+				rl_TipoVinculado, rl_Estado, rl_TipoAfiliacion,
+				rl_FechaModificacion)
+				VALUES (?, ?, ?, ?, ?, ?, 0, ?, ?, 1, ?, 1, 2,
+				GETDATE())
+			</tns:CommandText>
+			<tns:Parameters>
+				<tns:Parameter>
+					<tns:ParameterName>@af_NumeroDocumento</tns:ParameterName>
+					<tns:ParameterType>DECIMAL</tns:ParameterType>
+					<tns:ParameterScale>12</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@af_TipoDocumento</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_NumeroDocumento</tns:ParameterName>
+					<tns:ParameterType>DECIMAL</tns:ParameterType>
+					<tns:ParameterScale>12</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_TipoDocumento</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_TipoAportante</tns:ParameterName>
+					<tns:ParameterType>TINYINT</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@su_Sucursal</tns:ParameterName>
+					<tns:ParameterType>SMALLINT</tns:ParameterType>
+					<tns:ParameterScale>3</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ol_OcupacionLaboral</tns:ParameterName>
+					<tns:ParameterType>NUMERIC</tns:ParameterType>
+					<tns:ParameterScale>4</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@rl_SalarioBase</tns:ParameterName>
+					<tns:ParameterType>INTEGER</tns:ParameterType>
+					<tns:ParameterScale>18</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@rl_TipoVinculado</tns:ParameterName>
+					<tns:ParameterType>INTEGER</tns:ParameterType>
+					<tns:ParameterScale>2</tns:ParameterScale>
+				</tns:Parameter>
+			</tns:Parameters>
+		</tns:MetadataQuery>
+		<tns:MetadataQuery>
+			<tns:QueryName>PR_AgregarRelacionSeguro</tns:QueryName>
+			<tns:CommandText>INSERT INTO sabass..RelacionSeguro
+				(ap_NumeroDocumento, ap_TipoDocumento,
+				ap_TipoAportante,
+				af_NumeroDocumento, af_TipoDocumento,
+				ts_TipoSeguro, rs_FechaIngreso,
+				rs_SalarioBase, rs_DiasCotizados,
+				rs_DiasMora, rs_CiclosMora,
+				rs_DiasContinuos, rs_Estado, rs_FechaModificacion)
+				VALUES(?, ?, ?, ?,
+				?, 'P', ?, ?, 0, 0, 0, 0, 1, GETDATE())
+			</tns:CommandText>
+			<tns:Parameters>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_NumeroDocumento</tns:ParameterName>
+					<tns:ParameterType>DECIMAL</tns:ParameterType>
+					<tns:ParameterScale>12</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_TipoDocumento</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_TipoAportante</tns:ParameterName>
+					<tns:ParameterType>TINYINT</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@af_NumeroDocumento</tns:ParameterName>
+					<tns:ParameterType>DECIMAL</tns:ParameterType>
+					<tns:ParameterScale>12</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@af_TipoDocumento</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@rs_FechaIngreso</tns:ParameterName>
+					<tns:ParameterType>VARCHAR</tns:ParameterType>
+					<tns:ParameterScale>8</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@rs_SalarioBase</tns:ParameterName>
+					<tns:ParameterType>INTEGER</tns:ParameterType>
+					<tns:ParameterScale>18</tns:ParameterScale>
+				</tns:Parameter>
+			</tns:Parameters>
+		</tns:MetadataQuery>
+
+
+		<!-- Registra una novedad de creación de una relación laboral en la tabla 
+			HISTORICORELACIONLABORAL de la base de datos SABASS. -->
+		<tns:MetadataQuery>
+			<tns:QueryName>PR_AgregarNovedadRelacionLaboralNuevo</tns:QueryName>
+			<tns:CommandText>INSERT INTO sabass..HistoricoRelacionLaboral
+				(ha_Consecutivo, ap_NumeroDocumento,
+				ap_TipoDocumento,
+				ap_TipoAportante, af_NumeroDocumento, af_TipoDocumento,
+				hc_TipoCambio,
+				ts_TipoSeguro, rl_TipoVinculado, ht_FechaDesde,
+				ht_FechaModificacion, us_Login,
+				us_idSeguridad, ht_Hostname,
+				ht_Documento, ht_Responsable, rs_Estado, rl_Estado)
+				VALUES (?, ?, ?, ?, ?, ?, ?, 'P', ?, ?,
+				GETDATE(), ?, ?, ?, ?, ?, ?, ?)
+			</tns:CommandText>
+			<tns:Parameters>
+				<tns:Parameter>
+					<tns:ParameterName>@ha_Consecutivo</tns:ParameterName>
+					<tns:ParameterType>NUMERIC</tns:ParameterType>
+					<tns:ParameterScale>18</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_NumeroDocumento</tns:ParameterName>
+					<tns:ParameterType>DECIMAL</tns:ParameterType>
+					<tns:ParameterScale>12</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_TipoDocumento</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_TipoAportante</tns:ParameterName>
+					<tns:ParameterType>TINYINT</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@af_NumeroDocumento</tns:ParameterName>
+					<tns:ParameterType>DECIMAL</tns:ParameterType>
+					<tns:ParameterScale>12</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@af_TipoDocumento</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@hc_TipoCambio</tns:ParameterName>
+					<tns:ParameterType>TINYINT</tns:ParameterType>
+					<tns:ParameterScale>4</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@rl_TipoVinculado</tns:ParameterName>
+					<tns:ParameterType>INTEGER</tns:ParameterType>
+					<tns:ParameterScale>2</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ht_FechaDesde</tns:ParameterName>
+					<tns:ParameterType>VARCHAR</tns:ParameterType>
+					<tns:ParameterScale>8</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@us_Login</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>30</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@us_idSeguridad</tns:ParameterName>
+					<tns:ParameterType>INTEGER</tns:ParameterType>
+					<tns:ParameterScale>5</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ht_Hostname</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ht_Documento</tns:ParameterName>
+					<tns:ParameterType>VARCHAR</tns:ParameterType>
+					<tns:ParameterScale>50</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ht_Responsable</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@rs_Estado</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@rl_Estado</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+			</tns:Parameters>
+		</tns:MetadataQuery>
+		
+		<!-- Registra una novedad de creación de una relación laboral en la tabla 
+			HISTORICORELACIONLABORAL de la base de datos SABASS. -->
+		<tns:MetadataQuery>
+			<tns:QueryName>PR_AgregarNovedadRelacionLaboral</tns:QueryName>
+			<tns:CommandText>INSERT INTO sabass..HistoricoRelacionLaboral
+				(ha_Consecutivo, ap_NumeroDocumento,
+				ap_TipoDocumento,
+				ap_TipoAportante, af_NumeroDocumento, af_TipoDocumento,
+				hc_TipoCambio,
+				ts_TipoSeguro, rl_TipoVinculado, ht_FechaDesde,
+				ht_FechaModificacion, us_Login,
+				us_idSeguridad, ht_Hostname,
+				ht_Documento, ht_Responsable, rs_Estado, rl_Estado, rs_fechaIngresoDespues)
+				VALUES (?, ?, ?, ?, ?, ?, ?, 'P', ?, ?,
+				GETDATE(), ?, ?, ?, ?, ?, ?, ?, ?)
+			</tns:CommandText>
+			<tns:Parameters>
+				<tns:Parameter>
+					<tns:ParameterName>@ha_Consecutivo</tns:ParameterName>
+					<tns:ParameterType>NUMERIC</tns:ParameterType>
+					<tns:ParameterScale>18</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_NumeroDocumento</tns:ParameterName>
+					<tns:ParameterType>DECIMAL</tns:ParameterType>
+					<tns:ParameterScale>12</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_TipoDocumento</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_TipoAportante</tns:ParameterName>
+					<tns:ParameterType>TINYINT</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@af_NumeroDocumento</tns:ParameterName>
+					<tns:ParameterType>DECIMAL</tns:ParameterType>
+					<tns:ParameterScale>12</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@af_TipoDocumento</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@hc_TipoCambio</tns:ParameterName>
+					<tns:ParameterType>TINYINT</tns:ParameterType>
+					<tns:ParameterScale>4</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@rl_TipoVinculado</tns:ParameterName>
+					<tns:ParameterType>INTEGER</tns:ParameterType>
+					<tns:ParameterScale>2</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ht_FechaDesde</tns:ParameterName>
+					<tns:ParameterType>VARCHAR</tns:ParameterType>
+					<tns:ParameterScale>8</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@us_Login</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>30</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@us_idSeguridad</tns:ParameterName>
+					<tns:ParameterType>INTEGER</tns:ParameterType>
+					<tns:ParameterScale>5</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ht_Hostname</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ht_Documento</tns:ParameterName>
+					<tns:ParameterType>VARCHAR</tns:ParameterType>
+					<tns:ParameterScale>50</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ht_Responsable</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@rs_Estado</tns:ParameterName>
+					<tns:ParameterType>TINYINT</tns:ParameterType>
+					<tns:ParameterScale>4</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@rl_Estado</tns:ParameterName>
+					<tns:ParameterType>TINYINT</tns:ParameterType>
+					<tns:ParameterScale>4</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@rs_fechaIngresoDespues</tns:ParameterName>
+					<tns:ParameterType>VARCHAR</tns:ParameterType>
+					<tns:ParameterScale>8</tns:ParameterScale>
+				</tns:Parameter>
+			</tns:Parameters>
+		</tns:MetadataQuery>
+		
+				<!-- Registra una novedad de la reactivacion de una relacion laboral -->
+		<tns:MetadataQuery>
+			<tns:QueryName>PR_AgregarNovedadReactivacion</tns:QueryName>
+			<tns:CommandText>INSERT INTO sabass..HistoricoRelacionLaboral
+				(ha_Consecutivo, ap_NumeroDocumento,
+				ap_TipoDocumento,
+				ap_TipoAportante, af_NumeroDocumento, af_TipoDocumento,
+				hc_TipoCambio,
+				ts_TipoSeguro, rl_TipoVinculado, ht_FechaDesde,
+				ht_FechaModificacion, us_Login,
+				us_idSeguridad, ht_Hostname,
+				ht_Documento, ht_Responsable, rs_FechaIngresoAntes,
+				rs_FechaRetiroAntes, rs_FechaIngresoDespues, rs_FechaRetiroDespues,
+				rs_Estado, rl_Estado)
+				VALUES (?, ?, ?, ?, ?, ?, ?, 'P', ?, ?,
+				GETDATE(), ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+			</tns:CommandText>
+			<tns:Parameters>
+				<tns:Parameter>
+					<tns:ParameterName>@ha_Consecutivo</tns:ParameterName>
+					<tns:ParameterType>NUMERIC</tns:ParameterType>
+					<tns:ParameterScale>18</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_NumeroDocumento</tns:ParameterName>
+					<tns:ParameterType>DECIMAL</tns:ParameterType>
+					<tns:ParameterScale>12</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_TipoDocumento</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_TipoAportante</tns:ParameterName>
+					<tns:ParameterType>TINYINT</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@af_NumeroDocumento</tns:ParameterName>
+					<tns:ParameterType>DECIMAL</tns:ParameterType>
+					<tns:ParameterScale>12</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@af_TipoDocumento</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@hc_TipoCambio</tns:ParameterName>
+					<tns:ParameterType>TINYINT</tns:ParameterType>
+					<tns:ParameterScale>4</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@rl_TipoVinculado</tns:ParameterName>
+					<tns:ParameterType>INTEGER</tns:ParameterType>
+					<tns:ParameterScale>2</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ht_FechaDesde</tns:ParameterName>
+					<tns:ParameterType>VARCHAR</tns:ParameterType>
+					<tns:ParameterScale>8</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@us_Login</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>30</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@us_idSeguridad</tns:ParameterName>
+					<tns:ParameterType>INTEGER</tns:ParameterType>
+					<tns:ParameterScale>5</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ht_Hostname</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ht_Documento</tns:ParameterName>
+					<tns:ParameterType>VARCHAR</tns:ParameterType>
+					<tns:ParameterScale>50</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ht_Responsable</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@rs_FechaIngresoAntes</tns:ParameterName>
+					<tns:ParameterType>VARCHAR</tns:ParameterType>
+					<tns:ParameterScale>8</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@rs_FechaRetiroAntes</tns:ParameterName>
+					<tns:ParameterType>VARCHAR</tns:ParameterType>
+					<tns:ParameterScale>8</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@rs_FechaIngresoDespues</tns:ParameterName>
+					<tns:ParameterType>VARCHAR</tns:ParameterType>
+					<tns:ParameterScale>8</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@rs_FechaRetiroDespues</tns:ParameterName>
+					<tns:ParameterType>VARCHAR</tns:ParameterType>
+					<tns:ParameterScale>8</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@rs_Estado</tns:ParameterName>
+					<tns:ParameterType>TINYINT</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@rl_Estado</tns:ParameterName>
+					<tns:ParameterType>TINYINT</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+			</tns:Parameters>
+		</tns:MetadataQuery>
+
+
+		<!-- Consulta el identificador de usuario de la tabla Usuario. -->
+		<tns:MetadataQuery>
+			<tns:QueryName>PR_ConsultarIdentificadorUsuario</tns:QueryName>
+			<tns:CommandText>SELECT us_id 'us_idSeguridad'
+				FROM sabass..Usuario
+				WHERE
+				us_Login = ?
+			</tns:CommandText>
+			<tns:Parameters>
+				<tns:Parameter>
+					<tns:ParameterName>@us_Login</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>30</tns:ParameterScale>
+				</tns:Parameter>
+			</tns:Parameters>
+		</tns:MetadataQuery>
+		
+		<!-- Actualiza el campo estado de la tabla relacion laboral-->
+		<tns:MetadataQuery>
+			<tns:QueryName>PR_ActualizarEstadoRelacionLaboral</tns:QueryName>
+			<tns:CommandText>update sabass..relacionLaboral set rl_estado = ? where af_NumeroDocumento = ? 
+							 and af_TipoDocumento = ? and ap_NumeroDocumento = ? and ap_TipoDocumento = ?
+							 and ap_TipoAportante = ? 
+			</tns:CommandText>
+			<tns:Parameters>
+				<tns:Parameter>
+					<tns:ParameterName>@estado</tns:ParameterName>
+					<tns:ParameterType>TINYINT</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>			
+					<tns:ParameterName>@af_NumeroDocumento</tns:ParameterName>
+					<tns:ParameterType>DECIMAL</tns:ParameterType>
+					<tns:ParameterScale>12</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@af_TipoDocumento</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_NumeroDocumento</tns:ParameterName>
+					<tns:ParameterType>DECIMAL</tns:ParameterType>
+					<tns:ParameterScale>12</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_TipoDocumento</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_TipoAportante</tns:ParameterName>
+					<tns:ParameterType>TINYINT</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+			</tns:Parameters>
+		</tns:MetadataQuery>
+		
+			<!-- Actualiza el campo estado de la tabla relacion seguro-->
+		<tns:MetadataQuery>
+			<tns:QueryName>PR_ActualizarEstadoRelacionSeguro</tns:QueryName>
+			<tns:CommandText>update sabass..relacionSeguro set rs_estado = ? where af_NumeroDocumento = ? 
+							 and af_TipoDocumento = ? and ap_NumeroDocumento = ? and ap_TipoDocumento = ?
+							 and ap_TipoAportante = ? and ts_TipoSeguro = 'P'
+			</tns:CommandText>
+			<tns:Parameters>
+				<tns:Parameter>
+					<tns:ParameterName>@estado</tns:ParameterName>
+					<tns:ParameterType>TINYINT</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@af_NumeroDocumento</tns:ParameterName>
+					<tns:ParameterType>DECIMAL</tns:ParameterType>
+					<tns:ParameterScale>12</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@af_TipoDocumento</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_NumeroDocumento</tns:ParameterName>
+					<tns:ParameterType>DECIMAL</tns:ParameterType>
+					<tns:ParameterScale>12</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_TipoDocumento</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_TipoAportante</tns:ParameterName>
+					<tns:ParameterType>TINYINT</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+			</tns:Parameters>
+		</tns:MetadataQuery>
+		
+					<!-- Actualiza el campo Fecha Retiro de la tabla relacion seguro-->
+		<tns:MetadataQuery>
+			<tns:QueryName>PR_ActualizarFechaRetiro</tns:QueryName>
+			<tns:CommandText>update sabass..relacionSeguro set rs_FechaRetiro = null where af_NumeroDocumento = ? 
+							 and af_TipoDocumento = ? and ap_NumeroDocumento = ? and ap_TipoDocumento = ?
+							 and ap_TipoAportante = ? and ts_TipoSeguro = 'P'
+			</tns:CommandText>
+			<tns:Parameters>
+				<tns:Parameter>
+					<tns:ParameterName>@af_NumeroDocumento</tns:ParameterName>
+					<tns:ParameterType>DECIMAL</tns:ParameterType>
+					<tns:ParameterScale>12</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@af_TipoDocumento</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_NumeroDocumento</tns:ParameterName>
+					<tns:ParameterType>DECIMAL</tns:ParameterType>
+					<tns:ParameterScale>12</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_TipoDocumento</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_TipoAportante</tns:ParameterName>
+					<tns:ParameterType>TINYINT</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+			</tns:Parameters>
+		</tns:MetadataQuery>
+		
+		<!-- Consulta el número consecutivo de la tabla HistoricoRelacionLaboral. -->
+		<tns:MetadataQuery>
+			<tns:QueryName>PR_ConsultarConsecutivoHRL</tns:QueryName>
+			<tns:CommandText>SELECT MAX(ha_Consecutivo) + 1 'NumConsecutivo'
+				FROM
+				sabass..HistoricoRelacionLaboral
+			</tns:CommandText>
+		</tns:MetadataQuery>
+
+
+		<!-- Actualiza la relación laboral y relacion seguro en la base de datos 
+			SABASS. -->
+		<tns:MetadataQuery>
+			<tns:QueryName>PR_ActualizarRelacionLaboral</tns:QueryName>
+			<tns:CommandText>UPDATE sabass..RelacionLaboral
+				SET rl_TipoVinculado =
+				?, ol_OcupacionLaboral = ?, rl_SalarioBase = ?,
+				su_Sucursal = ?,
+				rl_FechaModificacion = GETDATE(), rl_Estado = 1
+				WHERE
+				af_NumeroDocumento = ? AND af_TipoDocumento = ? AND
+				ap_NumeroDocumento = ? AND ap_TipoDocumento = ? AND ap_TipoAportante
+				= ?
+			</tns:CommandText>
+			<tns:Parameters>
+				<tns:Parameter>
+					<tns:ParameterName>@rl_TipoVinculado</tns:ParameterName>
+					<tns:ParameterType>INTEGER</tns:ParameterType>
+					<tns:ParameterScale>2</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ol_OcupacionLaboral</tns:ParameterName>
+					<tns:ParameterType>NUMERIC</tns:ParameterType>
+					<tns:ParameterScale>4</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@rl_SalarioBase</tns:ParameterName>
+					<tns:ParameterType>INTEGER</tns:ParameterType>
+					<tns:ParameterScale>18</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@su_Sucursal</tns:ParameterName>
+					<tns:ParameterType>SMALLINT</tns:ParameterType>
+					<tns:ParameterScale>3</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@af_NumeroDocumento</tns:ParameterName>
+					<tns:ParameterType>DECIMAL</tns:ParameterType>
+					<tns:ParameterScale>12</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@af_TipoDocumento</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_NumeroDocumento</tns:ParameterName>
+					<tns:ParameterType>DECIMAL</tns:ParameterType>
+					<tns:ParameterScale>12</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_TipoDocumento</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_TipoAportante</tns:ParameterName>
+					<tns:ParameterType>TINYINT</tns:ParameterType>
+					<tns:ParameterScale>2</tns:ParameterScale>
+				</tns:Parameter>
+			</tns:Parameters>
+		</tns:MetadataQuery>
+		<tns:MetadataQuery>
+			<tns:QueryName>PR_ActualizarRelacionSeguro</tns:QueryName>
+			<tns:CommandText>UPDATE sabass..RelacionSeguro
+				SET rs_SalarioBase = ?,
+				rs_FechaModificacion = GETDATE(), rs_Estado = 1
+				WHERE
+				af_NumeroDocumento = ? AND af_TipoDocumento = ? AND
+				ap_NumeroDocumento = ? AND ap_TipoDocumento = ? AND
+				ts_TipoSeguro =
+				'P' AND ap_TipoAportante = ?
+			</tns:CommandText>
+			<tns:Parameters>
+				<tns:Parameter>
+					<tns:ParameterName>@rs_SalarioBase</tns:ParameterName>
+					<tns:ParameterType>INTEGER</tns:ParameterType>
+					<tns:ParameterScale>18</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@af_NumeroDocumento</tns:ParameterName>
+					<tns:ParameterType>DECIMAL</tns:ParameterType>
+					<tns:ParameterScale>12</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@af_TipoDocumento</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_NumeroDocumento</tns:ParameterName>
+					<tns:ParameterType>DECIMAL</tns:ParameterType>
+					<tns:ParameterScale>12</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_TipoDocumento</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_TipoAportante</tns:ParameterName>
+					<tns:ParameterType>TINYINT</tns:ParameterType>
+					<tns:ParameterScale>2</tns:ParameterScale>
+				</tns:Parameter>
+			</tns:Parameters>
+		</tns:MetadataQuery>
+
+
+		<!-- Consulta el tipo de viculación, la ocupación laboral, el salario y 
+			la sucursal de una relación laboral en la base de datos SABASS. -->
+		<tns:MetadataQuery>
+			<tns:QueryName>PR_ConsultarDatosRelacionLaboral</tns:QueryName>
+			<tns:CommandText>SELECT rl_TipoVinculado, ol_OcupacionLaboral,
+				rl_SalarioBase, su_Sucursal
+				FROM sabass..RelacionLaboral
+				WHERE
+				af_NumeroDocumento = ? AND af_TipoDocumento = ? AND
+				ap_NumeroDocumento = ? AND ap_TipoDocumento = ? AND
+				rl_TipoAfiliacion in (1,2,4,7) AND ap_TipoAportante = ?
+			</tns:CommandText>
+			<tns:Parameters>
+				<tns:Parameter>
+					<tns:ParameterName>@af_NumeroDocumento</tns:ParameterName>
+					<tns:ParameterType>DECIMAL</tns:ParameterType>
+					<tns:ParameterScale>12</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@af_TipoDocumento</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_NumeroDocumento</tns:ParameterName>
+					<tns:ParameterType>DECIMAL</tns:ParameterType>
+					<tns:ParameterScale>12</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_TipoDocumento</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_TipoAportante</tns:ParameterName>
+					<tns:ParameterType>TINYINT</tns:ParameterType>
+					<tns:ParameterScale>2</tns:ParameterScale>
+				</tns:Parameter>
+			</tns:Parameters>
+		</tns:MetadataQuery>
+
+		<!-- Verifica en historico novedades la existencia de la tupla tn_TipoCambio=51 
+			y tn_Nombre = Actualización Razón Social Aportante -->
+
+		<tns:MetadataQuery>
+			<tns:QueryName>PR_ConsultaHistoricoNovedades_TipoCambio_ActualizarAportante</tns:QueryName>
+			<tns:CommandText>SELECT * FROM sabass..TipoNovedad where tn_TipoNovedad = 51
+				and tn_Nombre = 'Actualización Razón Social Aportante'
+			</tns:CommandText>
+		</tns:MetadataQuery>
+
+		<!-- Este query se utiliza para ver si existe un APORTANTE CON LAS 2 VARIABLES 
+			DOCUMENTO Y TIPO DOCUMENTO -->
+		<tns:MetadataQuery>
+			<tns:QueryName>PR_ConsultaExisteAportante2</tns:QueryName>
+			<tns:CommandText>
+				select * from sabass..Aportante where ap_NumeroDocumento = ?
+				and ap_TipoDocumento = ?
+			</tns:CommandText>
+			<tns:Parameters>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_NumeroDocumento</tns:ParameterName>
+					<tns:ParameterType>DECIMAL</tns:ParameterType>
+					<tns:ParameterScale>15</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_TipoDocumento</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+			</tns:Parameters>
+		</tns:MetadataQuery>
+
+		<tns:MetadataQuery>
+			<tns:QueryName>PR_ConsultarRelacionLaboral_NumeroDocumento_TipoDocumento</tns:QueryName>
+			<tns:CommandText>SELECT * FROM sabass..RelacionLaboral where
+				ap_NumeroDocumento = ? and ap_TipoDocumento = ?
+			</tns:CommandText>
+			<tns:Parameters>
+
+				<tns:Parameter>
+					<tns:ParameterName>@ap_NumeroDocumento</tns:ParameterName>
+					<tns:ParameterType>NUMERIC</tns:ParameterType>
+					<tns:ParameterScale>15</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_TipoDocumento</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_TipoAportante</tns:ParameterName>
+					<tns:ParameterType>TINYINT</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+
+			</tns:Parameters>
+
+		</tns:MetadataQuery>
+
+
+		<!--Este query se utiliza para actualizar un APORTANTE -->
+		<tns:MetadataQuery>
+			<tns:QueryName>PR_ActualizarAportante</tns:QueryName>
+			<tns:CommandText>Update sabass..Aportante set ap_RazonSocial = ?,
+				ap_Naturaleza = ?, ae_ActividadEconomica = ?, ap_FechaModificacion =
+				GETDATE() where ap_NumeroDocumento = ? and ap_TipoDocumento = ? and
+				ap_TipoAportante= ?
+			</tns:CommandText>
+
+			<tns:Parameters>
+
+
+				<tns:Parameter>
+					<tns:ParameterName>@ap_RazonSocial</tns:ParameterName>
+					<tns:ParameterType>VARCHAR</tns:ParameterType>
+					<tns:ParameterScale>60</tns:ParameterScale>
+				</tns:Parameter>
+
+				<tns:Parameter>
+					<tns:ParameterName>@ap_Naturaleza</tns:ParameterName>
+					<tns:ParameterType>TINYINT</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ae_ActividadEconomica</tns:ParameterName>
+					<tns:ParameterType>NUMERIC</tns:ParameterType>
+					<tns:ParameterScale>7</tns:ParameterScale>
+				</tns:Parameter>
+
+
+				<tns:Parameter>
+					<tns:ParameterName>@ap_NumeroDocumento</tns:ParameterName>
+					<tns:ParameterType>NUMERIC</tns:ParameterType>
+					<tns:ParameterScale>15</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_TipoDocumento</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_TipoAportante</tns:ParameterName>
+					<tns:ParameterType>TINYINT</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+
+
+
+			</tns:Parameters>
+		</tns:MetadataQuery>
+
+
+		<!-- Este query se utiliza para consultar una SUCURSAL -->
+
+		<tns:MetadataQuery>
+			<tns:QueryName>PR_ConsultaSucursal_TipoDocumento_NumeroDocumento_TipoAportante</tns:QueryName>
+			<tns:CommandText>
+				select * from sabass..Sucursal where ap_NumeroDocumento = ?
+				and ap_TipoDocumento = ? and ap_TipoAportante = ?
+			</tns:CommandText>
+			<tns:Parameters>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_NumeroDocumento</tns:ParameterName>
+					<tns:ParameterType>DECIMAL</tns:ParameterType>
+					<tns:ParameterScale>15</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_TipoDocumento</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_TipoAportante</tns:ParameterName>
+					<tns:ParameterType>DECIMAL</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+			</tns:Parameters>
+		</tns:MetadataQuery>
+
+		<!-- Este query se utiliza para actualizar una SUCURSAL -->
+		<tns:MetadataQuery>
+			<tns:QueryName>PR_ActualizarSucursal</tns:QueryName>
+			<tns:CommandText>Update sabass..Sucursal set su_Sucursal = ? ,
+				dp_Departamento = ?, mu_Municipio = ?, lc_Localidad = ?,
+				su_Direccion = ?, su_telefono = ?, su_Email = ? where
+				ap_NumeroDocumento = ? and ap_TipoDocumento = ? and ap_TipoAportante
+				= ? and su_Sucursal = ?
+			</tns:CommandText>
+			<tns:Parameters></tns:Parameters>
+			<tns:Parameters>
+
+				<tns:Parameter>
+					<tns:ParameterName>@su_Sucursal_update</tns:ParameterName>
+					<tns:ParameterType>SMALLINT</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@dp_Departamento</tns:ParameterName>
+					<tns:ParameterType>TINYINT</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@mu_Municipio</tns:ParameterName>
+					<tns:ParameterType>SMALLINT</tns:ParameterType>
+					<tns:ParameterScale></tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@lc_Localidad</tns:ParameterName>
+					<tns:ParameterType>SMALLINT</tns:ParameterType>
+					<tns:ParameterScale></tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@su_Direccion</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>35</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@su_Telefono</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>35</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@su_Email</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>100</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_NumeroDocumento</tns:ParameterName>
+					<tns:ParameterType>NUMERIC</tns:ParameterType>
+					<tns:ParameterScale>15</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_TipoDocumento</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_TipoAportante</tns:ParameterName>
+					<tns:ParameterType>TINYINT</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@su_Sucursal</tns:ParameterName>
+					<tns:ParameterType>SMALLINT</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+
+			</tns:Parameters>
+		</tns:MetadataQuery>
+
+
+		<!-- Verifica en historico novedades la existencia de la tupla tn_TipoCambio=212 
+			y tn_Nombre = Creación Aportante -->
+		<tns:MetadataQuery>
+			<tns:QueryName>PR_ConsultaHistoricoNovedades_TipoCambio_CrearAportante</tns:QueryName>
+			<tns:CommandText>SELECT * FROM sabass..TipoNovedad where tn_TipoNovedad = 212
+				and tn_Nombre = 'Creación Aportante'
+			</tns:CommandText>
+		</tns:MetadataQuery>
+
+		<!-- Verifica en historico novedades la existencia de la tupla tn_TipoCambio=51 
+			y tn_Nombre = Actualización Razón Social Aportante -->
+
+		<tns:MetadataQuery>
+			<tns:QueryName>PR_ConsultaHistoricoNovedades_TipoCambio_ActualizarAportante</tns:QueryName>
+			<tns:CommandText>SELECT * FROM sabass..TipoNovedad where tn_TipoNovedad = 51
+				and tn_Nombre = 'Actualización Razón Social Aportante'
+			</tns:CommandText>
+		</tns:MetadataQuery>
+
+
+		<!-- Este query se utiliza para ver si existe un APORTANTE CON LAS 3 VARIABLES 
+			NUMERO DOCUMENTO, TIPO DOCUMENTO Y TIPO APORTANTE -->
+		<tns:MetadataQuery>
+			<tns:QueryName>PR_ConsultaExisteAportante3</tns:QueryName>
+			<tns:CommandText>
+				select * from sabass..Aportante where ap_NumeroDocumento = ?
+				and ap_TipoDocumento = ? and ap_TipoAportante = ?
+			</tns:CommandText>
+			<tns:Parameters>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_NumeroDocumento</tns:ParameterName>
+					<tns:ParameterType>DECIMAL</tns:ParameterType>
+					<tns:ParameterScale>15</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_TipoDocumento</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_TipoAportante</tns:ParameterName>
+					<tns:ParameterType>DECIMAL</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+			</tns:Parameters>
+		</tns:MetadataQuery>
+
+		<!-- Este query se utiliza para insertar un APORTANTE -->
+		<tns:MetadataQuery>
+			<tns:QueryName>PR_InsertarAportante</tns:QueryName>
+			<tns:CommandText>INSERT INTO sabass..Aportante
+				(ap_NumeroDocumento,ap_TipoDocumento,ap_TipoAportante,ap_RazonSocial,ap_ModoPresentacion,ap_Naturaleza,ae_ActividadEconomica,ap_FechaVinculacion,ap_Estado,ap_FechaCierreVinculacion,ap_NumeroEmpleados,ap_ARPActual,ap_FechaModificacion)
+				VALUES (?,?,?,?,?,?,?,?,?,?,?,?, GETDATE())
+			</tns:CommandText>
+
+
+			<tns:Parameters>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_NumeroDocumento</tns:ParameterName>
+					<tns:ParameterType>NUMERIC</tns:ParameterType>
+					<tns:ParameterScale>15</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_TipoDocumento</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_TipoAportante</tns:ParameterName>
+					<tns:ParameterType>TINYINT</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_RazonSocial</tns:ParameterName>
+					<tns:ParameterType>VARCHAR</tns:ParameterType>
+					<tns:ParameterScale>60</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_ModoPresentacion</tns:ParameterName>
+					<tns:ParameterType>BIT</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_Naturaleza</tns:ParameterName>
+					<tns:ParameterType>TINYINT</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ae_ActividadEconomica</tns:ParameterName>
+					<tns:ParameterType>NUMERIC</tns:ParameterType>
+					<tns:ParameterScale>7</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_FechaVinculacion</tns:ParameterName>
+					<tns:ParameterType>DATE</tns:ParameterType>
+					<tns:ParameterScale></tns:ParameterScale>
+				</tns:Parameter>
+
+
+				<tns:Parameter>
+					<tns:ParameterName>@ap_Estado</tns:ParameterName>
+					<tns:ParameterType>TINYINT</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+
+				<tns:Parameter>
+					<tns:ParameterName>@ap_fechaCierre</tns:ParameterName>
+					<tns:ParameterType>DATE</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+
+				<tns:Parameter>
+					<tns:ParameterName>@ap_NumeroEmpleados</tns:ParameterName>
+					<tns:ParameterType>INTEGER</tns:ParameterType>
+					<tns:ParameterScale>6</tns:ParameterScale>
+				</tns:Parameter>
+
+				<tns:Parameter>
+					<tns:ParameterName>@ap_ARPActual</tns:ParameterName>
+					<tns:ParameterType>TINYINT</tns:ParameterType>
+					<tns:ParameterScale>6</tns:ParameterScale>
+				</tns:Parameter>
+
+
+			</tns:Parameters>
+		</tns:MetadataQuery>
+
+		<!--Este query se utiliza para actualizar un APORTANTE -->
+		<tns:MetadataQuery>
+			<tns:QueryName>PR_ActualizarAportante</tns:QueryName>
+			<tns:CommandText>Update sabass..Aportante set ap_RazonSocial = ?,
+				ap_Naturaleza = ?, ae_ActividadEconomica = ?, ap_FechaModificacion =
+				GETDATE() where ap_NumeroDocumento = ? and ap_TipoDocumento = ? and
+				ap_TipoAportante= ?
+			</tns:CommandText>
+
+			<tns:Parameters>
+
+
+				<tns:Parameter>
+					<tns:ParameterName>@ap_RazonSocial</tns:ParameterName>
+					<tns:ParameterType>VARCHAR</tns:ParameterType>
+					<tns:ParameterScale>60</tns:ParameterScale>
+				</tns:Parameter>
+
+				<tns:Parameter>
+					<tns:ParameterName>@ap_Naturaleza</tns:ParameterName>
+					<tns:ParameterType>TINYINT</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ae_ActividadEconomica</tns:ParameterName>
+					<tns:ParameterType>NUMERIC</tns:ParameterType>
+					<tns:ParameterScale>7</tns:ParameterScale>
+				</tns:Parameter>
+
+
+				<tns:Parameter>
+					<tns:ParameterName>@ap_NumeroDocumento</tns:ParameterName>
+					<tns:ParameterType>NUMERIC</tns:ParameterType>
+					<tns:ParameterScale>15</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_TipoDocumento</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_TipoAportante</tns:ParameterName>
+					<tns:ParameterType>TINYINT</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+
+
+
+			</tns:Parameters>
+		</tns:MetadataQuery>
+
+
+
+
+		<!-- Este query se utiliza para ver si existe un APORTANTE CON LAS 2 VARIABLES 
+			DOCUMENTO Y TIPO DOCUMENTO -->
+		<tns:MetadataQuery>
+			<tns:QueryName>PR_ConsultaExisteAportante2</tns:QueryName>
+			<tns:CommandText>
+				select * from sabass..Aportante where ap_NumeroDocumento = ?
+				and ap_TipoDocumento = ?
+			</tns:CommandText>
+			<tns:Parameters>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_NumeroDocumento</tns:ParameterName>
+					<tns:ParameterType>DECIMAL</tns:ParameterType>
+					<tns:ParameterScale>15</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_TipoDocumento</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+			</tns:Parameters>
+		</tns:MetadataQuery>
+
+
+		<!-- Este query se utiliza para insertar un APORTANTE -->
+		<tns:MetadataQuery>
+			<tns:QueryName>PR_InsertarAportante</tns:QueryName>
+			<tns:CommandText>INSERT INTO sabass..Aportante
+				(ap_NumeroDocumento,ap_TipoDocumento,ap_TipoAportante,ap_RazonSocial,ap_ModoPresentacion,ap_Naturaleza,ae_ActividadEconomica,ap_FechaVinculacion,ap_Estado,ap_FechaCierreVinculacion,ap_NumeroEmpleados,ap_ARPActual,ap_FechaModificacion)
+				VALUES (?,?,?,?,?,?,?,?,?,?,?,?, GETDATE())
+			</tns:CommandText>
+
+
+			<tns:Parameters>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_NumeroDocumento</tns:ParameterName>
+					<tns:ParameterType>NUMERIC</tns:ParameterType>
+					<tns:ParameterScale>15</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_TipoDocumento</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_TipoAportante</tns:ParameterName>
+					<tns:ParameterType>TINYINT</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_RazonSocial</tns:ParameterName>
+					<tns:ParameterType>VARCHAR</tns:ParameterType>
+					<tns:ParameterScale>60</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_ModoPresentacion</tns:ParameterName>
+					<tns:ParameterType>BIT</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_Naturaleza</tns:ParameterName>
+					<tns:ParameterType>TINYINT</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ae_ActividadEconomica</tns:ParameterName>
+					<tns:ParameterType>NUMERIC</tns:ParameterType>
+					<tns:ParameterScale>7</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_FechaVinculacion</tns:ParameterName>
+					<tns:ParameterType>DATE</tns:ParameterType>
+					<tns:ParameterScale></tns:ParameterScale>
+				</tns:Parameter>
+
+
+				<tns:Parameter>
+					<tns:ParameterName>@ap_Estado</tns:ParameterName>
+					<tns:ParameterType>TINYINT</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+
+				<tns:Parameter>
+					<tns:ParameterName>@ap_fechaCierre</tns:ParameterName>
+					<tns:ParameterType>DATE</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+
+				<tns:Parameter>
+					<tns:ParameterName>@ap_NumeroEmpleados</tns:ParameterName>
+					<tns:ParameterType>INTEGER</tns:ParameterType>
+					<tns:ParameterScale>6</tns:ParameterScale>
+				</tns:Parameter>
+
+				<tns:Parameter>
+					<tns:ParameterName>@ap_ARPActual</tns:ParameterName>
+					<tns:ParameterType>TINYINT</tns:ParameterType>
+					<tns:ParameterScale>6</tns:ParameterScale>
+				</tns:Parameter>
+
+
+			</tns:Parameters>
+		</tns:MetadataQuery>
+
+		<!--Este query se utiliza para actualizar un APORTANTE -->
+		<tns:MetadataQuery>
+			<tns:QueryName>PR_ActualizarAportante</tns:QueryName>
+			<tns:CommandText>Update sabass..Aportante set ap_RazonSocial = ?,
+				ap_Naturaleza = ?, ae_ActividadEconomica = ?, ap_FechaModificacion =
+				GETDATE() where ap_NumeroDocumento = ? and ap_TipoDocumento = ? and
+				ap_TipoAportante= ?
+			</tns:CommandText>
+
+			<tns:Parameters>
+
+
+				<tns:Parameter>
+					<tns:ParameterName>@ap_RazonSocial</tns:ParameterName>
+					<tns:ParameterType>VARCHAR</tns:ParameterType>
+					<tns:ParameterScale>60</tns:ParameterScale>
+				</tns:Parameter>
+
+				<tns:Parameter>
+					<tns:ParameterName>@ap_Naturaleza</tns:ParameterName>
+					<tns:ParameterType>TINYINT</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ae_ActividadEconomica</tns:ParameterName>
+					<tns:ParameterType>NUMERIC</tns:ParameterType>
+					<tns:ParameterScale>7</tns:ParameterScale>
+				</tns:Parameter>
+
+
+				<tns:Parameter>
+					<tns:ParameterName>@ap_NumeroDocumento</tns:ParameterName>
+					<tns:ParameterType>NUMERIC</tns:ParameterType>
+					<tns:ParameterScale>15</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_TipoDocumento</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_TipoAportante</tns:ParameterName>
+					<tns:ParameterType>TINYINT</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+
+
+
+			</tns:Parameters>
+		</tns:MetadataQuery>
+
+
+
+
+		<!-- Este query se utiliza para insertar la SUCURSAL -->
+		<tns:MetadataQuery>
+			<tns:QueryName>PR_InsertarSurcursal</tns:QueryName>
+			<tns:CommandText>INSERT INTO sabass..Sucursal
+				(ap_NumeroDocumento,ap_TipoDocumento,ap_TipoAportante,su_Sucursal,dp_Departamento,mu_Municipio,lc_Localidad,su_Direccion,su_Telefono,su_Email,su_Fax,su_Zona,su_Sector)
+				VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)
+			</tns:CommandText>
+			<tns:Parameters>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_NumeroDocumento</tns:ParameterName>
+					<tns:ParameterType>NUMERIC</tns:ParameterType>
+					<tns:ParameterScale>15</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_TipoDocumento</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_TipoAportante</tns:ParameterName>
+					<tns:ParameterType>TINYINT</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@su_Sucursal</tns:ParameterName>
+					<tns:ParameterType>SMALLINT</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@dp_Departamento</tns:ParameterName>
+					<tns:ParameterType>TINYINT</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@mu_Municipio</tns:ParameterName>
+					<tns:ParameterType>SMALLINT</tns:ParameterType>
+					<tns:ParameterScale></tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@lc_Localidad</tns:ParameterName>
+					<tns:ParameterType>SMALLINT</tns:ParameterType>
+					<tns:ParameterScale></tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@su_Direccion</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>35</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@su_Telefono</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>35</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@su_Email</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>100</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@su_Fax</tns:ParameterName>
+					<tns:ParameterType>NUMERIC</tns:ParameterType>
+					<tns:ParameterScale>10</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@su_Zona</tns:ParameterName>
+					<tns:ParameterType>TINYINT</tns:ParameterType>
+					<tns:ParameterScale></tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@su_Sector</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+
+
+			</tns:Parameters>
+		</tns:MetadataQuery>
+
+		<!-- Este query se utiliza para actualizar una SUCURSAL -->
+		<tns:MetadataQuery>
+			<tns:QueryName>PR_ActualizarSucursal</tns:QueryName>
+			<tns:CommandText>Update sabass..Sucursal set su_Sucursal = ? ,
+				dp_Departamento = ?, mu_Municipio = ?, lc_Localidad = ?,
+				su_Direccion = ?, su_telefono = ?, su_Email = ? where
+				ap_NumeroDocumento = ? and ap_TipoDocumento = ? and ap_TipoAportante
+				= ? and su_Sucursal = ?
+			</tns:CommandText>
+			<tns:Parameters></tns:Parameters>
+			<tns:Parameters>
+
+				<tns:Parameter>
+					<tns:ParameterName>@su_Sucursal_update</tns:ParameterName>
+					<tns:ParameterType>SMALLINT</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@dp_Departamento</tns:ParameterName>
+					<tns:ParameterType>TINYINT</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@mu_Municipio</tns:ParameterName>
+					<tns:ParameterType>SMALLINT</tns:ParameterType>
+					<tns:ParameterScale></tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@lc_Localidad</tns:ParameterName>
+					<tns:ParameterType>SMALLINT</tns:ParameterType>
+					<tns:ParameterScale></tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@su_Direccion</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>35</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@su_Telefono</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>35</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@su_Email</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>100</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_NumeroDocumento</tns:ParameterName>
+					<tns:ParameterType>NUMERIC</tns:ParameterType>
+					<tns:ParameterScale>15</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_TipoDocumento</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_TipoAportante</tns:ParameterName>
+					<tns:ParameterType>TINYINT</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@su_Sucursal</tns:ParameterName>
+					<tns:ParameterType>SMALLINT</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+
+
+
+			</tns:Parameters>
+		</tns:MetadataQuery>
+
+
+		<!-- Este query se utiliza para consultar una SUCURSAL -->
+
+		<tns:MetadataQuery>
+			<tns:QueryName>PR_ConsultaSucursal_TipoDocumento_NumeroDocumento_TipoAportante</tns:QueryName>
+			<tns:CommandText>
+				select * from sabass..Sucursal where ap_NumeroDocumento = ?
+				and ap_TipoDocumento = ? and ap_TipoAportante = ?
+			</tns:CommandText>
+			<tns:Parameters>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_NumeroDocumento</tns:ParameterName>
+					<tns:ParameterType>DECIMAL</tns:ParameterType>
+					<tns:ParameterScale>15</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_TipoDocumento</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_TipoAportante</tns:ParameterName>
+					<tns:ParameterType>DECIMAL</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+			</tns:Parameters>
+		</tns:MetadataQuery>
+
+		<!-- Este query se utiliza para insertar una NOVEDAD APORTANTE -->
+		<tns:MetadataQuery>
+			<tns:QueryName>PR_InsertarNovedadAportante</tns:QueryName>
+			<tns:CommandText>
+				INSERT INTO sabass..NovedadAportante
+				(ap_numeroDocumento,ap_TipoDocumento,ap_TipoAportante,np_Consecutivo,tn_TipoNovedad,np_fechaNovedad,np_ValorNovedad,np_Referencia,us_login)
+				VALUES (?,?,?,?,?,?,?,?,?)
+			</tns:CommandText>
+			<tns:Parameters>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_NumeroDocumento</tns:ParameterName>
+					<tns:ParameterType>DECIMAL</tns:ParameterType>
+					<tns:ParameterScale>8</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_TipoDocumento</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_TipoAportante</tns:ParameterName>
+					<tns:ParameterType>DECIMAL</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@np_Consecutivo</tns:ParameterName>
+					<tns:ParameterType>DECIMAL</tns:ParameterType>
+					<tns:ParameterScale>8</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@tn_TipoNovedad</tns:ParameterName>
+					<tns:ParameterType>TINYINT</tns:ParameterType>
+					<tns:ParameterScale>8</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@np_FechaNovedad</tns:ParameterName>
+					<tns:ParameterType>DATE</tns:ParameterType>
+					<tns:ParameterScale>8</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@np_ValorNovedad</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>30</tns:ParameterScale>
+				</tns:Parameter>
+
+				<tns:Parameter>
+					<tns:ParameterName>@np_Referencia</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>15</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@us_Login</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>30</tns:ParameterScale>
+				</tns:Parameter>
+			</tns:Parameters>
+		</tns:MetadataQuery>
+
+		<!-- Este query se utiliza para obtener valor del consecutivo de la tabla 
+			NOVERADAPORTANTE -->
+		<tns:MetadataQuery>
+			<tns:QueryName>PR_ConsultarConsecutivoNovedadAportante</tns:QueryName>
+			<tns:CommandText>SELECT (MAX(np_Consecutivo) + 1) np_Consecutivo FROM
+				sabass..NovedadAportante
+			</tns:CommandText>
+		</tns:MetadataQuery>
+
+		<!-- Este query se utiliza para consultar el aportante -->
+
+
+		<tns:MetadataQuery>
+			<tns:QueryName>INSERT_afiliado_Detalle</tns:QueryName>
+			<tns:CommandText>INSERT INTO sabass..afiliado_Detalle
+				(af_Numerodocumento,af_TipoDocumento,afd_Fechatras,afd_FechaExp,afd_departamentoExpe,afd_municipioExpe,afd_RdPublico,afd_EnvioInfo,ha_Responsable)
+				VALUES (?,?,?,?,?,?,?,?,?)
+			</tns:CommandText>
+			<tns:Parameters>
+				<tns:Parameter>
+					<tns:ParameterName>@af_Numerodocumento</tns:ParameterName>
+					<tns:ParameterType>DECIMAL</tns:ParameterType>
+					<tns:ParameterScale>8</tns:ParameterScale>
+				</tns:Parameter>
+
+				<tns:Parameter>
+					<tns:ParameterName>@af_TipoDocumento</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+
+				<tns:Parameter>
+					<tns:ParameterName>@afd_Fechatras</tns:ParameterName>
+					<tns:ParameterType>TIMESTAMP</tns:ParameterType>
+					<tns:ParameterScale>8</tns:ParameterScale>
+				</tns:Parameter>
+
+				<tns:Parameter>
+					<tns:ParameterName>@afd_FechaExp</tns:ParameterName>
+					<tns:ParameterType>TIMESTAMP</tns:ParameterType>
+					<tns:ParameterScale>8</tns:ParameterScale>
+				</tns:Parameter>
+
+				<tns:Parameter>
+					<tns:ParameterName>@afd_departamentoExpe</tns:ParameterName>
+					<tns:ParameterType>INTEGER</tns:ParameterType>
+					<tns:ParameterScale>4</tns:ParameterScale>
+				</tns:Parameter>
+
+				<tns:Parameter>
+					<tns:ParameterName>@afd_municipioExpe</tns:ParameterName>
+					<tns:ParameterType>INTEGER</tns:ParameterType>
+					<tns:ParameterScale>4</tns:ParameterScale>
+				</tns:Parameter>
+
+				<tns:Parameter>
+					<tns:ParameterName>@afd_RdPublico</tns:ParameterName>
+					<tns:ParameterType>INTEGER</tns:ParameterType>
+					<tns:ParameterScale>4</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@afd_EnvioInfo</tns:ParameterName>
+					<tns:ParameterType>INTEGER</tns:ParameterType>
+					<tns:ParameterScale>4</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ha_Responsable</tns:ParameterName>
+					<tns:ParameterType>VARCHAR</tns:ParameterType>
+					<tns:ParameterScale>50</tns:ParameterScale>
+				</tns:Parameter>
+
+			</tns:Parameters>
+		</tns:MetadataQuery>
+
+		<tns:MetadataQuery>
+			<tns:QueryName>INSERT_afiliadoNacimiento</tns:QueryName>
+			<tns:CommandText>INSERT INTO sabass..afiliadoNacimiento
+				(af_NumeroDocumento,af_TipoDocumento, aln_FechaModificacion,
+				dp_Departamento, mu_Municipio) VALUES (?,?,?,?,?)
+			</tns:CommandText>
+			<tns:Parameters>
+				<tns:Parameter>
+					<tns:ParameterName>@af_NumeroDocumento</tns:ParameterName>
+					<tns:ParameterType>DECIMAL</tns:ParameterType>
+					<tns:ParameterScale>8</tns:ParameterScale>
+				</tns:Parameter>
+
+				<tns:Parameter>
+					<tns:ParameterName>@af_TipoDocumento</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+
+				<tns:Parameter>
+					<tns:ParameterName>@aln_FechaModificacion</tns:ParameterName>
+					<tns:ParameterType>TIMESTAMP</tns:ParameterType>
+					<tns:ParameterScale>8</tns:ParameterScale>
+				</tns:Parameter>
+
+				<tns:Parameter>
+					<tns:ParameterName>@dp_Departamento</tns:ParameterName>
+					<tns:ParameterType>INTEGER</tns:ParameterType>
+					<tns:ParameterScale>4</tns:ParameterScale>
+				</tns:Parameter>
+
+				<tns:Parameter>
+					<tns:ParameterName>@mu_Municipio</tns:ParameterName>
+					<tns:ParameterType>INTEGER</tns:ParameterType>
+					<tns:ParameterScale>4</tns:ParameterScale>
+				</tns:Parameter>
+
+			</tns:Parameters>
+		</tns:MetadataQuery>
+
+		<tns:MetadataQuery>
+			<tns:QueryName>PR_ConsultarNombreAfiliado</tns:QueryName>
+			<tns:CommandText>SELECT af_PrimerNombre, af_SegundoNombre,
+				af_PrimerApellido, af_SegundoApellido
+				FROM sabass..Afiliado
+				where
+				af_NumeroDocumento=? and af_TipoDocumento=?
+			</tns:CommandText>
+			<tns:Parameters>
+				<tns:Parameter>
+					<tns:ParameterName>@af_NumeroDocumento</tns:ParameterName>
+					<tns:ParameterType>NUMERIC</tns:ParameterType>
+					<tns:ParameterScale>8</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@af_TipoDocumento</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+			</tns:Parameters>
+		</tns:MetadataQuery>
+
+
+		<tns:MetadataQuery>
+			<tns:QueryName>PR_ActualizarAfiliacionRelacionLaboral</tns:QueryName>
+			<tns:CommandText>UPDATE sabass..RelacionLaboral
+				SET rl_TipoAfiliacion
+				= 2
+				WHERE af_NumeroDocumento = ? AND af_TipoDocumento = ? AND
+				ap_NumeroDocumento = ? AND ap_TipoDocumento = ?
+			</tns:CommandText>
+			<tns:Parameters>
+				<tns:Parameter>
+					<tns:ParameterName>@af_NumeroDocumento</tns:ParameterName>
+					<tns:ParameterType>DECIMAL</tns:ParameterType>
+					<tns:ParameterScale>12</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@af_TipoDocumento</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_NumeroDocumento</tns:ParameterName>
+					<tns:ParameterType>DECIMAL</tns:ParameterType>
+					<tns:ParameterScale>12</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_TipoDocumento</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+			</tns:Parameters>
+		</tns:MetadataQuery>
+
+		<tns:MetadataQuery>
+			<tns:QueryName>PR_ConsultarRelacionSeguro</tns:QueryName>
+			<tns:CommandText>SELECT * FROM sabass..RelacionSeguro
+				WHERE
+				af_NumeroDocumento = ? AND af_TipoDocumento = ? AND
+				ap_NumeroDocumento = ? AND ap_TipoDocumento = ?  AND ap_TipoAportante = ? AND ts_TipoSeguro = 'P'
+			</tns:CommandText>
+			<tns:Parameters>
+				<tns:Parameter>
+					<tns:ParameterName>@af_NumeroDocumento</tns:ParameterName>
+					<tns:ParameterType>DECIMAL</tns:ParameterType>
+					<tns:ParameterScale>15</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@af_TipoDocumento</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_NumeroDocumento</tns:ParameterName>
+					<tns:ParameterType>DECIMAL</tns:ParameterType>
+					<tns:ParameterScale>15</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_TipoDocumento</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ap_TipoAportante</tns:ParameterName>
+					<tns:ParameterType>DECIMAL</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+			</tns:Parameters> 
+		</tns:MetadataQuery>
+		
+		
+		<!-- Consulta el tipo de afiliado por medio de un procedimiento 
+		almacenado en la base de datos sabass -->
+		<tns:MetadataQuery>
+			<tns:QueryName>PA_ConsultarTipoAfiliado</tns:QueryName>
+			<tns:CommandText>sabass..pr_ConsultaTipoAfiliado(?, ?)</tns:CommandText>
+			<tns:CommandType>StoredProcedure</tns:CommandType>
+			<tns:Parameters>
+				<tns:Parameter>
+					<tns:ParameterName>@num_doc</tns:ParameterName>
+					<tns:ParameterType>NUMERIC</tns:ParameterType>
+					<tns:ParameterScale>15</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@tipo_doc</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+			</tns:Parameters>
+		</tns:MetadataQuery>
+		
+		
+		<!-- Consulta los datos correspondientes al historico afp de un 
+		afiliado y de los que se encuentran como multivinculados -->
+		<tns:MetadataQuery>
+			<tns:QueryName>PA_ConsultarHistoricoAFPAfiliado</tns:QueryName>
+			<tns:CommandText>sabass..cp_selectInfoMultivinculado(?, ?)</tns:CommandText>
+			<tns:CommandType>StoredProcedure</tns:CommandType>
+			<tns:Parameters>
+				<tns:Parameter>
+					<tns:ParameterName>@num_doc</tns:ParameterName>
+					<tns:ParameterType>NUMERIC</tns:ParameterType>
+					<tns:ParameterScale>15</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@tipo_doc</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+			</tns:Parameters>
+		</tns:MetadataQuery>
+		
+		
+		<!-- Consulta las relaciones laborales del afiliado como Colombiano en el exterior -->
+		<tns:MetadataQuery>
+			<tns:QueryName>PR_ConsultarRelacionesLaboralesColombianoExterior</tns:QueryName>
+			<tns:CommandText>
+				SELECT RL.af_NumeroDocumento
+				FROM sabass..RelacionLaboral RL INNER JOIN sabass..RelacionSeguro RS
+					ON RL.af_TipoDocumento = RS.af_TipoDocumento AND 
+					RL.af_NumeroDocumento = RS.af_NumeroDocumento AND
+					RL.ap_TipoDocumento = RS.ap_TipoDocumento AND 
+					RL.ap_NumeroDocumento = RS.ap_NumeroDocumento
+				WHERE RL.af_NumeroDocumento = ? AND RL.af_TipoDocumento = ? 
+					AND RL.rl_TipoVinculado = ? AND RS.ts_TipoSeguro = ?
+			</tns:CommandText>
+			<tns:Parameters>
+				<tns:Parameter>
+					<tns:ParameterName>@af_NumeroDocumento</tns:ParameterName>
+					<tns:ParameterType>NUMERIC</tns:ParameterType>
+					<tns:ParameterScale>15</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@af_TipoDocumento</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@rl_TipoVinculado</tns:ParameterName>
+					<tns:ParameterType>TINYINT</tns:ParameterType>
+					<tns:ParameterScale></tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@ts_TipoSeguro</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+			</tns:Parameters>
+		</tns:MetadataQuery>
+		
+		
+		<!-- Consulta si un afiliado se encuentra actualmente retirado del 
+		programa COLOMBIANO EN EL EXTERIOR. El retiro se caracteriza por 
+		tener un estado con valor 2 en las tablas RelacionSeguro, RelacionLaboral, 
+		AfiliadoSeguro para el tipo de aportante 18 -->
+		<tns:MetadataQuery>
+			<tns:QueryName>PA_ConsultarRetiroColombianoExterior</tns:QueryName>
+			<tns:CommandText>sabass..cp_verifyRetiroCE(?, ?)</tns:CommandText>
+			<tns:CommandType>StoredProcedure</tns:CommandType>
+			<tns:Parameters>
+				<tns:Parameter>
+					<tns:ParameterName>@num_doc</tns:ParameterName>
+					<tns:ParameterType>NUMERIC</tns:ParameterType>
+					<tns:ParameterScale>15</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@tipo_doc</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+			</tns:Parameters>
+		</tns:MetadataQuery>
+		
+		<!-- Consultar el municipio y el departamento -->
+		<tns:MetadataQuery>
+			<tns:QueryName>PR_ConsultarLugarExpedicion</tns:QueryName>
+			<tns:CommandText>SELECT T.mu_nombre,T1.dp_Nombre 
+			FROM sabass..Municipio as T inner join sabass..Departamento as T1 on T.dp_Departamento=T1.dp_Departamento
+			WHERE T.dp_Departamento = ? and
+				T.mu_Municipio = ?			
+			</tns:CommandText>
+			<tns:Parameters>
+				<tns:Parameter>
+					<tns:ParameterName>@dp_Departamento</tns:ParameterName>
+					<tns:ParameterType>SMALLINT</tns:ParameterType>
+					<tns:ParameterScale></tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@mu_Municipio</tns:ParameterName>
+					<tns:ParameterType>SMALLINT</tns:ParameterType>
+					<tns:ParameterScale></tns:ParameterScale>
+				</tns:Parameter>				
+			</tns:Parameters>
+		</tns:MetadataQuery>		
+	</tns:MetadataQueries>
+</tns:DatabaseConfiguration>

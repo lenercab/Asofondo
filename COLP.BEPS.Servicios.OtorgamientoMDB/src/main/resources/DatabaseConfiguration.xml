@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:DatabaseConfiguration
+    xmlns:tns="http://www.example.org/DatabaseConfiguration" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.example.org/DatabaseConfiguration DatabaseConfiguration.xsd ">
+    <tns:DriverClass></tns:DriverClass>
+    <tns:ConnectionURL></tns:ConnectionURL>
+    <tns:User></tns:User>
+    <tns:Password></tns:Password>
+    <tns:MetadataQueries>
+    
+        <!-- ******************* GOI-OTO-1-FAB-19-ValidacionesAutomaticas ****************** -->
+ 
+	    <!-- Consulta para la obtencion parametros generales del proceso -->
+		<tns:MetadataQuery>
+			<tns:QueryName>PR_ConsultarParametroOtorgamiento</tns:QueryName>
+			<tns:CommandText>select opg_valor
+				from BEPS_TRANSACCIONAL.parametricas.otor_parametros_generales
+				where opg_nombre = ?
+			</tns:CommandText>
+			<tns:Parameters>
+				<tns:Parameter>
+					<tns:ParameterName>@nombreParametro</tns:ParameterName>
+					<tns:ParameterType>VARCHAR</tns:ParameterType>
+					<tns:ParameterScale>50</tns:ParameterScale>
+				</tns:Parameter>
+			</tns:Parameters>
+		</tns:MetadataQuery> 
+
+    	<!-- Consulta para la obtencion de datos de un vinculado a partir de la solicitud de destinacion -->
+        <tns:MetadataQuery>
+            <tns:QueryName>PR_ConsultarVinculadoSolicitud</tns:QueryName>
+            <tns:CommandText>select vpe_tipo_documento,
+              vpe_numero_documento,
+              vvi_fecha_corte_actualizacion,
+              vpe_fecha_nacimiento,
+              vpe_sexo,
+              vvi_estado_vinculado,
+              vvi_detalle_estado_vinculado,
+              vpe_primer_apellido,
+			  vpe_segundo_apellido,
+			  vpe_primer_nombre,
+			  vpe_segundo_nombre
+			  from BEPS_TRANSACCIONAL.vinculacion.vinc_persona 
+			  join BEPS_TRANSACCIONAL.vinculacion.vinc_vinculado
+			  on vpe_pk_id = vvi_pk_id
+			  inner join BEPS_TRANSACCIONAL.otorgamiento.otor_solicitud_destinacion
+			  on vvi_pk_id = osd_id_vinculado
+			  where osd_pk_id = ?
+            </tns:CommandText>
+            <tns:Parameters>
+                <tns:Parameter>
+                    <tns:ParameterName>@idSolicitud</tns:ParameterName>
+                    <tns:ParameterType>BIGINT</tns:ParameterType>
+                    <tns:ParameterScale></tns:ParameterScale>
+                </tns:Parameter>
+            </tns:Parameters>
+        </tns:MetadataQuery>
+        
+        <!-- Consulta para la obtencion de los tipos de destinación asociados a una solicitud -->
+		<tns:MetadataQuery>
+			<tns:QueryName>PR_ConsultarDestinacionSolicitud</tns:QueryName>
+			<tns:CommandText>select ode_tipo_destinacion
+				from BEPS_TRANSACCIONAL.otorgamiento.otor_destinacion
+				where odo_id_solicitud = ?
+			</tns:CommandText>
+			<tns:Parameters>
+				<tns:Parameter>
+					<tns:ParameterName>@idSolicitud</tns:ParameterName>
+					<tns:ParameterType>BIGINT</tns:ParameterType>
+					<tns:ParameterScale></tns:ParameterScale>
+				</tns:Parameter>
+			</tns:Parameters>
+		</tns:MetadataQuery>  
+		
+		<!-- Query para la insercion de registro de control de validaciones automaticas -->
+		<tns:MetadataQuery>
+			<tns:QueryName>PR_RegistrarValidacionSolicitud</tns:QueryName>
+			<tns:CommandText> insert into BEPS_TRANSACCIONAL.otorgamiento.otor_validaciones_solicitud
+	           (ovs_pk_id
+	           ,ovs_estado_fallecido
+	           ,ovs_fecha_corte
+	           ,ovs_edad_genero
+	           ,ovs_fecha_edad_genero
+	           ,ovs_pension_rpm
+	           ,ovs_fecha_pension_rpm
+	           ,ovs_indemnizado_rpm
+	           ,ovs_fecha_indemnizado_rpm
+	           ,ovs_pension_RAIS
+	           ,ovs_fecha_validacion_RAIS
+	           ,ovs_estado_prestacion_OBP
+	           ,ovs_fecha_validacion_OBP
+	           
+	           ) values(?, ?, ?, ?, ? ,?, ?, ?, ?,?,? ,?,?)
+			</tns:CommandText>
+			<tns:Parameters>
+				<tns:Parameter>
+					<tns:ParameterName>@idSolicitud</tns:ParameterName>
+					<tns:ParameterType>BIGINT</tns:ParameterType>
+					<tns:ParameterScale></tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@estadoFallecido</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@fechaCorte</tns:ParameterName>
+					<tns:ParameterType>DATE</tns:ParameterType>
+					<tns:ParameterScale></tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@edadGenero</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@fechaEdadGenero</tns:ParameterName>
+					<tns:ParameterType>DATE</tns:ParameterType>
+					<tns:ParameterScale></tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@validacionPension</tns:ParameterName>
+					<tns:ParameterType>VARCHAR</tns:ParameterType>
+					<tns:ParameterScale>15</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@fechaValidacionPension</tns:ParameterName>
+					<tns:ParameterType>DATE</tns:ParameterType>
+					<tns:ParameterScale></tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@validacionIndemnizado</tns:ParameterName>
+					<tns:ParameterType>CHAR</tns:ParameterType>
+					<tns:ParameterScale>1</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@fechaValidacionIndemnizado</tns:ParameterName>
+					<tns:ParameterType>DATE</tns:ParameterType>
+					<tns:ParameterScale></tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@pensionRAIS</tns:ParameterName>
+					<tns:ParameterType>VARCHAR</tns:ParameterType>
+					<tns:ParameterScale>75</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@fechaRAIS</tns:ParameterName>
+					<tns:ParameterType>DATE</tns:ParameterType>
+					<tns:ParameterScale></tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@prestacionOBP</tns:ParameterName>
+					<tns:ParameterType>VARCHAR</tns:ParameterType>
+					<tns:ParameterScale>25</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@fechaPrestacionOBP</tns:ParameterName>
+					<tns:ParameterType>DATE</tns:ParameterType>
+					<tns:ParameterScale></tns:ParameterScale>
+				</tns:Parameter>
+			</tns:Parameters>
+		</tns:MetadataQuery>    
+		
+		<!-- Query para la actualizacion de la etapa de una solicitud -->
+		<tns:MetadataQuery>
+			<tns:QueryName>PR_ActualizarEtapaSolicitud</tns:QueryName>
+			<tns:CommandText>update BEPS_TRANSACCIONAL.otorgamiento.otor_solicitud_destinacion
+	   			set osd_etapa_solicitud = ?
+	 			where osd_pk_id = ?
+			</tns:CommandText>
+			<tns:Parameters>
+			    <tns:Parameter>
+					<tns:ParameterName>@etapaSolicitud</tns:ParameterName>
+					<tns:ParameterType>VARCHAR</tns:ParameterType>
+					<tns:ParameterScale>20</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@idSolicitud</tns:ParameterName>
+					<tns:ParameterType>BIGINT</tns:ParameterType>
+					<tns:ParameterScale></tns:ParameterScale>
+				</tns:Parameter>
+			</tns:Parameters>
+		</tns:MetadataQuery> 
+		      
+		<!-- Query para consultar los estados pensionales RAIS paramétricos -->
+		<tns:MetadataQuery>
+			<tns:QueryName>PR_ConsultarEstadoPensionParametrico</tns:QueryName>
+			<tns:CommandText>SELECT oep_codigo_novedad AS codigo,oep_estado_pension_rais_sgbeps AS descripcion 
+						FROM [parametricas].[otor_estado_pensional_RAIS]
+			</tns:CommandText>
+		</tns:MetadataQuery>
+		 
+    </tns:MetadataQueries>
+</tns:DatabaseConfiguration>

@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<wsdl:definitions name="SrvGenerarNovedadesBuc" targetNamespace="http://www.colpensiones.gov.co/beps/contracts/1.0/novedadesbuc" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.colpensiones.gov.co/beps/contracts/1.0/novedadesbuc" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:types>
+<xs:schema elementFormDefault="qualified" targetNamespace="http://www.colpensiones.gov.co/beps/schemas/1.0/comun" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<xs:complexType name="tipoEstadoEjecucion">
+    <xs:sequence>
+      <xs:element name="id" type="xs:string"/>
+      <xs:element name="codigo" type="xs:string"/>
+      <xs:element name="descripcion" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="http://www.colpensiones.gov.co/beps/contracts/1.0/novedadesbuc" xmlns="http://www.colpensiones.gov.co/beps/contracts/1.0/novedadesbuc" xmlns:ns1="http://www.colpensiones.gov.co/beps/schemas/1.0/comun" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://www.colpensiones.gov.co/beps/schemas/1.0/comun"/>
+  <xs:element name="generarNovedadResponse" type="ns1:tipoEstadoEjecucion"/>
+  <xs:element name="idBitacoraNovedad" type="xs:long"/>
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="generarNovedadBucResponse">
+    <wsdl:part element="tns:generarNovedadResponse" name="respuestaGeneracion">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="generarNovedad">
+    <wsdl:part element="tns:idBitacoraNovedad" name="idBitacoraNovedad">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="generarNovedadResponse">
+    <wsdl:part element="tns:generarNovedadResponse" name="respuestaGeneracion">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="SrvGenerarNovedadesBuc">
+    <wsdl:operation name="generarNovedad">
+      <wsdl:input message="tns:generarNovedad" name="generarNovedad">
+    </wsdl:input>
+      <wsdl:output message="tns:generarNovedadResponse" name="generarNovedadResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="SrvGenerarNovedadesBucSoapBinding" type="tns:SrvGenerarNovedadesBuc">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="generarNovedad">
+      <soap:operation soapAction="http://www.colpensiones.gov.co/beps/contracts/1.0/novedadesbuc/generarNovedad" style="document"/>
+      <wsdl:input name="generarNovedad">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="generarNovedadResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="SrvGenerarNovedadesBuc">
+    <wsdl:port binding="tns:SrvGenerarNovedadesBucSoapBinding" name="SrvGenerarNovedadesBucImplPort">
+      <soap:address location="http://172.16.16.77:8081/COLP.BEPS.ProcesosAutomaticos.GeneradorNovedadesBuc/SrvGenerarNovedadesBuc"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
