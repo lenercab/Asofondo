@@ -1,0 +1,8 @@
+*.xml.bak
+**/target
+**rebel.xml
+**/.settings
+**/.classpath
+**/ejbModule
+**/.project
+**/bin/
