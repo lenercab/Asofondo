@@ -37,9 +37,9 @@ public interface SvcVinculadoBepsAsofondos {
     @WebResult(name = "informacionSolicitante", targetNamespace = "http://www.colpensiones.gov.co/beps/contracts/1.0/vinculadoasofondos", partName = "EstadoEjecucion")
     @WebMethod(operationName = "Consultar", action = "http://www.colpensiones.gov.co/beps/contracts/1.0/vinculadoasofondos/Consultar")
     public TipoInformacionSolicitanteDTO consultar(
-        @WebParam(partName = "InformacionContexto", name = "InformacionContexto", targetNamespace = "http://www.colpensiones.gov.co/beps/contracts/1.0/vinculadoasofondos", header = true)
+        @WebParam(partName = "InformacionContexto", name = "InformacionContexto", targetNamespace = "http://www.colpensiones.gov.co/beps/schemas/1.0/comun", header = true)
         TipoInformacionContextoExterno informacionContextoExterno,
-        @WebParam(partName = "Identificacion", name = "Identificacion", targetNamespace = "http://www.colpensiones.gov.co/beps/contracts/1.0/vinculadoasofondos")
+        @WebParam(partName = "Identificacion", name = "Identificacion", targetNamespace = "http://www.colpensiones.gov.co/beps/contracts/1.0/personas")
         TipoDocumentoPersonaNatural documentoPersonaNatural
     );
 }
