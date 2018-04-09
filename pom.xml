@@ -33,6 +33,7 @@
 		<module>COLP.BEPS.Servicios.VinculadoAsofondos</module>
 		<module>COLP.BEPS.Servicios.VinculadoAsofondos.BL</module>
 		<module>COLP.BEPS.Servicios.VinculadoAsofondos.DataContracts</module>
+		<module>COLP.BEPS.Servicios.ConsultarViabilidad.Proxy</module>
 		<module>COLP.Servicio.Afiliado</module>
   </modules>
 </project>
