@@ -1,5 +1,9 @@
 package co.gov.colpensiones.beps.comunes.utilidades;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.math.BigDecimal;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
@@ -7,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Enumeration;
 import java.util.GregorianCalendar;
+import java.util.Properties;
 import java.util.ResourceBundle;
 import java.util.regex.Pattern;
 
@@ -180,5 +185,35 @@ public class Util {
         String valorObjeto = (auxValue != null) ? auxValue.toString() : null;
         return valorObjeto;
     }
+    
+    /**
+     * Metodo que permite obtener la url del servicio web de viabilidad (SEVICIO DE BDUA)
+     * 
+     * @author	Pablo Andres Perez Melo<br />
+     * Email: pamelo@stefanini.com
+     * 
+     * @return
+     * @throws IOException
+     */
+    public static String obtenerUrlServicioWebViabilidad() throws IOException {
+
+    	// Generamos la cadena donde se encuentra ubicado el archivo properties que contiene la url del servicio.
+		StringBuilder urlProperties = new StringBuilder(System.getProperty(Constantes.JBOSS_DIR));
+		urlProperties.append(File.separator);
+		urlProperties.append(Constantes.CONFIG_WS).append(File.separator);
+		urlProperties.append(Constantes.DATOS_PROPERTIES);
+
+		// Generamos el InputStream del archivo de propiedades.
+		InputStream inputStream = new FileInputStream(urlProperties.toString());
+
+		
+		// Leemos el archivo de propiedades.
+		Properties prop = new Properties();
+		prop.load(inputStream);
+		
+		// Retornamos el valor de la clave url_servicio_web_viabilidad del archivo de propiedades
+		// (Url del servicio web de viabilidad "BDUA")
+		return prop.getProperty(Constantes.URL_SERVICIO_WEB_VIABILIDAD);
+	}
 
 }

@@ -89,4 +89,11 @@ public class ConstantesVinculadoAsofondos {
 	
 	/** Mensaje para el tracer fin para la consulta viabilidad cinculacion*/
 	public static final String FIN_TRACER_CONSULTA_VIABILIDAD = "Fin ejecución de consulta viabilidad";
+    
+    public static final String TIPO_AREA_ASOFONDOS = "1";
+    public static final String TIPO_TRAMITE_ASOFONDOS = "1";
+    public static final String URL_SERVICIO_BDUA = "url_servicio_bdua";
+    
+
+    public static final String CADENA_VACIA = "";
 }

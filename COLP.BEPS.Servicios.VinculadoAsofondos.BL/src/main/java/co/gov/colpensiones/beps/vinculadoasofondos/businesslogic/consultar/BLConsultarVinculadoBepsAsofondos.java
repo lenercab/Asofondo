@@ -1,6 +1,7 @@
 package co.gov.colpensiones.beps.vinculadoasofondos.businesslogic.consultar;
 
 import java.math.BigDecimal;
+import java.rmi.RemoteException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -28,6 +29,18 @@ import co.gov.colpensiones.beps.schemas._1_0.vinculadoasofondos.TipoInformacionS
 import co.gov.colpensiones.beps.vinculadoasofondos.businesslogic.BLVinculadoAsofondos;
 import co.gov.colpensiones.beps.vinculadoasofondos.businesslogic.comun.BLConsultarExtendido;
 import co.gov.colpensiones.beps.vinculadoasofondos.businesslogic.comun.ConstantesVinculadoAsofondos;
+import co.gov.colpensiones.www.bdua.contracts._1_0.personas.ServicioWebViabilidad;
+import co.gov.colpensiones.www.bdua.contracts._1_0.personas.ServicioWebViabilidadProxy;
+import co.gov.colpensiones.www.bdua.contracts._1_0.personas.holders.CausalesNoViabilidadBEPSHolder;
+import co.gov.colpensiones.www.bdua.contracts._1_0.personas.holders.IdMTramiteHolder;
+import co.gov.colpensiones.www.bdua.contracts._1_0.personas.holders.InformacionViablidadHolder;
+import co.gov.colpensiones.www.bdua.contracts._1_0.personas.holders.MCiudadanoBDUAHolder;
+import co.gov.colpensiones.www.bdua.contracts._1_0.personas.holders.MCiudadanoBepsHolder;
+import co.gov.colpensiones.www.bdua.contracts._1_0.personas.holders.MCiudadanoRegistraduriaHolder;
+import co.gov.colpensiones.www.bdua.contracts._1_0.personas.holders.MCiudadanosConsultadosHolder;
+import co.gov.colpensiones.www.bdua.contracts._1_0.personas.holders.MGestionVinculacionBEPSHolder;
+import co.gov.colpensiones.www.bdua.contracts._1_0.personas.holders.MInformacionBDUAHolder;
+import co.gov.colpensiones.www.bdua.contracts._1_0.personas.holders.TipoEstadoRespuestaHolder;
 
 /**
  * <b>Descripción:</b> Clase que contiene la lógica de negocio para la consulta del vinculado Asofondos.<br/>
@@ -91,35 +104,38 @@ public class BLConsultarVinculadoBepsAsofondos extends BLVinculadoAsofondos{
     			}
     			else{
 
-    				/* logica del servicio */
-    				BLConsultarExtendido blVinculado = new BLConsultarExtendido(tracer.getLogger());
-    				TipoInformacionContexto informacionContexto = new TipoInformacionContexto();
-    				informacionContexto.setSistemaOrigen(informacionContextoExterno.getSistemaOrigen());
-    				informacionContexto.setUsuarioSistemaExterno(informacionContextoExterno.getUsuarioSistemaExterno());
-    				tracer.inicio();
-    				TipoRespuestaInformacionSolicitanteDTO respuestaInformacionSolicitanteDTO = blVinculado.consultarViabilidad(identificacion,informacionContexto);
-    				tracer.fin(ConstantesVinculadoAsofondos.FIN_TRACER_CONSULTA_VIABILIDAD);    
-    				
-    				TipoInformacionGeneralSolicitanteDTO informacionGeneralSolicitante = respuestaInformacionSolicitanteDTO.getDetalle();
-    				
-    				if (informacionGeneralSolicitante!=null){
-    					String tipoPersona = informacionGeneralSolicitante.getTipoPersona();
+    				// Llamamos al servicio de BDUA para actualización de información.
+    				if (this.consumirServicioBdua (identificacion, respuestaServicio)) {
+    					/* logica del servicio */
+        				BLConsultarExtendido blVinculado = new BLConsultarExtendido(tracer.getLogger());
+        				TipoInformacionContexto informacionContexto = new TipoInformacionContexto();
+        				informacionContexto.setSistemaOrigen(informacionContextoExterno.getSistemaOrigen());
+        				informacionContexto.setUsuarioSistemaExterno(informacionContextoExterno.getUsuarioSistemaExterno());
+        				tracer.inicio();
+        				TipoRespuestaInformacionSolicitanteDTO respuestaInformacionSolicitanteDTO = blVinculado.consultarViabilidad(identificacion,informacionContexto);
+        				tracer.fin(ConstantesVinculadoAsofondos.FIN_TRACER_CONSULTA_VIABILIDAD);    
+        				
+        				TipoInformacionGeneralSolicitanteDTO informacionGeneralSolicitante = respuestaInformacionSolicitanteDTO.getDetalle();
+        				
+        				if (informacionGeneralSolicitante!=null){
+        					String tipoPersona = informacionGeneralSolicitante.getTipoPersona();
 
-    					switch (tipoPersona){
-    					case ConstantesVinculadoAsofondos.COD_TIPO_VI:
-    						respuestaServicio = mapearDatosVinculado(informacionGeneralSolicitante);
-    						break;
-    					case ConstantesVinculadoAsofondos.COD_TIPO_PV:
-    						respuestaServicio = mapearDatosPrevinculado(informacionGeneralSolicitante);
-    						break;
-    					case ConstantesVinculadoAsofondos.COD_TIPO_PP:
-    						respuestaServicio = mapearDatosProspecto(informacionGeneralSolicitante);
-    						break;	
-    					}
+        					switch (tipoPersona){
+        					case ConstantesVinculadoAsofondos.COD_TIPO_VI:
+        						respuestaServicio = mapearDatosVinculado(informacionGeneralSolicitante);
+        						break;
+        					case ConstantesVinculadoAsofondos.COD_TIPO_PV:
+        						respuestaServicio = mapearDatosPrevinculado(informacionGeneralSolicitante);
+        						break;
+        					case ConstantesVinculadoAsofondos.COD_TIPO_PP:
+        						respuestaServicio = mapearDatosProspecto(informacionGeneralSolicitante);
+        						break;	
+        					}
 
-    				}else{
-    					respuestaServicio = new TipoInformacionSolicitanteDTO();
-    					respuestaServicio.setEstadoEjecucion(respuestaNegocioServicio(ConstantesVinculadoAsofondos.COD_ERROR_LOGICA_NEGOCIO, ConstantesVinculadoAsofondos.MSJ_ERROR_NO_EXISTE_PROSPECTO));
+        				}else{
+        					respuestaServicio = new TipoInformacionSolicitanteDTO();
+        					respuestaServicio.setEstadoEjecucion(respuestaNegocioServicio(ConstantesVinculadoAsofondos.COD_ERROR_LOGICA_NEGOCIO, ConstantesVinculadoAsofondos.MSJ_ERROR_NO_EXISTE_PROSPECTO));
+        				}
     				}
     			}
     		}
@@ -128,7 +144,6 @@ public class BLConsultarVinculadoBepsAsofondos extends BLVinculadoAsofondos{
     		respuestaServicio = new TipoInformacionSolicitanteDTO();
     		respuestaServicio.setEstadoEjecucion(respuestaNegocioServicio(Constantes.COD_ERROR_INTERNO, Constantes.DESC_ERROR_INTERNO));
     	}
-
     		
     	payLoadTrace.put(ConstantesLogger.OBJETO_NEGOCIO_SALIDA, respuestaServicio);
     	tracer.getLogger().trace(payLoadTrace, tracer.getMetadata());
@@ -136,6 +151,52 @@ public class BLConsultarVinculadoBepsAsofondos extends BLVinculadoAsofondos{
     }
     
     /**
+     * Metodo que permite consumir el servicio de BDUA
+     * 
+     * @author	Pablo Andres Perez Melo<br />
+     * Email: pamelo@stefanini.com
+     * 
+     * @param identificacion
+     * @param respuestaServicio
+     * @return Booleano que hace referencia al estado de la ejecución del servicio (true para exito y false para errores).
+     * @throws Exception
+     */
+    private boolean consumirServicioBdua(TipoDocumentoPersonaNatural identificacion, TipoInformacionSolicitanteDTO respuestaServicio) throws Exception {
+        
+        try {
+        	tracer.inicio("Inicio del cosumo del servicio de BDUA");
+        	
+        	// Obtenemos la url del servicio web de viabilidad y le concatenamos el fragmento de texto ?wsdl.
+        	String endPoint = Util.obtenerUrlServicioWebViabilidad () + Constantes.PARAMETRO_WSDL;
+
+        	// Creamos la instancia del cliente de consumo del servicio.
+            ServicioWebViabilidad servicioWebViabilidad = new ServicioWebViabilidadProxy(endPoint);
+            
+            // Creamos la instancia de la respuesta del servicio.
+            TipoEstadoRespuestaHolder tipoEstadoRespuesta = new TipoEstadoRespuestaHolder ();
+        	
+            // Consumimos el servicio de viabilidad.
+			servicioWebViabilidad.viabilidad(ConstantesVinculadoAsofondos.TIPO_AREA_ASOFONDOS, ConstantesVinculadoAsofondos.CADENA_VACIA, true, identificacion.getNumeroDocumento(), ConstantesVinculadoAsofondos.CADENA_VACIA, ConstantesVinculadoAsofondos.CADENA_VACIA, ConstantesVinculadoAsofondos.CADENA_VACIA, identificacion.getTipoDocumento(), ConstantesVinculadoAsofondos.TIPO_TRAMITE_ASOFONDOS, new CausalesNoViabilidadBEPSHolder(), new IdMTramiteHolder(), new InformacionViablidadHolder(), new MCiudadanoBDUAHolder(), new MCiudadanoBepsHolder(), new MCiudadanoRegistraduriaHolder(), new MCiudadanosConsultadosHolder(), new MGestionVinculacionBEPSHolder(), new MInformacionBDUAHolder(), tipoEstadoRespuesta);
+			
+			// Verificamos si la respuesta del servicio viene marcada como error. 
+			if (tipoEstadoRespuesta.value.isError()) {
+				// Si la respuesta es error notificamos que tipo de error fue.
+				respuestaServicio.setEstadoEjecucion(respuestaNegocioServicio(ConstantesVinculadoAsofondos.COD_FORMATO_INVALIDO_OBLIGATORIO_NO_RECIBIDO, tipoEstadoRespuesta.value.getDescripcion()));
+			}
+	        
+	        tracer.fin("Fin del cosumo del servicio de BDUA");
+	        
+	        // Retormanos si el consumo fue exitoso o no (true => exitoso o false => error de logica).
+	        return !tipoEstadoRespuesta.value.isError();
+		} catch (RemoteException e) {
+			// Notificamos que hubo un error en el consumo del webservice
+			throw new Exception("Error al consumir el servicio de BDUA", e);
+		}
+	}
+
+	
+
+	/**
      * Metodo encargado de mapear la informacion de viabilidad de un solicitante
      * @param respuestaInformacionSolicitante
      * 		   objeto TipoRespuestaInformacionSolicitanteDTO con la informacion de un solicitante

@@ -28,6 +28,7 @@
 			<artifactId>COLP.BEPS.Servicios.VinculadoAsofondos.BL</artifactId>
 			<version>0.0.1-PRO</version>
 		</dependency>
+		
 	</dependencies>
 	<build>
 		<finalName>COLP.BEPS.Servicios.VinculadoAsofondos</finalName>

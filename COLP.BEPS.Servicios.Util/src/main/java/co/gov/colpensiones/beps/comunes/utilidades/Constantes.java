@@ -906,4 +906,12 @@ public class Constantes {
      */
     public static final String INDICADOR_RETORNO = "@indicadorRetorno";
     
+    public static final String JBOSS_DIR = "jboss.home.dir";
+    public static final String DATOS_PROPERTIES = "datos.properties";
+    public static final String CONFIG_WS = "config-ws";
+    public static final String URL_SERVICIO_WEB_VIABILIDAD = "url_servicio_web_viabilidad";
+    public static final String PARAMETRO_WSDL = "?wsdl";
+    
+    
+    
 }

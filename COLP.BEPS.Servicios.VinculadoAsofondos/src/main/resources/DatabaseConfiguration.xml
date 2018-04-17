@@ -8,6 +8,25 @@
     <tns:Password></tns:Password>
     <tns:MetadataQueries>
     
+    	<!-- ******************* GOI-OTO-1-FAB-19-ValidacionesAutomaticas ****************** -->
+ 
+	    <!-- Consulta para la obtencion parametros generales del proceso -->
+		<tns:MetadataQuery>
+			<tns:QueryName>PR_VincConsultarParametroOtorgamiento</tns:QueryName>
+			<tns:CommandText>select opg_valor
+				from BEPS_TRANSACCIONAL.parametricas.otor_parametros_generales
+				where opg_nombre = ?
+			</tns:CommandText>
+			<tns:Parameters>
+				<tns:Parameter>
+					<tns:ParameterName>@nombreParametro</tns:ParameterName>
+					<tns:ParameterType>VARCHAR</tns:ParameterType>
+					<tns:ParameterScale>50</tns:ParameterScale>
+				</tns:Parameter>
+			</tns:Parameters>
+		</tns:MetadataQuery>
+    
+    
 		<!-- Consulta los parametros que deben ser visualizados -->
 		<tns:MetadataQuery>
 			<tns:QueryName>SP_consultaCamposVisibles</tns:QueryName>

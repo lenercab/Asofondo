@@ -54,6 +54,12 @@
       		<artifactId>COLP.BEPS.Servicios.Personas.BL</artifactId>
       		<version>0.0.1-PRO</version>
     	</dependency>
+	
+		<dependency>
+	      <groupId>COLP.BEPS.Servicios</groupId>
+	      <artifactId>COLP.BEPS.Servicios.ConsultarViabilidad.Proxy</artifactId>
+	      <version>${parent.version}</version>
+	    </dependency>
 
 	</dependencies>
 </project>

@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import co.gov.colpensiones.beps.comunes.enumeraciones.TipoConexionBaseDatosEnum;
+import co.gov.colpensiones.beps.comunes.utilidades.ConstantesLoggerServicios;
 import co.gov.colpensiones.beps.comunes.utilidades.DatabaseManager;
 import co.gov.colpensiones.beps.dal.utilidades.CommandType;
 import co.gov.colpensiones.beps.dal.utilidades.DataRow;
@@ -12,6 +13,7 @@ import co.gov.colpensiones.beps.dal.utilidades.DataStoredProcedure;
 import co.gov.colpensiones.beps.dal.utilidades.DataTable;
 import co.gov.colpensiones.beps.dal.utilidades.DbCommand;
 import co.gov.colpensiones.beps.dal.utilidades.DbType;
+import co.gov.colpensiones.beps.excepciones.DataAccessException;
 
 /**
  * <b>Descripción:</b> Clase encargada de la lógica de negocio para la interacción con las fuentes de datos. <br/>
@@ -128,6 +130,31 @@ public class DAVinculadoAsofondos {
     	 
     	 return descripcion;
      }
+     
+     public String consultarParametroOtorgamiento(String nombreParametro) throws DataAccessException {
+         DbCommand command = null;
+         String valorParametro = null;
+         try {
+        	 DatabaseManager database = new DatabaseManager(TipoConexionBaseDatosEnum.SQL_SERVER_ALT);
+             command = database.GetXmlCommand("PR_VincConsultarParametroOtorgamiento");
+             command.setCommandType(CommandType.Text);
+             database.AddInXmlParameter(command, "@nombreParametro", nombreParametro);
+
+             /* Se ejecuta el query de consulta */
+             DataTable data = database.ExecuteDataTable(command);
+             if (data != null && data.getRows().size() > 0) {
+                 valorParametro = data.getRows().get(0).getValue("opg_valor").toString();
+             }
+
+         } catch (Exception e) {
+             HashMap<String, String> metaData = new HashMap<String, String>();
+             metaData.put(ConstantesLoggerServicios.METADATA_CONSULTA, "PR_VincConsultarParametroOtorgamiento");
+             metaData.put(ConstantesLoggerServicios.METADATA_PARAMETRO, nombreParametro);
+             throw new DataAccessException(null, metaData, e);
+         }
+         return valorParametro;
+     }
+     
      
      /**
       * Método que permite consultar la descripcion del estado de un solicitante
