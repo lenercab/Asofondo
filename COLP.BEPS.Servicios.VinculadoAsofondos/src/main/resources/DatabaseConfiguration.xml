@@ -25,6 +25,29 @@
 				</tns:Parameter>
 			</tns:Parameters>
 		</tns:MetadataQuery>
+		
+		<!-- Verifica si es necesario ejecutar el servicio de bdua desde VinculadoAsofondos. -->
+		<tns:MetadataQuery>
+			<tns:QueryName>prVincEsCausalesBdua</tns:QueryName>
+			<tns:CommandText>prevalidacion.pr_vinc_es_causales_bdua (?, ?, ?)</tns:CommandText>
+			<tns:Parameters>
+				<tns:Parameter>
+					<tns:ParameterName>@pTipoDocumento</tns:ParameterName>
+					<tns:ParameterType>VARCHAR</tns:ParameterType>
+					<tns:ParameterScale>15</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@pNroIdentificacion</tns:ParameterName>
+					<tns:ParameterType>VARCHAR</tns:ParameterType>
+					<tns:ParameterScale>30</tns:ParameterScale>
+				</tns:Parameter>
+				<tns:Parameter>
+					<tns:ParameterName>@nroRegistros</tns:ParameterName>
+					<tns:ParameterType>INT</tns:ParameterType>
+					<tns:ParameterScale>8</tns:ParameterScale>
+				</tns:Parameter>
+			</tns:Parameters>
+		</tns:MetadataQuery>
     
     
 		<!-- Consulta los parametros que deben ser visualizados -->

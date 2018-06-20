@@ -29,18 +29,9 @@ import co.gov.colpensiones.beps.schemas._1_0.vinculadoasofondos.TipoInformacionS
 import co.gov.colpensiones.beps.vinculadoasofondos.businesslogic.BLVinculadoAsofondos;
 import co.gov.colpensiones.beps.vinculadoasofondos.businesslogic.comun.BLConsultarExtendido;
 import co.gov.colpensiones.beps.vinculadoasofondos.businesslogic.comun.ConstantesVinculadoAsofondos;
+import co.gov.colpensiones.www.bdua.contracts._1_0.personas.M_GestionVinculacionBEPS;
 import co.gov.colpensiones.www.bdua.contracts._1_0.personas.ServicioWebViabilidad;
 import co.gov.colpensiones.www.bdua.contracts._1_0.personas.ServicioWebViabilidadProxy;
-import co.gov.colpensiones.www.bdua.contracts._1_0.personas.holders.CausalesNoViabilidadBEPSHolder;
-import co.gov.colpensiones.www.bdua.contracts._1_0.personas.holders.IdMTramiteHolder;
-import co.gov.colpensiones.www.bdua.contracts._1_0.personas.holders.InformacionViablidadHolder;
-import co.gov.colpensiones.www.bdua.contracts._1_0.personas.holders.MCiudadanoBDUAHolder;
-import co.gov.colpensiones.www.bdua.contracts._1_0.personas.holders.MCiudadanoBepsHolder;
-import co.gov.colpensiones.www.bdua.contracts._1_0.personas.holders.MCiudadanoRegistraduriaHolder;
-import co.gov.colpensiones.www.bdua.contracts._1_0.personas.holders.MCiudadanosConsultadosHolder;
-import co.gov.colpensiones.www.bdua.contracts._1_0.personas.holders.MGestionVinculacionBEPSHolder;
-import co.gov.colpensiones.www.bdua.contracts._1_0.personas.holders.MInformacionBDUAHolder;
-import co.gov.colpensiones.www.bdua.contracts._1_0.personas.holders.TipoEstadoRespuestaHolder;
 
 /**
  * <b>Descripción:</b> Clase que contiene la lógica de negocio para la consulta del vinculado Asofondos.<br/>
@@ -163,31 +154,51 @@ public class BLConsultarVinculadoBepsAsofondos extends BLVinculadoAsofondos{
      */
     private boolean consumirServicioBdua(TipoDocumentoPersonaNatural identificacion, TipoInformacionSolicitanteDTO respuestaServicio) throws Exception {
         
+    	boolean respuesta = true;
+    	
         try {
-        	tracer.inicio("Inicio del cosumo del servicio de BDUA");
         	
-        	// Obtenemos la url del servicio web de viabilidad y le concatenamos el fragmento de texto ?wsdl.
-        	String endPoint = Util.obtenerUrlServicioWebViabilidad () + Constantes.PARAMETRO_WSDL;
-
-        	// Creamos la instancia del cliente de consumo del servicio.
-            ServicioWebViabilidad servicioWebViabilidad = new ServicioWebViabilidadProxy(endPoint);
-            
-            // Creamos la instancia de la respuesta del servicio.
-            TipoEstadoRespuestaHolder tipoEstadoRespuesta = new TipoEstadoRespuestaHolder ();
+        	// Identificamos si es necesario consumir el servicio de BDUA.
+        	tracer.inicio("Verificamos si es necesario consumir el servicio de BDUA");
+        	boolean esConsumirServicio = this.esConsumirBdua(identificacion);
+        	tracer.fin("Fin de la verificacion del consumo del servicio de BDUA");
         	
-            // Consumimos el servicio de viabilidad.
-			servicioWebViabilidad.viabilidad(ConstantesVinculadoAsofondos.TIPO_AREA_ASOFONDOS, ConstantesVinculadoAsofondos.CADENA_VACIA, true, identificacion.getNumeroDocumento(), ConstantesVinculadoAsofondos.CADENA_VACIA, ConstantesVinculadoAsofondos.CADENA_VACIA, ConstantesVinculadoAsofondos.CADENA_VACIA, identificacion.getTipoDocumento(), ConstantesVinculadoAsofondos.TIPO_TRAMITE_ASOFONDOS, new CausalesNoViabilidadBEPSHolder(), new IdMTramiteHolder(), new InformacionViablidadHolder(), new MCiudadanoBDUAHolder(), new MCiudadanoBepsHolder(), new MCiudadanoRegistraduriaHolder(), new MCiudadanosConsultadosHolder(), new MGestionVinculacionBEPSHolder(), new MInformacionBDUAHolder(), tipoEstadoRespuesta);
-			
-			// Verificamos si la respuesta del servicio viene marcada como error. 
-			if (tipoEstadoRespuesta.value.isError()) {
-				// Si la respuesta es error notificamos que tipo de error fue.
-				respuestaServicio.setEstadoEjecucion(respuestaNegocioServicio(ConstantesVinculadoAsofondos.COD_FORMATO_INVALIDO_OBLIGATORIO_NO_RECIBIDO, tipoEstadoRespuesta.value.getDescripcion()));
-			}
-	        
-	        tracer.fin("Fin del cosumo del servicio de BDUA");
+        	if (esConsumirServicio) {
+	        	tracer.inicio("Inicio del cosumo del servicio de BDUA");
+	        	
+	        	// Obtenemos la url del servicio web de viabilidad y le concatenamos el fragmento de texto ?wsdl.
+	        	String endPoint = Util.obtenerUrlServicioWebViabilidad () + Constantes.PARAMETRO_WSDL;
+	
+	        	// Creamos la instancia del cliente de consumo del servicio.
+	            ServicioWebViabilidad servicioWebViabilidad = new ServicioWebViabilidadProxy(endPoint);
+	            
+	            // Creamos la instancia de la respuesta del servicio.
+	            M_GestionVinculacionBEPS mGestionVinculacionBEPS = new M_GestionVinculacionBEPS ();
+	            
+	            // Consumimos el servicio de viabilidad.
+	            mGestionVinculacionBEPS = servicioWebViabilidad.viabilidad(
+	            		ConstantesVinculadoAsofondos.CADENA_VACIA
+	            		, identificacion.getTipoDocumento()
+	            		, identificacion.getNumeroDocumento()
+	            		, ConstantesVinculadoAsofondos.CADENA_VACIA
+	            		, ConstantesVinculadoAsofondos.CADENA_VACIA
+	            		, true
+	            		, ConstantesVinculadoAsofondos.TIPO_AREA_ASOFONDOS
+	            		, ConstantesVinculadoAsofondos.TIPO_TRAMITE_ASOFONDOS
+	            		, ConstantesVinculadoAsofondos.TIPO_TRAMITE_ASOFONDOS);
+				
+				// Verificamos si la respuesta del servicio viene marcada como error. 
+				if (mGestionVinculacionBEPS.getM_GestionErrores() != null) {
+					respuesta = false;
+					// Si la respuesta es error notificamos que tipo de error fue.
+					respuestaServicio.setEstadoEjecucion(respuestaNegocioServicio(ConstantesVinculadoAsofondos.COD_FORMATO_INVALIDO_OBLIGATORIO_NO_RECIBIDO, mGestionVinculacionBEPS.getM_GestionErrores().getDescripcionError()));
+				}
+		        
+		        tracer.fin("Fin del cosumo del servicio de BDUA");
+        	}
 	        
 	        // Retormanos si el consumo fue exitoso o no (true => exitoso o false => error de logica).
-	        return !tipoEstadoRespuesta.value.isError();
+	        return respuesta;
 		} catch (RemoteException e) {
 			// Notificamos que hubo un error en el consumo del webservice
 			throw new Exception("Error al consumir el servicio de BDUA", e);
@@ -502,6 +513,25 @@ public class BLConsultarVinculadoBepsAsofondos extends BLVinculadoAsofondos{
     		throw new DataAccessException(new HashMap<String,Object>(), tracer.getMetadata(), e);
     	}
     }
+    
+    /**
+     * Metodo que implementa la logica para determinar si es necesario consumir el servicio de
+	 * BDUA. 31/05/2018 11:32
+	 * 
+	 * @author Stefanini - Pablo Perez 
+	 * 
+     * @param identificacion
+     * @return
+     * @throws Exception
+     */
+    public boolean esConsumirBdua(TipoDocumentoPersonaNatural identificacion) throws Exception {
+		try {
+			return daVinculadoAsofondos.esConsumirWsBdua(identificacion);
+		}
+		catch (Exception e) {
+			throw new DataAccessException(new HashMap<String,Object>(), tracer.getMetadata(), e);
+		}
+	}
        
 
     /**
