@@ -215,5 +215,43 @@ public class Util {
 		// (Url del servicio web de viabilidad "BDUA")
 		return prop.getProperty(Constantes.URL_SERVICIO_WEB_VIABILIDAD);
 	}
+    
+    public static String obtenerValueConfigWS(String key) throws IOException {
+
+    	// Generamos la cadena donde se encuentra ubicado el archivo properties que contiene la url del servicio.
+		StringBuilder urlProperties = new StringBuilder(System.getProperty(Constantes.JBOSS_DIR));
+		urlProperties.append(File.separator);
+		urlProperties.append(Constantes.CONFIG_WS).append(File.separator);
+		urlProperties.append(Constantes.DATOS_PROPERTIES);
+
+		// Generamos el InputStream del archivo de propiedades.
+		InputStream inputStream = new FileInputStream(urlProperties.toString());
+		
+		// Leemos el archivo de propiedades.
+		Properties prop = new Properties();
+		prop.load(inputStream);
+		
+		// Retornamos el valor de la clave url_servicio_web_viabilidad del archivo de propiedades
+		// (Url del servicio web de viabilidad "BDUA")
+		return prop.getProperty(key);
+	}
+    
+    public static Properties obtenerPropertiesConfigWS() throws IOException {
+
+    	// Generamos la cadena donde se encuentra ubicado el archivo properties que contiene la url del servicio.
+		StringBuilder urlProperties = new StringBuilder(System.getProperty(Constantes.JBOSS_DIR));
+		urlProperties.append(File.separator);
+		urlProperties.append(Constantes.CONFIG_WS).append(File.separator);
+		urlProperties.append(Constantes.DATOS_PROPERTIES);
+
+		// Generamos el InputStream del archivo de propiedades.
+		InputStream inputStream = new FileInputStream(urlProperties.toString());
+		
+		// Leemos el archivo de propiedades.
+		Properties prop = new Properties();
+		prop.load(inputStream);
+		
+		return prop;
+	}
 
 }

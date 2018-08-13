@@ -139,14 +139,14 @@ public class M_GestionVinculacionBEPS  implements java.io.Serializable {
         typeDesc.setXmlType(new javax.xml.namespace.QName("http://www.colpensiones.gov.co/bdua/contracts/1.0/personas", "M_GestionVinculacionBEPS"));
         org.apache.axis.description.ElementDesc elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("m_CiudadanosConsultados");
-        elemField.setXmlName(new javax.xml.namespace.QName("", "m_CiudadanosConsultados"));
+        elemField.setXmlName(new javax.xml.namespace.QName("", "M_CiudadanosConsultados"));
         elemField.setXmlType(new javax.xml.namespace.QName("http://www.colpensiones.gov.co/bdua/contracts/1.0/personas", "M_CiudadanosConsultados"));
         elemField.setMinOccurs(0);
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
         elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("idM_Tramite");
-        elemField.setXmlName(new javax.xml.namespace.QName("", "idM_Tramite"));
+        elemField.setXmlName(new javax.xml.namespace.QName("", "IdM_Tramite"));
         elemField.setXmlType(new javax.xml.namespace.QName("http://www.colpensiones.gov.co/bdua/contracts/1.0/personas", "IdM_Tramite"));
         elemField.setMinOccurs(0);
         elemField.setNillable(false);

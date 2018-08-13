@@ -62,6 +62,7 @@ public class BLConsultarVinculadoBepsAsofondos extends BLVinculadoAsofondos{
     public TipoInformacionSolicitanteDTO consultarViabilidadVinculacion(TipoInformacionContextoExterno informacionContextoExterno, 
     		TipoDocumentoPersonaNatural identificacion){
 
+    	
     	initMetadata(identificacion, informacionContextoExterno);
 
     	HashMap<String, Object> payLoadTrace = new HashMap<String, Object>();
@@ -70,7 +71,6 @@ public class BLConsultarVinculadoBepsAsofondos extends BLVinculadoAsofondos{
     	payLoadTrace.put(ConstantesLogger.OBJETO_NEGOCIO_ENTRADA, identificacion);
     	tracer.getLogger().trace(payLoadTrace, tracer.getMetadata());
 
-    	//Respuesta del servicio
     	TipoInformacionSolicitanteDTO respuestaServicio = new TipoInformacionSolicitanteDTO();
 
     	
@@ -96,6 +96,7 @@ public class BLConsultarVinculadoBepsAsofondos extends BLVinculadoAsofondos{
     			else{
 
     				// Llamamos al servicio de BDUA para actualización de información.
+    				System.out.println("Llamamos al servicio de BDUA para actualización de información.");
     				if (this.consumirServicioBdua (identificacion, respuestaServicio)) {
     					/* logica del servicio */
         				BLConsultarExtendido blVinculado = new BLConsultarExtendido(tracer.getLogger());
@@ -159,12 +160,14 @@ public class BLConsultarVinculadoBepsAsofondos extends BLVinculadoAsofondos{
         try {
         	
         	// Identificamos si es necesario consumir el servicio de BDUA.
+        	System.out.println("Identificamos si es necesario consumir el servicio de BDUA...");
         	tracer.inicio("Verificamos si es necesario consumir el servicio de BDUA");
         	boolean esConsumirServicio = this.esConsumirBdua(identificacion);
         	tracer.fin("Fin de la verificacion del consumo del servicio de BDUA");
         	
         	if (esConsumirServicio) {
-	        	tracer.inicio("Inicio del cosumo del servicio de BDUA");
+        		System.out.println("Inicio del consumo del servicio de BDUA");
+	        	tracer.inicio("Inicio del consumo del servicio de BDUA");
 	        	
 	        	// Obtenemos la url del servicio web de viabilidad y le concatenamos el fragmento de texto ?wsdl.
 	        	String endPoint = Util.obtenerUrlServicioWebViabilidad () + Constantes.PARAMETRO_WSDL;
@@ -193,8 +196,8 @@ public class BLConsultarVinculadoBepsAsofondos extends BLVinculadoAsofondos{
 					// Si la respuesta es error notificamos que tipo de error fue.
 					respuestaServicio.setEstadoEjecucion(respuestaNegocioServicio(ConstantesVinculadoAsofondos.COD_FORMATO_INVALIDO_OBLIGATORIO_NO_RECIBIDO, mGestionVinculacionBEPS.getM_GestionErrores().getDescripcionError()));
 				}
-		        
-		        tracer.fin("Fin del cosumo del servicio de BDUA");
+		        System.out.println("Fin del consumo del servicio de BDUA");
+		        tracer.fin("Fin del consumo del servicio de BDUA");
         	}
 	        
 	        // Retormanos si el consumo fue exitoso o no (true => exitoso o false => error de logica).

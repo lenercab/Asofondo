@@ -79,7 +79,7 @@ public class IdM_Tramite  implements java.io.Serializable {
         typeDesc.setXmlType(new javax.xml.namespace.QName("http://www.colpensiones.gov.co/bdua/contracts/1.0/personas", "IdM_Tramite"));
         org.apache.axis.description.ElementDesc elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("m_CiudadanoBeps");
-        elemField.setXmlName(new javax.xml.namespace.QName("", "m_CiudadanoBeps"));
+        elemField.setXmlName(new javax.xml.namespace.QName("", "M_CiudadanoBeps"));
         elemField.setXmlType(new javax.xml.namespace.QName("http://www.colpensiones.gov.co/bdua/contracts/1.0/personas", "M_CiudadanoBeps"));
         elemField.setMinOccurs(0);
         elemField.setNillable(false);

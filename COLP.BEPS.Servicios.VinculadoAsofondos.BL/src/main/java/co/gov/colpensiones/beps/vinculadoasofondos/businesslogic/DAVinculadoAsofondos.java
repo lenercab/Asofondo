@@ -95,7 +95,7 @@ public class DAVinculadoAsofondos {
 
 			System.out.println(new Date()
 					+ ": esConsumirWsBdua -> nroRegistros=" + nroRegistros);
-
+			
 			return nroRegistros > 0;
 
 		} catch (Exception e) {

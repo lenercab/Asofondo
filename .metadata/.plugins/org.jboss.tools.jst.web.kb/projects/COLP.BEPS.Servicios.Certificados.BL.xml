@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kb-project>
+ <depends-on-projects>
+  <project name="COLP.BEPS.Servicios.GeneradorNovedadesBUC.Proxy"/>
+  <project name="COLP.BEPS.Servicios.Personas.BL"/>
+  <project name="COLP.BEPS.Servicios.Util"/>
+  <project name="COLP.BEPS.Servicios.Comunes.DataContracts"/>
+  <project name="COLP.BEPS.Servicios.Personas.DataContracts"/>
+  <project name="COLP.BEPS.Servicios.Certificados.DataContracts"/>
+ </depends-on-projects>
+ <used-by-projects/>
+ <paths>
+  <path value="C:/Users/lcabeza/.m2/repository/COLP/BEPS/Utilidades/COLP.BEPS.Utilidades.logs/0.0.1-PRO/COLP.BEPS.Utilidades.logs-0.0.1-PRO.jar"/>
+  <path value="C:/Users/lcabeza/.m2/repository/org/jboss/ws/jbossws-common/2.2.3.Final/jbossws-common-2.2.3.Final.jar"/>
+  <path value="C:/Users/lcabeza/.m2/repository/com/sun/xml/bind/jaxb-xjc/2.2.5/jaxb-xjc-2.2.5.jar"/>
+  <path value="C:/Users/lcabeza/.m2/repository/org/apache/cxf/cxf-rt-ws-policy/2.7.7/cxf-rt-ws-policy-2.7.7.jar"/>
+  <path value="C:/Users/lcabeza/.m2/repository/org/apache/cxf/cxf-rt-bindings-xml/2.7.7/cxf-rt-bindings-xml-2.7.7.jar"/>
+  <path value="C:/Users/lcabeza/.m2/repository/org/jboss/spec/javax/jms/jboss-jms-api_1.1_spec/1.0.1.Final/jboss-jms-api_1.1_spec-1.0.1.Final.jar"/>
+  <path value="C:/Users/lcabeza/.m2/repository/org/jboss/spec/javax/xml/rpc/jboss-jaxrpc-api_1.1_spec/1.0.1.Final/jboss-jaxrpc-api_1.1_spec-1.0.1.Final.jar"/>
+  <path value="C:/Users/lcabeza/.m2/repository/axis/axis-saaj/1.2/axis-saaj-1.2.jar"/>
+  <path value="C:/Users/lcabeza/.m2/repository/org/jboss/ws/jbossws-common-tools/1.1.0.Final/jbossws-common-tools-1.1.0.Final.jar"/>
+  <path value="C:/Users/lcabeza/.m2/repository/org/apache/cxf/cxf-tools-wsdlto-frontend-jaxws/2.7.7/cxf-tools-wsdlto-frontend-jaxws-2.7.7.jar"/>
+  <path value="C:/Users/lcabeza/.m2/repository/org/apache/cxf/cxf-rt-ws-rm/2.7.7/cxf-rt-ws-rm-2.7.7.jar"/>
+  <path value="C:/Users/lcabeza/.m2/repository/org/jboss/com/sun/httpserver/httpserver/1.0.0.Final/httpserver-1.0.0.Final.jar"/>
+  <path value="C:/Users/lcabeza/.m2/repository/org/apache/cxf/cxf-rt-frontend-simple/2.7.7/cxf-rt-frontend-simple-2.7.7.jar"/>
+  <path value="C:/Users/lcabeza/.m2/repository/COLP/BEPS/GeneradorPDF/joda-time/2.0/joda-time-2.0.jar"/>
+  <path value="C:/Users/lcabeza/.m2/repository/org/jboss/spec/javax/ejb/jboss-ejb-api_3.1_spec/1.0.2.Final/jboss-ejb-api_3.1_spec-1.0.2.Final.jar"/>
+  <path value="C:/Users/lcabeza/.m2/repository/org/apache/logging/log4j/log4j-api/2.0-rc1/log4j-api-2.0-rc1.jar"/>
+  <path value="C:/Users/lcabeza/.m2/repository/org/apache/cxf/cxf-rt-databinding-aegis/2.7.7/cxf-rt-databinding-aegis-2.7.7.jar"/>
+  <path value="C:/Users/lcabeza/.m2/repository/org/apache/cxf/cxf-rt-bindings-object/2.7.7/cxf-rt-bindings-object-2.7.7.jar"/>
+  <path value="C:/Users/lcabeza/.m2/repository/COLP/BEPS/Utilidades/COLP.BEPS.Utilidades.excepciones/0.0.1-PRO/COLP.BEPS.Utilidades.excepciones-0.0.1-PRO.jar"/>
+  <path value="C:/Users/lcabeza/.m2/repository/COLP/BEPS/GeneradorPDF/commons-logging/1.1.3/commons-logging-1.1.3.jar"/>
+  <path value="C:/Users/lcabeza/.m2/repository/org/apache/cxf/cxf-api/2.7.7/cxf-api-2.7.7.jar"/>
+  <path value="C:/Users/lcabeza/.m2/repository/org/apache/cxf/cxf-tools-java2ws/2.7.7/cxf-tools-java2ws-2.7.7.jar"/>
+  <path value="C:/Users/lcabeza/.m2/repository/org/codehaus/woodstox/woodstox-core-asl/4.2.0/woodstox-core-asl-4.2.0.jar"/>
+  <path value="C:/Users/lcabeza/.m2/repository/jboss/jaxbintros/jboss-jaxb-intros/1.0.2.GA/jboss-jaxb-intros-1.0.2.GA.jar"/>
+  <path value="C:/Users/lcabeza/.m2/repository/commons-lang/commons-lang/2.6/commons-lang-2.6.jar"/>
+  <path value="C:/Users/lcabeza/.m2/repository/org/jboss/logging/jboss-logging/3.1.2.GA/jboss-logging-3.1.2.GA.jar"/>
+  <path value="C:/Users/lcabeza/.m2/repository/org/jboss/spec/javax/servlet/jboss-servlet-api_3.0_spec/1.0.2.Final/jboss-servlet-api_3.0_spec-1.0.2.Final.jar"/>
+  <path value="C:/Users/lcabeza/.m2/repository/xml-resolver/xml-resolver/1.2/xml-resolver-1.2.jar"/>
+  <path value="C:/Users/lcabeza/.m2/repository/javax/servlet/servlet-api/2.5/servlet-api-2.5.jar"/>
+  <path value="C:/Users/lcabeza/.m2/repository/org/jboss/ws/cxf/jbossws-cxf-factories/4.2.3.Final/jbossws-cxf-factories-4.2.3.Final.jar"/>
+  <path value="C:/Users/lcabeza/.m2/repository/com/sun/xml/bind/jaxb-impl/2.2.5/jaxb-impl-2.2.5.jar"/>
+  <path value="C:/Users/lcabeza/.m2/repository/org/jboss/ws/cxf/jbossws-cxf-client/4.1.3.Final/jbossws-cxf-client-4.1.3.Final.jar"/>
+  <path value="C:/Users/lcabeza/.m2/repository/org/apache/cxf/cxf-tools-wsdlto-core/2.7.7/cxf-tools-wsdlto-core-2.7.7.jar"/>
+  <path value="C:/Users/lcabeza/.m2/repository/org/apache/ws/security/wss4j/1.6.12/wss4j-1.6.12.jar"/>
+  <path value="C:/Users/lcabeza/.m2/repository/org/apache/ws/xmlschema/xmlschema-core/2.0.3/xmlschema-core-2.0.3.jar"/>
+  <path value="C:/Users/lcabeza/.m2/repository/org/apache/cxf/xjcplugins/cxf-xjc-ts/2.6.1/cxf-xjc-ts-2.6.1.jar"/>
+  <path value="C:/Users/lcabeza/.m2/repository/org/apache/cxf/cxf-rt-core/2.7.7/cxf-rt-core-2.7.7.jar"/>
+  <path value="C:/Users/lcabeza/.m2/repository/commons-logging/commons-logging/1.1.1/commons-logging-1.1.1.jar"/>
+  <path value="C:/Users/lcabeza/.m2/repository/log4j/log4j/1.2.16/log4j-1.2.16.jar"/>
+  <path value="C:/Users/lcabeza/.m2/repository/org/jboss/ws/cxf/jbossws-cxf-transports-httpserver/4.1.3.Final/jbossws-cxf-transports-httpserver-4.1.3.Final.jar"/>
+  <path value="C:/Users/lcabeza/.m2/repository/COLP/BEPS/GeneradorPDF/commons-digester/2.1/commons-digester-2.1.jar"/>
+  <path value="C:/Users/lcabeza/.m2/repository/org/apache/logging/log4j/log4j-core/2.0-rc1/log4j-core-2.0-rc1.jar"/>
+  <path value="C:/Users/lcabeza/.m2/repository/COLP/BEPS/GeneradorPDF/jasperreports-fonts/5.5.1/jasperreports-fonts-5.5.1.jar"/>
+  <path value="C:/Users/lcabeza/.m2/repository/org/jboss/spec/javax/xml/bind/jboss-jaxb-api_2.2_spec/1.0.4.Final/jboss-jaxb-api_2.2_spec-1.0.4.Final.jar"/>
+  <path value="C:/Users/lcabeza/.m2/repository/org/apache/cxf/cxf-rt-bindings-soap/2.7.7/cxf-rt-bindings-soap-2.7.7.jar"/>
+  <path value="C:/Users/lcabeza/.m2/repository/COLP/BEPS/GeneradorPDF/COLP.BEPS.GeneradorPDF.generadorCertificados/0.0.1-PRO/COLP.BEPS.GeneradorPDF.generadorCertificados-0.0.1-PRO.jar"/>
+  <path value="C:/Users/lcabeza/.m2/repository/COLP/BEPS/GeneradorPDF/jasperreports-htmlcomponent/0.0.1/jasperreports-htmlcomponent-0.0.1.jar"/>
+  <path value="C:/Users/lcabeza/.m2/repository/org/jboss/spec/javax/xml/soap/jboss-saaj-api_1.3_spec/1.0.3.Final/jboss-saaj-api_1.3_spec-1.0.3.Final.jar"/>
+  <path value="C:/Users/lcabeza/.m2/repository/org/jboss/ws/cxf/jbossws-cxf-server/4.2.3.Final/jbossws-cxf-server-4.2.3.Final.jar"/>
+  <path value="C:/Users/lcabeza/.m2/repository/org/apache/cxf/services/ws-discovery/cxf-services-ws-discovery-api/2.7.7/cxf-services-ws-discovery-api-2.7.7.jar"/>
+  <path value="C:/Users/lcabeza/.m2/repository/org/apache/cxf/xjcplugins/cxf-xjc-dv/2.6.1/cxf-xjc-dv-2.6.1.jar"/>
+  <path value="C:/Users/lcabeza/.m2/repository/org/slf4j/slf4j-api/1.6.1/slf4j-api-1.6.1.jar"/>
+  <path value="C:/Users/lcabeza/.m2/repository/org/codehaus/woodstox/stax2-api/3.1.1/stax2-api-3.1.1.jar"/>
+  <path value="C:/Users/lcabeza/.m2/repository/org/jboss/spec/javax/xml/ws/jboss-jaxws-api_2.2_spec/2.0.0.Final/jboss-jaxws-api_2.2_spec-2.0.0.Final.jar"/>
+  <path value="C:/Users/lcabeza/.m2/repository/org/apache/cxf/cxf-rt-bindings-coloc/2.7.7/cxf-rt-bindings-coloc-2.7.7.jar"/>
+  <path value="C:/Users/lcabeza/.m2/repository/org/apache/cxf/cxf-rt-transports-jms/2.7.7/cxf-rt-transports-jms-2.7.7.jar"/>
+  <path value="C:/Users/lcabeza/.m2/repository/COLP/BEPS/GeneradorPDF/jasperreports-javaflow/5.5.1/jasperreports-javaflow-5.5.1.jar"/>
+  <path value="C:/Users/lcabeza/.m2/repository/net/sf/ehcache/ehcache-core/2.5.2/ehcache-core-2.5.2.jar"/>
+  <path value="C:/Users/lcabeza/.m2/repository/org/apache/cxf/cxf-rt-ws-addr/2.7.7/cxf-rt-ws-addr-2.7.7.jar"/>
+  <path value="C:/Users/lcabeza/.m2/repository/org/apache/neethi/neethi/3.0.2/neethi-3.0.2.jar"/>
+  <path value="C:/Users/lcabeza/.m2/repository/COLP/BEPS/GeneradorPDF/jasperreports-functions/5.5.1/jasperreports-functions-5.5.1.jar"/>
+  <path value="C:/Users/lcabeza/.m2/repository/org/apache/cxf/cxf-rt-management/2.7.7/cxf-rt-management-2.7.7.jar"/>
+  <path value="C:/Users/lcabeza/.m2/repository/javax/xml/stream/stax-api/1.0-2/stax-api-1.0-2.jar"/>
+  <path value="C:/Users/lcabeza/.m2/repository/commons-collections/commons-collections/3.2.1/commons-collections-3.2.1.jar"/>
+  <path value="C:/Users/lcabeza/.m2/repository/COLP/BEPS/GeneradorPDF/commons-beanutils/1.9.1/commons-beanutils-1.9.1.jar"/>
+  <path value="C:/Users/lcabeza/.m2/repository/org/apache/cxf/cxf-rt-ws-security/2.7.7/cxf-rt-ws-security-2.7.7.jar"/>
+  <path value="C:/Users/lcabeza/.m2/repository/org/opensaml/xmltooling/1.3.2-1/xmltooling-1.3.2-1.jar"/>
+  <path value="C:/Users/lcabeza/.m2/repository/org/apache/cxf/xjcplugins/cxf-xjc-boolean/2.6.1/cxf-xjc-boolean-2.6.1.jar"/>
+  <path value="C:/Users/lcabeza/.m2/repository/org/jboss/ws/jbossws-api/1.0.1.Final/jbossws-api-1.0.1.Final.jar"/>
+  <path value="C:/Users/lcabeza/.m2/repository/org/apache/cxf/cxf-tools-common/2.7.7/cxf-tools-common-2.7.7.jar"/>
+  <path value="C:/Users/lcabeza/.m2/repository/javax/jms/jms-api/1.1-rev-1/jms-api-1.1-rev-1.jar"/>
+  <path value="C:/Users/lcabeza/.m2/repository/COLP/BEPS/GeneradorPDF/javax.servlet/3.0.0/javax.servlet-3.0.0.jar"/>
+  <path value="C:/Users/lcabeza/.m2/repository/COLP/BEPS/GeneradorPDF/itext/2.1.7/itext-2.1.7.jar"/>
+  <path value="C:/Users/lcabeza/.m2/repository/joda-time/joda-time/1.6.2/joda-time-1.6.2.jar"/>
+  <path value="C:/Users/lcabeza/.m2/repository/org/apache/cxf/cxf-rt-ws-mex/2.7.7/cxf-rt-ws-mex-2.7.7.jar"/>
+  <path value="C:/Users/lcabeza/.m2/repository/javax/xml/jaxrpc-api/1.1/jaxrpc-api-1.1.jar"/>
+  <path value="C:/Users/lcabeza/.m2/repository/org/apache/velocity/velocity/1.7/velocity-1.7.jar"/>
+  <path value="C:/Users/lcabeza/.m2/repository/org/apache/santuario/xmlsec/1.5.5/xmlsec-1.5.5.jar"/>
+  <path value="C:/Users/lcabeza/.m2/repository/asm/asm/3.3.1/asm-3.3.1.jar"/>
+  <path value="C:/Users/lcabeza/.m2/repository/org/apache/cxf/cxf-rt-transports-local/2.7.7/cxf-rt-transports-local-2.7.7.jar"/>
+  <path value="C:/Users/lcabeza/.m2/repository/commons-beanutils/commons-beanutils/1.8.3/commons-beanutils-1.8.3.jar"/>
+  <path value="C:/Users/lcabeza/.m2/repository/COLP/BEPS/GeneradorPDF/commons-javaflow/1209105/commons-javaflow-1209105.jar"/>
+  <path value="C:/Users/lcabeza/.m2/repository/org/jboss/ws/jbossws-spi/2.2.2.Final/jbossws-spi-2.2.2.Final.jar"/>
+  <path value="C:/Users/lcabeza/.m2/repository/COLP/BEPS/GeneradorPDF/commons-collections/2.1.1/commons-collections-2.1.1.jar"/>
+  <path value="C:/Users/lcabeza/.m2/repository/org/apache/cxf/cxf-rt-databinding-jaxb/2.7.7/cxf-rt-databinding-jaxb-2.7.7.jar"/>
+  <path value="C:/Users/lcabeza/.m2/repository/COLP/BEPS/GeneradorPDF/jasperreports/5.5.1/jasperreports-5.5.1.jar"/>
+  <path value="C:/Users/lcabeza/.m2/repository/COLP/BEPS/GeneradorPDF/jdom/2.0.4/jdom-2.0.4.jar"/>
+  <path value="C:/Users/lcabeza/.m2/repository/org/apache/cxf/services/sts/cxf-services-sts-core/2.7.7/cxf-services-sts-core-2.7.7.jar"/>
+  <path value="C:/Users/lcabeza/.m2/repository/org/jboss/ws/projects/jaxws-jboss-httpserver-httpspi/1.0.1.GA/jaxws-jboss-httpserver-httpspi-1.0.1.GA.jar"/>
+  <path value="C:/Users/lcabeza/.m2/repository/org/apache/cxf/cxf-tools-validator/2.7.7/cxf-tools-validator-2.7.7.jar"/>
+  <path value="C:/Users/lcabeza/.m2/repository/org/apache/cxf/cxf-rt-transports-http/2.7.7/cxf-rt-transports-http-2.7.7.jar"/>
+  <path value="C:/Users/lcabeza/.m2/repository/wsdl4j/wsdl4j/1.6.3/wsdl4j-1.6.3.jar"/>
+  <path value="C:/Users/lcabeza/.m2/repository/gnu-getopt/getopt/1.0.13/getopt-1.0.13.jar"/>
+  <path value="C:/Users/lcabeza/.m2/repository/org/opensaml/openws/1.4.2-1/openws-1.4.2-1.jar"/>
+  <path value="C:/Users/lcabeza/.m2/repository/org/apache/axis/axis/1.4/axis-1.4.jar"/>
+  <path value="C:/Users/lcabeza/.m2/repository/org/apache/cxf/cxf-tools-wsdlto-databinding-jaxb/2.7.7/cxf-tools-wsdlto-databinding-jaxb-2.7.7.jar"/>
+  <path value="C:/Users/lcabeza/.m2/repository/org/apache/cxf/cxf-rt-frontend-jaxws/2.7.7/cxf-rt-frontend-jaxws-2.7.7.jar"/>
+  <path value="C:/Users/lcabeza/.m2/repository/org/opensaml/opensaml/2.5.1-1/opensaml-2.5.1-1.jar"/>
+  <path value="C:/Users/lcabeza/.m2/repository/commons-discovery/commons-discovery/0.2/commons-discovery-0.2.jar"/>
+  <path value="C:/Users/lcabeza/.m2/repository/javax/jws/jsr181-api/1.0-MR1/jsr181-api-1.0-MR1.jar"/>
+ </paths>
+ <validation>
+  <el>
+   <linked-el length="17" name="%0" offset="1351" path="%1"/>
+   <linked-el length="17" name="%0" offset="1132" path="%1"/>
+   <linked-el length="17" name="%0" offset="727" path="%1"/>
+   <linked-el length="17" name="%0" offset="1707" path="%1"/>
+   <linked-el length="17" name="%0" offset="2086" path="%1"/>
+   <linked-el length="17" name="%0" offset="1532" path="%1"/>
+   <linked-el length="17" name="%0" offset="1889" path="%1"/>
+   <linked-el length="17" name="%0" offset="924" path="%1"/>
+   <linked-el length="17" name="%2" offset="1351" path="%1"/>
+   <linked-el length="17" name="%2" offset="1132" path="%1"/>
+   <linked-el length="17" name="%2" offset="727" path="%1"/>
+   <linked-el length="17" name="%2" offset="1707" path="%1"/>
+   <linked-el length="17" name="%2" offset="2086" path="%1"/>
+   <linked-el length="17" name="%2" offset="1532" path="%1"/>
+   <linked-el length="17" name="%2" offset="1889" path="%1"/>
+   <linked-el length="17" name="%2" offset="924" path="%1"/>
+  </el>
+ </validation>
+ <aliases>
+  <alias path="parent.version" value="%0"/>
+  <alias path="/COLP.BEPS.Servicios.Certificados.BL/pom.xml" value="%1"/>
+  <alias path="parent" value="%2"/>
+  <alias path="%0" value="parent.version"/>
+  <alias path="%2" value="parent"/>
+  <alias path="%1" value="/COLP.BEPS.Servicios.Certificados.BL/pom.xml"/>
+ </aliases>
+ <includes/>
+</kb-project>

@@ -243,7 +243,7 @@ public class M_CiudadanosConsultados  implements java.io.Serializable {
         typeDesc.addFieldDesc(elemField);
         elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("m_CiudadanoBDUA");
-        elemField.setXmlName(new javax.xml.namespace.QName("", "m_CiudadanoBDUA"));
+        elemField.setXmlName(new javax.xml.namespace.QName("", "M_CiudadanoBDUA"));
         elemField.setXmlType(new javax.xml.namespace.QName("http://www.colpensiones.gov.co/bdua/contracts/1.0/personas", "M_CiudadanoBDUA"));
         elemField.setMinOccurs(0);
         elemField.setNillable(false);
@@ -264,7 +264,7 @@ public class M_CiudadanosConsultados  implements java.io.Serializable {
         typeDesc.addFieldDesc(elemField);
         elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("m_CiudadanoRegistraduria");
-        elemField.setXmlName(new javax.xml.namespace.QName("", "m_CiudadanoRegistraduria"));
+        elemField.setXmlName(new javax.xml.namespace.QName("", "M_CiudadanoRegistraduria"));
         elemField.setXmlType(new javax.xml.namespace.QName("http://www.colpensiones.gov.co/bdua/contracts/1.0/personas", "M_CiudadanoRegistraduria"));
         elemField.setMinOccurs(0);
         elemField.setNillable(false);

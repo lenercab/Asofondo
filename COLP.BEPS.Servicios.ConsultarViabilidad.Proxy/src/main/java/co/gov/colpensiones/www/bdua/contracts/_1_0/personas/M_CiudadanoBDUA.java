@@ -8,7 +8,7 @@
 package co.gov.colpensiones.www.bdua.contracts._1_0.personas;
 
 public class M_CiudadanoBDUA  implements java.io.Serializable {
-    private java.lang.String idP_TipoDocumento;
+    private co.gov.colpensiones.www.bdua.contracts._1_0.personas.IdP_TipoDocumento idP_TipoDocumento;
 
     private java.lang.String SNumeroIdentificacion;
 
@@ -20,21 +20,21 @@ public class M_CiudadanoBDUA  implements java.io.Serializable {
 
     private java.lang.String SSegundoNombre;
 
-    private java.lang.String idP_Sexo;
+    private co.gov.colpensiones.www.bdua.contracts._1_0.personas.IdP_Sexo idP_Sexo;
 
-    private java.util.Calendar DFechaNacimiento;
+    private java.lang.String DFechaNacimiento;
 
     private java.lang.String estadoCedula;
 
-    private java.lang.String idP_RegimenAfiliacion;
+    private co.gov.colpensiones.www.bdua.contracts._1_0.personas.IdP_RegimenAfiliacion idP_RegimenAfiliacion;
 
-    private java.lang.String idP_EPS;
+    private co.gov.colpensiones.www.bdua.contracts._1_0.personas.IdP_EPS idP_EPS;
 
-    private co.gov.colpensiones.www.bdua.contracts._1_0.personas.MInformacionBDUA m_InformacionBDUA;
+    private co.gov.colpensiones.www.bdua.contracts._1_0.personas.M_InformacionBDUA m_InformacionBDUA;
 
-    private java.util.Calendar DFechaAfiliacionEntidad;
+    private java.lang.String DFechaAfiliacionEntidad;
 
-    private java.lang.String idP_TipoAfiliado;
+    private co.gov.colpensiones.www.bdua.contracts._1_0.personas.IdP_TipoAfiliado idP_TipoAfiliado;
 
     private java.lang.String codigoEstadoConsulta;
 
@@ -44,20 +44,20 @@ public class M_CiudadanoBDUA  implements java.io.Serializable {
     }
 
     public M_CiudadanoBDUA(
-           java.lang.String idP_TipoDocumento,
+           co.gov.colpensiones.www.bdua.contracts._1_0.personas.IdP_TipoDocumento idP_TipoDocumento,
            java.lang.String SNumeroIdentificacion,
            java.lang.String SPrimerApellido,
            java.lang.String SSegundoApellido,
            java.lang.String SPrimerNombre,
            java.lang.String SSegundoNombre,
-           java.lang.String idP_Sexo,
-           java.util.Calendar DFechaNacimiento,
+           co.gov.colpensiones.www.bdua.contracts._1_0.personas.IdP_Sexo idP_Sexo,
+           java.lang.String DFechaNacimiento,
            java.lang.String estadoCedula,
-           java.lang.String idP_RegimenAfiliacion,
-           java.lang.String idP_EPS,
-           co.gov.colpensiones.www.bdua.contracts._1_0.personas.MInformacionBDUA m_InformacionBDUA,
-           java.util.Calendar DFechaAfiliacionEntidad,
-           java.lang.String idP_TipoAfiliado,
+           co.gov.colpensiones.www.bdua.contracts._1_0.personas.IdP_RegimenAfiliacion idP_RegimenAfiliacion,
+           co.gov.colpensiones.www.bdua.contracts._1_0.personas.IdP_EPS idP_EPS,
+           co.gov.colpensiones.www.bdua.contracts._1_0.personas.M_InformacionBDUA m_InformacionBDUA,
+           java.lang.String DFechaAfiliacionEntidad,
+           co.gov.colpensiones.www.bdua.contracts._1_0.personas.IdP_TipoAfiliado idP_TipoAfiliado,
            java.lang.String codigoEstadoConsulta,
            java.lang.String descripcionEstadoConsulta) {
            this.idP_TipoDocumento = idP_TipoDocumento;
@@ -84,7 +84,7 @@ public class M_CiudadanoBDUA  implements java.io.Serializable {
      * 
      * @return idP_TipoDocumento
      */
-    public java.lang.String getIdP_TipoDocumento() {
+    public co.gov.colpensiones.www.bdua.contracts._1_0.personas.IdP_TipoDocumento getIdP_TipoDocumento() {
         return idP_TipoDocumento;
     }
 
@@ -94,7 +94,7 @@ public class M_CiudadanoBDUA  implements java.io.Serializable {
      * 
      * @param idP_TipoDocumento
      */
-    public void setIdP_TipoDocumento(java.lang.String idP_TipoDocumento) {
+    public void setIdP_TipoDocumento(co.gov.colpensiones.www.bdua.contracts._1_0.personas.IdP_TipoDocumento idP_TipoDocumento) {
         this.idP_TipoDocumento = idP_TipoDocumento;
     }
 
@@ -204,7 +204,7 @@ public class M_CiudadanoBDUA  implements java.io.Serializable {
      * 
      * @return idP_Sexo
      */
-    public java.lang.String getIdP_Sexo() {
+    public co.gov.colpensiones.www.bdua.contracts._1_0.personas.IdP_Sexo getIdP_Sexo() {
         return idP_Sexo;
     }
 
@@ -214,7 +214,7 @@ public class M_CiudadanoBDUA  implements java.io.Serializable {
      * 
      * @param idP_Sexo
      */
-    public void setIdP_Sexo(java.lang.String idP_Sexo) {
+    public void setIdP_Sexo(co.gov.colpensiones.www.bdua.contracts._1_0.personas.IdP_Sexo idP_Sexo) {
         this.idP_Sexo = idP_Sexo;
     }
 
@@ -224,7 +224,7 @@ public class M_CiudadanoBDUA  implements java.io.Serializable {
      * 
      * @return DFechaNacimiento
      */
-    public java.util.Calendar getDFechaNacimiento() {
+    public java.lang.String getDFechaNacimiento() {
         return DFechaNacimiento;
     }
 
@@ -234,7 +234,7 @@ public class M_CiudadanoBDUA  implements java.io.Serializable {
      * 
      * @param DFechaNacimiento
      */
-    public void setDFechaNacimiento(java.util.Calendar DFechaNacimiento) {
+    public void setDFechaNacimiento(java.lang.String DFechaNacimiento) {
         this.DFechaNacimiento = DFechaNacimiento;
     }
 
@@ -264,7 +264,7 @@ public class M_CiudadanoBDUA  implements java.io.Serializable {
      * 
      * @return idP_RegimenAfiliacion
      */
-    public java.lang.String getIdP_RegimenAfiliacion() {
+    public co.gov.colpensiones.www.bdua.contracts._1_0.personas.IdP_RegimenAfiliacion getIdP_RegimenAfiliacion() {
         return idP_RegimenAfiliacion;
     }
 
@@ -274,7 +274,7 @@ public class M_CiudadanoBDUA  implements java.io.Serializable {
      * 
      * @param idP_RegimenAfiliacion
      */
-    public void setIdP_RegimenAfiliacion(java.lang.String idP_RegimenAfiliacion) {
+    public void setIdP_RegimenAfiliacion(co.gov.colpensiones.www.bdua.contracts._1_0.personas.IdP_RegimenAfiliacion idP_RegimenAfiliacion) {
         this.idP_RegimenAfiliacion = idP_RegimenAfiliacion;
     }
 
@@ -284,7 +284,7 @@ public class M_CiudadanoBDUA  implements java.io.Serializable {
      * 
      * @return idP_EPS
      */
-    public java.lang.String getIdP_EPS() {
+    public co.gov.colpensiones.www.bdua.contracts._1_0.personas.IdP_EPS getIdP_EPS() {
         return idP_EPS;
     }
 
@@ -294,7 +294,7 @@ public class M_CiudadanoBDUA  implements java.io.Serializable {
      * 
      * @param idP_EPS
      */
-    public void setIdP_EPS(java.lang.String idP_EPS) {
+    public void setIdP_EPS(co.gov.colpensiones.www.bdua.contracts._1_0.personas.IdP_EPS idP_EPS) {
         this.idP_EPS = idP_EPS;
     }
 
@@ -304,7 +304,7 @@ public class M_CiudadanoBDUA  implements java.io.Serializable {
      * 
      * @return m_InformacionBDUA
      */
-    public co.gov.colpensiones.www.bdua.contracts._1_0.personas.MInformacionBDUA getM_InformacionBDUA() {
+    public co.gov.colpensiones.www.bdua.contracts._1_0.personas.M_InformacionBDUA getM_InformacionBDUA() {
         return m_InformacionBDUA;
     }
 
@@ -314,7 +314,7 @@ public class M_CiudadanoBDUA  implements java.io.Serializable {
      * 
      * @param m_InformacionBDUA
      */
-    public void setM_InformacionBDUA(co.gov.colpensiones.www.bdua.contracts._1_0.personas.MInformacionBDUA m_InformacionBDUA) {
+    public void setM_InformacionBDUA(co.gov.colpensiones.www.bdua.contracts._1_0.personas.M_InformacionBDUA m_InformacionBDUA) {
         this.m_InformacionBDUA = m_InformacionBDUA;
     }
 
@@ -324,7 +324,7 @@ public class M_CiudadanoBDUA  implements java.io.Serializable {
      * 
      * @return DFechaAfiliacionEntidad
      */
-    public java.util.Calendar getDFechaAfiliacionEntidad() {
+    public java.lang.String getDFechaAfiliacionEntidad() {
         return DFechaAfiliacionEntidad;
     }
 
@@ -334,7 +334,7 @@ public class M_CiudadanoBDUA  implements java.io.Serializable {
      * 
      * @param DFechaAfiliacionEntidad
      */
-    public void setDFechaAfiliacionEntidad(java.util.Calendar DFechaAfiliacionEntidad) {
+    public void setDFechaAfiliacionEntidad(java.lang.String DFechaAfiliacionEntidad) {
         this.DFechaAfiliacionEntidad = DFechaAfiliacionEntidad;
     }
 
@@ -344,7 +344,7 @@ public class M_CiudadanoBDUA  implements java.io.Serializable {
      * 
      * @return idP_TipoAfiliado
      */
-    public java.lang.String getIdP_TipoAfiliado() {
+    public co.gov.colpensiones.www.bdua.contracts._1_0.personas.IdP_TipoAfiliado getIdP_TipoAfiliado() {
         return idP_TipoAfiliado;
     }
 
@@ -354,7 +354,7 @@ public class M_CiudadanoBDUA  implements java.io.Serializable {
      * 
      * @param idP_TipoAfiliado
      */
-    public void setIdP_TipoAfiliado(java.lang.String idP_TipoAfiliado) {
+    public void setIdP_TipoAfiliado(co.gov.colpensiones.www.bdua.contracts._1_0.personas.IdP_TipoAfiliado idP_TipoAfiliado) {
         this.idP_TipoAfiliado = idP_TipoAfiliado;
     }
 
@@ -530,7 +530,7 @@ public class M_CiudadanoBDUA  implements java.io.Serializable {
         org.apache.axis.description.ElementDesc elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("idP_TipoDocumento");
         elemField.setXmlName(new javax.xml.namespace.QName("", "IdP_TipoDocumento"));
-        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://www.colpensiones.gov.co/bdua/contracts/1.0/personas", "IdP_TipoDocumento"));
         elemField.setMinOccurs(0);
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
@@ -572,14 +572,14 @@ public class M_CiudadanoBDUA  implements java.io.Serializable {
         elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("idP_Sexo");
         elemField.setXmlName(new javax.xml.namespace.QName("", "IdP_Sexo"));
-        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://www.colpensiones.gov.co/bdua/contracts/1.0/personas", "IdP_Sexo"));
         elemField.setMinOccurs(0);
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
         elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("DFechaNacimiento");
         elemField.setXmlName(new javax.xml.namespace.QName("", "DFechaNacimiento"));
-        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "dateTime"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "anySimpleType"));
         elemField.setMinOccurs(0);
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
@@ -593,35 +593,35 @@ public class M_CiudadanoBDUA  implements java.io.Serializable {
         elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("idP_RegimenAfiliacion");
         elemField.setXmlName(new javax.xml.namespace.QName("", "IdP_RegimenAfiliacion"));
-        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://www.colpensiones.gov.co/bdua/contracts/1.0/personas", "IdP_RegimenAfiliacion"));
         elemField.setMinOccurs(0);
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
         elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("idP_EPS");
         elemField.setXmlName(new javax.xml.namespace.QName("", "IdP_EPS"));
-        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://www.colpensiones.gov.co/bdua/contracts/1.0/personas", "IdP_EPS"));
         elemField.setMinOccurs(0);
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
         elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("m_InformacionBDUA");
-        elemField.setXmlName(new javax.xml.namespace.QName("", "m_InformacionBDUA"));
-        elemField.setXmlType(new javax.xml.namespace.QName("http://www.colpensiones.gov.co/bdua/contracts/1.0/personas", "mInformacionBDUA"));
+        elemField.setXmlName(new javax.xml.namespace.QName("", "M_InformacionBDUA"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://www.colpensiones.gov.co/bdua/contracts/1.0/personas", "M_InformacionBDUA"));
         elemField.setMinOccurs(0);
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
         elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("DFechaAfiliacionEntidad");
         elemField.setXmlName(new javax.xml.namespace.QName("", "DFechaAfiliacionEntidad"));
-        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "dateTime"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "anySimpleType"));
         elemField.setMinOccurs(0);
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
         elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("idP_TipoAfiliado");
         elemField.setXmlName(new javax.xml.namespace.QName("", "IdP_TipoAfiliado"));
-        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://www.colpensiones.gov.co/bdua/contracts/1.0/personas", "IdP_TipoAfiliado"));
         elemField.setMinOccurs(0);
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);

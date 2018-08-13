@@ -20,21 +20,21 @@ public class M_CiudadanoRegistraduria  implements java.io.Serializable {
 
     private java.lang.String SParticula;
 
-    private java.lang.String idP_MunicipioExp;
+    private co.gov.colpensiones.www.bdua.contracts._1_0.personas.IdP_MunicipioExp idP_MunicipioExp;
 
-    private java.util.Calendar DFechaExpedicion;
+    private java.lang.String DFechaExpedicion;
 
-    private java.lang.String estadoCedula;
+    private co.gov.colpensiones.www.bdua.contracts._1_0.personas.EstadoCedula estadoCedula;
 
     private java.lang.String SNumeroResolucion;
 
     private java.lang.String SAnoResolucion;
 
-    private java.lang.String idP_Sexo;
+    private co.gov.colpensiones.www.bdua.contracts._1_0.personas.IdP_Sexo idP_Sexo;
 
-    private java.util.Calendar DFechaNacimiento;
+    private java.lang.String DFechaNacimiento;
 
-    private java.util.Calendar DFechaDefuncion;
+    private java.lang.String DFechaDefuncion;
 
     private java.lang.String codigoEstadoConsulta;
 
@@ -54,14 +54,14 @@ public class M_CiudadanoRegistraduria  implements java.io.Serializable {
            java.lang.String SPrimerNombre,
            java.lang.String SSegundoNombre,
            java.lang.String SParticula,
-           java.lang.String idP_MunicipioExp,
-           java.util.Calendar DFechaExpedicion,
-           java.lang.String estadoCedula,
+           co.gov.colpensiones.www.bdua.contracts._1_0.personas.IdP_MunicipioExp idP_MunicipioExp,
+           java.lang.String DFechaExpedicion,
+           co.gov.colpensiones.www.bdua.contracts._1_0.personas.EstadoCedula estadoCedula,
            java.lang.String SNumeroResolucion,
            java.lang.String SAnoResolucion,
-           java.lang.String idP_Sexo,
-           java.util.Calendar DFechaNacimiento,
-           java.util.Calendar DFechaDefuncion,
+           co.gov.colpensiones.www.bdua.contracts._1_0.personas.IdP_Sexo idP_Sexo,
+           java.lang.String DFechaNacimiento,
+           java.lang.String DFechaDefuncion,
            java.lang.String codigoEstadoConsulta,
            java.lang.String descripcionEstadoConsulta,
            java.lang.String codigoError,
@@ -212,7 +212,7 @@ public class M_CiudadanoRegistraduria  implements java.io.Serializable {
      * 
      * @return idP_MunicipioExp
      */
-    public java.lang.String getIdP_MunicipioExp() {
+    public co.gov.colpensiones.www.bdua.contracts._1_0.personas.IdP_MunicipioExp getIdP_MunicipioExp() {
         return idP_MunicipioExp;
     }
 
@@ -222,7 +222,7 @@ public class M_CiudadanoRegistraduria  implements java.io.Serializable {
      * 
      * @param idP_MunicipioExp
      */
-    public void setIdP_MunicipioExp(java.lang.String idP_MunicipioExp) {
+    public void setIdP_MunicipioExp(co.gov.colpensiones.www.bdua.contracts._1_0.personas.IdP_MunicipioExp idP_MunicipioExp) {
         this.idP_MunicipioExp = idP_MunicipioExp;
     }
 
@@ -232,7 +232,7 @@ public class M_CiudadanoRegistraduria  implements java.io.Serializable {
      * 
      * @return DFechaExpedicion
      */
-    public java.util.Calendar getDFechaExpedicion() {
+    public java.lang.String getDFechaExpedicion() {
         return DFechaExpedicion;
     }
 
@@ -242,7 +242,7 @@ public class M_CiudadanoRegistraduria  implements java.io.Serializable {
      * 
      * @param DFechaExpedicion
      */
-    public void setDFechaExpedicion(java.util.Calendar DFechaExpedicion) {
+    public void setDFechaExpedicion(java.lang.String DFechaExpedicion) {
         this.DFechaExpedicion = DFechaExpedicion;
     }
 
@@ -252,7 +252,7 @@ public class M_CiudadanoRegistraduria  implements java.io.Serializable {
      * 
      * @return estadoCedula
      */
-    public java.lang.String getEstadoCedula() {
+    public co.gov.colpensiones.www.bdua.contracts._1_0.personas.EstadoCedula getEstadoCedula() {
         return estadoCedula;
     }
 
@@ -262,7 +262,7 @@ public class M_CiudadanoRegistraduria  implements java.io.Serializable {
      * 
      * @param estadoCedula
      */
-    public void setEstadoCedula(java.lang.String estadoCedula) {
+    public void setEstadoCedula(co.gov.colpensiones.www.bdua.contracts._1_0.personas.EstadoCedula estadoCedula) {
         this.estadoCedula = estadoCedula;
     }
 
@@ -312,7 +312,7 @@ public class M_CiudadanoRegistraduria  implements java.io.Serializable {
      * 
      * @return idP_Sexo
      */
-    public java.lang.String getIdP_Sexo() {
+    public co.gov.colpensiones.www.bdua.contracts._1_0.personas.IdP_Sexo getIdP_Sexo() {
         return idP_Sexo;
     }
 
@@ -322,7 +322,7 @@ public class M_CiudadanoRegistraduria  implements java.io.Serializable {
      * 
      * @param idP_Sexo
      */
-    public void setIdP_Sexo(java.lang.String idP_Sexo) {
+    public void setIdP_Sexo(co.gov.colpensiones.www.bdua.contracts._1_0.personas.IdP_Sexo idP_Sexo) {
         this.idP_Sexo = idP_Sexo;
     }
 
@@ -332,7 +332,7 @@ public class M_CiudadanoRegistraduria  implements java.io.Serializable {
      * 
      * @return DFechaNacimiento
      */
-    public java.util.Calendar getDFechaNacimiento() {
+    public java.lang.String getDFechaNacimiento() {
         return DFechaNacimiento;
     }
 
@@ -342,7 +342,7 @@ public class M_CiudadanoRegistraduria  implements java.io.Serializable {
      * 
      * @param DFechaNacimiento
      */
-    public void setDFechaNacimiento(java.util.Calendar DFechaNacimiento) {
+    public void setDFechaNacimiento(java.lang.String DFechaNacimiento) {
         this.DFechaNacimiento = DFechaNacimiento;
     }
 
@@ -352,7 +352,7 @@ public class M_CiudadanoRegistraduria  implements java.io.Serializable {
      * 
      * @return DFechaDefuncion
      */
-    public java.util.Calendar getDFechaDefuncion() {
+    public java.lang.String getDFechaDefuncion() {
         return DFechaDefuncion;
     }
 
@@ -362,7 +362,7 @@ public class M_CiudadanoRegistraduria  implements java.io.Serializable {
      * 
      * @param DFechaDefuncion
      */
-    public void setDFechaDefuncion(java.util.Calendar DFechaDefuncion) {
+    public void setDFechaDefuncion(java.lang.String DFechaDefuncion) {
         this.DFechaDefuncion = DFechaDefuncion;
     }
 
@@ -632,21 +632,21 @@ public class M_CiudadanoRegistraduria  implements java.io.Serializable {
         elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("idP_MunicipioExp");
         elemField.setXmlName(new javax.xml.namespace.QName("", "IdP_MunicipioExp"));
-        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://www.colpensiones.gov.co/bdua/contracts/1.0/personas", "IdP_MunicipioExp"));
         elemField.setMinOccurs(0);
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
         elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("DFechaExpedicion");
         elemField.setXmlName(new javax.xml.namespace.QName("", "DFechaExpedicion"));
-        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "dateTime"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "anySimpleType"));
         elemField.setMinOccurs(0);
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
         elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("estadoCedula");
         elemField.setXmlName(new javax.xml.namespace.QName("", "EstadoCedula"));
-        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://www.colpensiones.gov.co/bdua/contracts/1.0/personas", "EstadoCedula"));
         elemField.setMinOccurs(0);
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
@@ -667,21 +667,21 @@ public class M_CiudadanoRegistraduria  implements java.io.Serializable {
         elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("idP_Sexo");
         elemField.setXmlName(new javax.xml.namespace.QName("", "IdP_Sexo"));
-        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://www.colpensiones.gov.co/bdua/contracts/1.0/personas", "IdP_Sexo"));
         elemField.setMinOccurs(0);
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
         elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("DFechaNacimiento");
         elemField.setXmlName(new javax.xml.namespace.QName("", "DFechaNacimiento"));
-        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "dateTime"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "anySimpleType"));
         elemField.setMinOccurs(0);
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
         elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("DFechaDefuncion");
         elemField.setXmlName(new javax.xml.namespace.QName("", "DFechaDefuncion"));
-        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "dateTime"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "anySimpleType"));
         elemField.setMinOccurs(0);
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);

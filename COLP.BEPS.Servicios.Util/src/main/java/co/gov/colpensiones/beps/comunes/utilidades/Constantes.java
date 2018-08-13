@@ -911,6 +911,8 @@ public class Constantes {
     public static final String CONFIG_WS = "config-ws";
     public static final String URL_SERVICIO_WEB_VIABILIDAD = "url_servicio_web_viabilidad";
     public static final String PARAMETRO_WSDL = "?wsdl";
+    public static final String PASSWORD_HTTP = "password_http";
+    public static final String USER_HTTP = "user_http";
     
     
     

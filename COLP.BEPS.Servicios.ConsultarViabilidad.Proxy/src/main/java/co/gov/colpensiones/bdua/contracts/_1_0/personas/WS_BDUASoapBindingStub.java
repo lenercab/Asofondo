@@ -7,6 +7,9 @@
 
 package co.gov.colpensiones.bdua.contracts._1_0.personas;
 
+import co.gov.colpensiones.beps.comunes.utilidades.Constantes;
+import co.gov.colpensiones.beps.comunes.utilidades.Util;
+
 public class WS_BDUASoapBindingStub extends org.apache.axis.client.Stub implements co.gov.colpensiones.www.bdua.contracts._1_0.personas.ServicioWebViabilidad {
     private java.util.Vector cachedSerClasses = new java.util.Vector();
     private java.util.Vector cachedSerQNames = new java.util.Vector();
@@ -48,7 +51,7 @@ public class WS_BDUASoapBindingStub extends org.apache.axis.client.Stub implemen
         oper.addParameter(param);
         oper.setReturnType(new javax.xml.namespace.QName("http://www.colpensiones.gov.co/bdua/contracts/1.0/personas", "M_GestionVinculacionBEPS"));
         oper.setReturnClass(co.gov.colpensiones.www.bdua.contracts._1_0.personas.M_GestionVinculacionBEPS.class);
-        oper.setReturnQName(new javax.xml.namespace.QName("", "m_GestionVinculacionBEPS"));
+        oper.setReturnQName(new javax.xml.namespace.QName("", "M_GestionVinculacionBEPS"));
         oper.setStyle(org.apache.axis.constants.Style.WRAPPED);
         oper.setUse(org.apache.axis.constants.Use.LITERAL);
         _operations[0] = oper;
@@ -128,9 +131,116 @@ public class WS_BDUASoapBindingStub extends org.apache.axis.client.Stub implemen
             cachedSerFactories.add(beansf);
             cachedDeserFactories.add(beandf);
 
+            qName = new javax.xml.namespace.QName("http://www.colpensiones.gov.co/bdua/contracts/1.0/personas", "CausalesNoViabilidad");
+            cachedSerQNames.add(qName);
+            cls = co.gov.colpensiones.www.bdua.contracts._1_0.personas.CausalesNoViabilidad.class;
+            cachedSerClasses.add(cls);
+            cachedSerFactories.add(beansf);
+            cachedDeserFactories.add(beandf);
+
+            qName = new javax.xml.namespace.QName("http://www.colpensiones.gov.co/bdua/contracts/1.0/personas", "CausalesNoViabilidadBEPS");
+            cachedSerQNames.add(qName);
+            cls = co.gov.colpensiones.www.bdua.contracts._1_0.personas.CausalesNoViabilidad[].class;
+            cachedSerClasses.add(cls);
+            qName = new javax.xml.namespace.QName("http://www.colpensiones.gov.co/bdua/contracts/1.0/personas", "CausalesNoViabilidad");
+            qName2 = new javax.xml.namespace.QName("", "CausalesNoViabilidad");
+            cachedSerFactories.add(new org.apache.axis.encoding.ser.ArraySerializerFactory(qName, qName2));
+            cachedDeserFactories.add(new org.apache.axis.encoding.ser.ArrayDeserializerFactory());
+
+            qName = new javax.xml.namespace.QName("http://www.colpensiones.gov.co/bdua/contracts/1.0/personas", "CausalNoViabilidadBEPS");
+            cachedSerQNames.add(qName);
+            cls = co.gov.colpensiones.www.bdua.contracts._1_0.personas.CausalNoViabilidadBEPS.class;
+            cachedSerClasses.add(cls);
+            cachedSerFactories.add(beansf);
+            cachedDeserFactories.add(beandf);
+
+            qName = new javax.xml.namespace.QName("http://www.colpensiones.gov.co/bdua/contracts/1.0/personas", "EstadoCedula");
+            cachedSerQNames.add(qName);
+            cls = co.gov.colpensiones.www.bdua.contracts._1_0.personas.EstadoCedula.class;
+            cachedSerClasses.add(cls);
+            cachedSerFactories.add(beansf);
+            cachedDeserFactories.add(beandf);
+
             qName = new javax.xml.namespace.QName("http://www.colpensiones.gov.co/bdua/contracts/1.0/personas", "IdM_Tramite");
             cachedSerQNames.add(qName);
             cls = co.gov.colpensiones.www.bdua.contracts._1_0.personas.IdM_Tramite.class;
+            cachedSerClasses.add(cls);
+            cachedSerFactories.add(beansf);
+            cachedDeserFactories.add(beandf);
+
+            qName = new javax.xml.namespace.QName("http://www.colpensiones.gov.co/bdua/contracts/1.0/personas", "IdP_EPS");
+            cachedSerQNames.add(qName);
+            cls = co.gov.colpensiones.www.bdua.contracts._1_0.personas.IdP_EPS.class;
+            cachedSerClasses.add(cls);
+            cachedSerFactories.add(beansf);
+            cachedDeserFactories.add(beandf);
+
+            qName = new javax.xml.namespace.QName("http://www.colpensiones.gov.co/bdua/contracts/1.0/personas", "IdP_EstadoAfiliacion");
+            cachedSerQNames.add(qName);
+            cls = co.gov.colpensiones.www.bdua.contracts._1_0.personas.IdP_EstadoAfiliacion.class;
+            cachedSerClasses.add(cls);
+            cachedSerFactories.add(beansf);
+            cachedDeserFactories.add(beandf);
+
+            qName = new javax.xml.namespace.QName("http://www.colpensiones.gov.co/bdua/contracts/1.0/personas", "IdP_EstadoBDEX");
+            cachedSerQNames.add(qName);
+            cls = co.gov.colpensiones.www.bdua.contracts._1_0.personas.IdP_EstadoBDEX.class;
+            cachedSerClasses.add(cls);
+            cachedSerFactories.add(beansf);
+            cachedDeserFactories.add(beandf);
+
+            qName = new javax.xml.namespace.QName("http://www.colpensiones.gov.co/bdua/contracts/1.0/personas", "IdP_EstadoEvol");
+            cachedSerQNames.add(qName);
+            cls = co.gov.colpensiones.www.bdua.contracts._1_0.personas.IdP_EstadoEvol.class;
+            cachedSerClasses.add(cls);
+            cachedSerFactories.add(beansf);
+            cachedDeserFactories.add(beandf);
+
+            qName = new javax.xml.namespace.QName("http://www.colpensiones.gov.co/bdua/contracts/1.0/personas", "IdP_EstadoMipres");
+            cachedSerQNames.add(qName);
+            cls = co.gov.colpensiones.www.bdua.contracts._1_0.personas.IdP_EstadoMipres.class;
+            cachedSerClasses.add(cls);
+            cachedSerFactories.add(beansf);
+            cachedDeserFactories.add(beandf);
+
+            qName = new javax.xml.namespace.QName("http://www.colpensiones.gov.co/bdua/contracts/1.0/personas", "IdP_MunicipioAfiliacion");
+            cachedSerQNames.add(qName);
+            cls = co.gov.colpensiones.www.bdua.contracts._1_0.personas.IdP_MunicipioAfiliacion.class;
+            cachedSerClasses.add(cls);
+            cachedSerFactories.add(beansf);
+            cachedDeserFactories.add(beandf);
+
+            qName = new javax.xml.namespace.QName("http://www.colpensiones.gov.co/bdua/contracts/1.0/personas", "IdP_MunicipioExp");
+            cachedSerQNames.add(qName);
+            cls = co.gov.colpensiones.www.bdua.contracts._1_0.personas.IdP_MunicipioExp.class;
+            cachedSerClasses.add(cls);
+            cachedSerFactories.add(beansf);
+            cachedDeserFactories.add(beandf);
+
+            qName = new javax.xml.namespace.QName("http://www.colpensiones.gov.co/bdua/contracts/1.0/personas", "IdP_RegimenAfiliacion");
+            cachedSerQNames.add(qName);
+            cls = co.gov.colpensiones.www.bdua.contracts._1_0.personas.IdP_RegimenAfiliacion.class;
+            cachedSerClasses.add(cls);
+            cachedSerFactories.add(beansf);
+            cachedDeserFactories.add(beandf);
+
+            qName = new javax.xml.namespace.QName("http://www.colpensiones.gov.co/bdua/contracts/1.0/personas", "IdP_Sexo");
+            cachedSerQNames.add(qName);
+            cls = co.gov.colpensiones.www.bdua.contracts._1_0.personas.IdP_Sexo.class;
+            cachedSerClasses.add(cls);
+            cachedSerFactories.add(beansf);
+            cachedDeserFactories.add(beandf);
+
+            qName = new javax.xml.namespace.QName("http://www.colpensiones.gov.co/bdua/contracts/1.0/personas", "IdP_TipoAfiliado");
+            cachedSerQNames.add(qName);
+            cls = co.gov.colpensiones.www.bdua.contracts._1_0.personas.IdP_TipoAfiliado.class;
+            cachedSerClasses.add(cls);
+            cachedSerFactories.add(beansf);
+            cachedDeserFactories.add(beandf);
+
+            qName = new javax.xml.namespace.QName("http://www.colpensiones.gov.co/bdua/contracts/1.0/personas", "IdP_TipoDocumento");
+            cachedSerQNames.add(qName);
+            cls = co.gov.colpensiones.www.bdua.contracts._1_0.personas.IdP_TipoDocumento.class;
             cachedSerClasses.add(cls);
             cachedSerFactories.add(beansf);
             cachedDeserFactories.add(beandf);
@@ -186,6 +296,13 @@ public class WS_BDUASoapBindingStub extends org.apache.axis.client.Stub implemen
             cachedSerFactories.add(beansf);
             cachedDeserFactories.add(beandf);
 
+            qName = new javax.xml.namespace.QName("http://www.colpensiones.gov.co/bdua/contracts/1.0/personas", "M_InformacionBDUA");
+            cachedSerQNames.add(qName);
+            cls = co.gov.colpensiones.www.bdua.contracts._1_0.personas.M_InformacionBDUA.class;
+            cachedSerClasses.add(cls);
+            cachedSerFactories.add(beansf);
+            cachedDeserFactories.add(beandf);
+
             qName = new javax.xml.namespace.QName("http://www.colpensiones.gov.co/bdua/contracts/1.0/personas", "mGestionErrores");
             cachedSerQNames.add(qName);
             cls = co.gov.colpensiones.www.bdua.contracts._1_0.personas.MGestionErrores.class;
@@ -193,9 +310,9 @@ public class WS_BDUASoapBindingStub extends org.apache.axis.client.Stub implemen
             cachedSerFactories.add(beansf);
             cachedDeserFactories.add(beandf);
 
-            qName = new javax.xml.namespace.QName("http://www.colpensiones.gov.co/bdua/contracts/1.0/personas", "mInformacionBDUA");
+            qName = new javax.xml.namespace.QName("http://www.colpensiones.gov.co/bdua/contracts/1.0/personas", "P_ViabilidadBEPS");
             cachedSerQNames.add(qName);
-            cls = co.gov.colpensiones.www.bdua.contracts._1_0.personas.MInformacionBDUA.class;
+            cls = co.gov.colpensiones.www.bdua.contracts._1_0.personas.P_ViabilidadBEPS.class;
             cachedSerClasses.add(cls);
             cachedSerFactories.add(beansf);
             cachedDeserFactories.add(beandf);
@@ -215,12 +332,10 @@ public class WS_BDUASoapBindingStub extends org.apache.axis.client.Stub implemen
             if (super.maintainSessionSet) {
                 _call.setMaintainSession(super.maintainSession);
             }
-            if (super.cachedUsername != null) {
-                _call.setUsername(super.cachedUsername);
-            }
-            if (super.cachedPassword != null) {
-                _call.setPassword(super.cachedPassword);
-            }
+            
+            _call.setUsername(Util.obtenerValueConfigWS(Constantes.USER_HTTP));
+            _call.setPassword(Util.obtenerValueConfigWS(Constantes.PASSWORD_HTTP));
+
             if (super.cachedEndpoint != null) {
                 _call.setTargetEndpointAddress(super.cachedEndpoint);
             }
@@ -286,6 +401,8 @@ public class WS_BDUASoapBindingStub extends org.apache.axis.client.Stub implemen
         _call.setProperty(org.apache.axis.AxisEngine.PROP_DOMULTIREFS, Boolean.FALSE);
         _call.setSOAPVersion(org.apache.axis.soap.SOAPConstants.SOAP11_CONSTANTS);
         _call.setOperationName(new javax.xml.namespace.QName("http://www.colpensiones.gov.co/bdua/contracts/1.0/personas", "viabilidad"));
+//        _call.setUsername("wsBeps_Bdua");
+//        _call.setPassword("W$B3psBdu4");
 
         setRequestHeaders(_call);
         setAttachments(_call);

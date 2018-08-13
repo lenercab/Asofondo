@@ -8,7 +8,7 @@
 package co.gov.colpensiones.www.bdua.contracts._1_0.personas;
 
 public class M_CiudadanoBeps  implements java.io.Serializable {
-    private java.lang.String idP_TipoDocumento;
+    private co.gov.colpensiones.www.bdua.contracts._1_0.personas.IdP_TipoDocumento idP_TipoDocumento;
 
     private java.lang.String SNumeroIdentificacion;
 
@@ -22,9 +22,9 @@ public class M_CiudadanoBeps  implements java.io.Serializable {
 
     private java.lang.String SParticula;
 
-    private java.lang.String idP_MunicipioExp;
+    private co.gov.colpensiones.www.bdua.contracts._1_0.personas.IdP_MunicipioExp idP_MunicipioExp;
 
-    private java.util.Calendar DFechaExpedicion;
+    private java.lang.String DFechaExpedicion;
 
     private java.lang.String estadoCedula;
 
@@ -32,43 +32,46 @@ public class M_CiudadanoBeps  implements java.io.Serializable {
 
     private java.lang.String SAnoResolucion;
 
-    private java.lang.String idP_Sexo;
+    private co.gov.colpensiones.www.bdua.contracts._1_0.personas.IdP_Sexo idP_Sexo;
 
-    private java.util.Calendar DFechaNacimiento;
+    private java.lang.String DFechaNacimiento;
 
     private java.lang.String departamento_Nacimiento;
 
     private java.lang.String municipio_Nacimiento;
 
-    private java.util.Calendar DFechaDefuncion;
+    private java.lang.String DFechaDefuncion;
 
-    private java.lang.String p_ViabilidadBEPS;
+    private co.gov.colpensiones.www.bdua.contracts._1_0.personas.P_ViabilidadBEPS p_ViabilidadBEPS;
 
     private co.gov.colpensiones.www.bdua.contracts._1_0.personas.InformacionViablidad informacionViablidad;
+
+    private co.gov.colpensiones.www.bdua.contracts._1_0.personas.CausalesNoViabilidad[] causalesNoViabilidadBEPS;
 
     public M_CiudadanoBeps() {
     }
 
     public M_CiudadanoBeps(
-           java.lang.String idP_TipoDocumento,
+           co.gov.colpensiones.www.bdua.contracts._1_0.personas.IdP_TipoDocumento idP_TipoDocumento,
            java.lang.String SNumeroIdentificacion,
            java.lang.String SPrimerApellido,
            java.lang.String SSegundoApellido,
            java.lang.String SPrimerNombre,
            java.lang.String SSegundoNombre,
            java.lang.String SParticula,
-           java.lang.String idP_MunicipioExp,
-           java.util.Calendar DFechaExpedicion,
+           co.gov.colpensiones.www.bdua.contracts._1_0.personas.IdP_MunicipioExp idP_MunicipioExp,
+           java.lang.String DFechaExpedicion,
            java.lang.String estadoCedula,
            java.lang.String SNumeroResolucion,
            java.lang.String SAnoResolucion,
-           java.lang.String idP_Sexo,
-           java.util.Calendar DFechaNacimiento,
+           co.gov.colpensiones.www.bdua.contracts._1_0.personas.IdP_Sexo idP_Sexo,
+           java.lang.String DFechaNacimiento,
            java.lang.String departamento_Nacimiento,
            java.lang.String municipio_Nacimiento,
-           java.util.Calendar DFechaDefuncion,
-           java.lang.String p_ViabilidadBEPS,
-           co.gov.colpensiones.www.bdua.contracts._1_0.personas.InformacionViablidad informacionViablidad) {
+           java.lang.String DFechaDefuncion,
+           co.gov.colpensiones.www.bdua.contracts._1_0.personas.P_ViabilidadBEPS p_ViabilidadBEPS,
+           co.gov.colpensiones.www.bdua.contracts._1_0.personas.InformacionViablidad informacionViablidad,
+           co.gov.colpensiones.www.bdua.contracts._1_0.personas.CausalesNoViabilidad[] causalesNoViabilidadBEPS) {
            this.idP_TipoDocumento = idP_TipoDocumento;
            this.SNumeroIdentificacion = SNumeroIdentificacion;
            this.SPrimerApellido = SPrimerApellido;
@@ -88,6 +91,7 @@ public class M_CiudadanoBeps  implements java.io.Serializable {
            this.DFechaDefuncion = DFechaDefuncion;
            this.p_ViabilidadBEPS = p_ViabilidadBEPS;
            this.informacionViablidad = informacionViablidad;
+           this.causalesNoViabilidadBEPS = causalesNoViabilidadBEPS;
     }
 
 
@@ -96,7 +100,7 @@ public class M_CiudadanoBeps  implements java.io.Serializable {
      * 
      * @return idP_TipoDocumento
      */
-    public java.lang.String getIdP_TipoDocumento() {
+    public co.gov.colpensiones.www.bdua.contracts._1_0.personas.IdP_TipoDocumento getIdP_TipoDocumento() {
         return idP_TipoDocumento;
     }
 
@@ -106,7 +110,7 @@ public class M_CiudadanoBeps  implements java.io.Serializable {
      * 
      * @param idP_TipoDocumento
      */
-    public void setIdP_TipoDocumento(java.lang.String idP_TipoDocumento) {
+    public void setIdP_TipoDocumento(co.gov.colpensiones.www.bdua.contracts._1_0.personas.IdP_TipoDocumento idP_TipoDocumento) {
         this.idP_TipoDocumento = idP_TipoDocumento;
     }
 
@@ -236,7 +240,7 @@ public class M_CiudadanoBeps  implements java.io.Serializable {
      * 
      * @return idP_MunicipioExp
      */
-    public java.lang.String getIdP_MunicipioExp() {
+    public co.gov.colpensiones.www.bdua.contracts._1_0.personas.IdP_MunicipioExp getIdP_MunicipioExp() {
         return idP_MunicipioExp;
     }
 
@@ -246,7 +250,7 @@ public class M_CiudadanoBeps  implements java.io.Serializable {
      * 
      * @param idP_MunicipioExp
      */
-    public void setIdP_MunicipioExp(java.lang.String idP_MunicipioExp) {
+    public void setIdP_MunicipioExp(co.gov.colpensiones.www.bdua.contracts._1_0.personas.IdP_MunicipioExp idP_MunicipioExp) {
         this.idP_MunicipioExp = idP_MunicipioExp;
     }
 
@@ -256,7 +260,7 @@ public class M_CiudadanoBeps  implements java.io.Serializable {
      * 
      * @return DFechaExpedicion
      */
-    public java.util.Calendar getDFechaExpedicion() {
+    public java.lang.String getDFechaExpedicion() {
         return DFechaExpedicion;
     }
 
@@ -266,7 +270,7 @@ public class M_CiudadanoBeps  implements java.io.Serializable {
      * 
      * @param DFechaExpedicion
      */
-    public void setDFechaExpedicion(java.util.Calendar DFechaExpedicion) {
+    public void setDFechaExpedicion(java.lang.String DFechaExpedicion) {
         this.DFechaExpedicion = DFechaExpedicion;
     }
 
@@ -336,7 +340,7 @@ public class M_CiudadanoBeps  implements java.io.Serializable {
      * 
      * @return idP_Sexo
      */
-    public java.lang.String getIdP_Sexo() {
+    public co.gov.colpensiones.www.bdua.contracts._1_0.personas.IdP_Sexo getIdP_Sexo() {
         return idP_Sexo;
     }
 
@@ -346,7 +350,7 @@ public class M_CiudadanoBeps  implements java.io.Serializable {
      * 
      * @param idP_Sexo
      */
-    public void setIdP_Sexo(java.lang.String idP_Sexo) {
+    public void setIdP_Sexo(co.gov.colpensiones.www.bdua.contracts._1_0.personas.IdP_Sexo idP_Sexo) {
         this.idP_Sexo = idP_Sexo;
     }
 
@@ -356,7 +360,7 @@ public class M_CiudadanoBeps  implements java.io.Serializable {
      * 
      * @return DFechaNacimiento
      */
-    public java.util.Calendar getDFechaNacimiento() {
+    public java.lang.String getDFechaNacimiento() {
         return DFechaNacimiento;
     }
 
@@ -366,7 +370,7 @@ public class M_CiudadanoBeps  implements java.io.Serializable {
      * 
      * @param DFechaNacimiento
      */
-    public void setDFechaNacimiento(java.util.Calendar DFechaNacimiento) {
+    public void setDFechaNacimiento(java.lang.String DFechaNacimiento) {
         this.DFechaNacimiento = DFechaNacimiento;
     }
 
@@ -416,7 +420,7 @@ public class M_CiudadanoBeps  implements java.io.Serializable {
      * 
      * @return DFechaDefuncion
      */
-    public java.util.Calendar getDFechaDefuncion() {
+    public java.lang.String getDFechaDefuncion() {
         return DFechaDefuncion;
     }
 
@@ -426,7 +430,7 @@ public class M_CiudadanoBeps  implements java.io.Serializable {
      * 
      * @param DFechaDefuncion
      */
-    public void setDFechaDefuncion(java.util.Calendar DFechaDefuncion) {
+    public void setDFechaDefuncion(java.lang.String DFechaDefuncion) {
         this.DFechaDefuncion = DFechaDefuncion;
     }
 
@@ -436,7 +440,7 @@ public class M_CiudadanoBeps  implements java.io.Serializable {
      * 
      * @return p_ViabilidadBEPS
      */
-    public java.lang.String getP_ViabilidadBEPS() {
+    public co.gov.colpensiones.www.bdua.contracts._1_0.personas.P_ViabilidadBEPS getP_ViabilidadBEPS() {
         return p_ViabilidadBEPS;
     }
 
@@ -446,7 +450,7 @@ public class M_CiudadanoBeps  implements java.io.Serializable {
      * 
      * @param p_ViabilidadBEPS
      */
-    public void setP_ViabilidadBEPS(java.lang.String p_ViabilidadBEPS) {
+    public void setP_ViabilidadBEPS(co.gov.colpensiones.www.bdua.contracts._1_0.personas.P_ViabilidadBEPS p_ViabilidadBEPS) {
         this.p_ViabilidadBEPS = p_ViabilidadBEPS;
     }
 
@@ -468,6 +472,26 @@ public class M_CiudadanoBeps  implements java.io.Serializable {
      */
     public void setInformacionViablidad(co.gov.colpensiones.www.bdua.contracts._1_0.personas.InformacionViablidad informacionViablidad) {
         this.informacionViablidad = informacionViablidad;
+    }
+
+
+    /**
+     * Gets the causalesNoViabilidadBEPS value for this M_CiudadanoBeps.
+     * 
+     * @return causalesNoViabilidadBEPS
+     */
+    public co.gov.colpensiones.www.bdua.contracts._1_0.personas.CausalesNoViabilidad[] getCausalesNoViabilidadBEPS() {
+        return causalesNoViabilidadBEPS;
+    }
+
+
+    /**
+     * Sets the causalesNoViabilidadBEPS value for this M_CiudadanoBeps.
+     * 
+     * @param causalesNoViabilidadBEPS
+     */
+    public void setCausalesNoViabilidadBEPS(co.gov.colpensiones.www.bdua.contracts._1_0.personas.CausalesNoViabilidad[] causalesNoViabilidadBEPS) {
+        this.causalesNoViabilidadBEPS = causalesNoViabilidadBEPS;
     }
 
     private java.lang.Object __equalsCalc = null;
@@ -538,7 +562,10 @@ public class M_CiudadanoBeps  implements java.io.Serializable {
               this.p_ViabilidadBEPS.equals(other.getP_ViabilidadBEPS()))) &&
             ((this.informacionViablidad==null && other.getInformacionViablidad()==null) || 
              (this.informacionViablidad!=null &&
-              this.informacionViablidad.equals(other.getInformacionViablidad())));
+              this.informacionViablidad.equals(other.getInformacionViablidad()))) &&
+            ((this.causalesNoViabilidadBEPS==null && other.getCausalesNoViabilidadBEPS()==null) || 
+             (this.causalesNoViabilidadBEPS!=null &&
+              java.util.Arrays.equals(this.causalesNoViabilidadBEPS, other.getCausalesNoViabilidadBEPS())));
         __equalsCalc = null;
         return _equals;
     }
@@ -607,6 +634,17 @@ public class M_CiudadanoBeps  implements java.io.Serializable {
         if (getInformacionViablidad() != null) {
             _hashCode += getInformacionViablidad().hashCode();
         }
+        if (getCausalesNoViabilidadBEPS() != null) {
+            for (int i=0;
+                 i<java.lang.reflect.Array.getLength(getCausalesNoViabilidadBEPS());
+                 i++) {
+                java.lang.Object obj = java.lang.reflect.Array.get(getCausalesNoViabilidadBEPS(), i);
+                if (obj != null &&
+                    !obj.getClass().isArray()) {
+                    _hashCode += obj.hashCode();
+                }
+            }
+        }
         __hashCodeCalc = false;
         return _hashCode;
     }
@@ -620,7 +658,7 @@ public class M_CiudadanoBeps  implements java.io.Serializable {
         org.apache.axis.description.ElementDesc elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("idP_TipoDocumento");
         elemField.setXmlName(new javax.xml.namespace.QName("", "IdP_TipoDocumento"));
-        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://www.colpensiones.gov.co/bdua/contracts/1.0/personas", "IdP_TipoDocumento"));
         elemField.setMinOccurs(0);
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
@@ -669,14 +707,14 @@ public class M_CiudadanoBeps  implements java.io.Serializable {
         elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("idP_MunicipioExp");
         elemField.setXmlName(new javax.xml.namespace.QName("", "IdP_MunicipioExp"));
-        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://www.colpensiones.gov.co/bdua/contracts/1.0/personas", "IdP_MunicipioExp"));
         elemField.setMinOccurs(0);
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
         elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("DFechaExpedicion");
         elemField.setXmlName(new javax.xml.namespace.QName("", "DFechaExpedicion"));
-        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "dateTime"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "anySimpleType"));
         elemField.setMinOccurs(0);
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
@@ -704,14 +742,14 @@ public class M_CiudadanoBeps  implements java.io.Serializable {
         elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("idP_Sexo");
         elemField.setXmlName(new javax.xml.namespace.QName("", "IdP_Sexo"));
-        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://www.colpensiones.gov.co/bdua/contracts/1.0/personas", "IdP_Sexo"));
         elemField.setMinOccurs(0);
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
         elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("DFechaNacimiento");
         elemField.setXmlName(new javax.xml.namespace.QName("", "DFechaNacimiento"));
-        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "dateTime"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "anySimpleType"));
         elemField.setMinOccurs(0);
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
@@ -732,23 +770,31 @@ public class M_CiudadanoBeps  implements java.io.Serializable {
         elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("DFechaDefuncion");
         elemField.setXmlName(new javax.xml.namespace.QName("", "DFechaDefuncion"));
-        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "dateTime"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "anySimpleType"));
         elemField.setMinOccurs(0);
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
         elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("p_ViabilidadBEPS");
         elemField.setXmlName(new javax.xml.namespace.QName("", "P_ViabilidadBEPS"));
-        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://www.colpensiones.gov.co/bdua/contracts/1.0/personas", "P_ViabilidadBEPS"));
         elemField.setMinOccurs(0);
         elemField.setNillable(false);
         typeDesc.addFieldDesc(elemField);
         elemField = new org.apache.axis.description.ElementDesc();
         elemField.setFieldName("informacionViablidad");
-        elemField.setXmlName(new javax.xml.namespace.QName("", "informacionViablidad"));
+        elemField.setXmlName(new javax.xml.namespace.QName("", "InformacionViablidad"));
         elemField.setXmlType(new javax.xml.namespace.QName("http://www.colpensiones.gov.co/bdua/contracts/1.0/personas", "informacionViablidad"));
         elemField.setMinOccurs(0);
         elemField.setNillable(false);
+        typeDesc.addFieldDesc(elemField);
+        elemField = new org.apache.axis.description.ElementDesc();
+        elemField.setFieldName("causalesNoViabilidadBEPS");
+        elemField.setXmlName(new javax.xml.namespace.QName("", "CausalesNoViabilidadBEPS"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://www.colpensiones.gov.co/bdua/contracts/1.0/personas", "CausalesNoViabilidad"));
+        elemField.setMinOccurs(0);
+        elemField.setNillable(false);
+        elemField.setItemQName(new javax.xml.namespace.QName("", "CausalesNoViabilidad"));
         typeDesc.addFieldDesc(elemField);
     }
 

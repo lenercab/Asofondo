@@ -7,11 +7,13 @@
 
 package co.gov.colpensiones.bdua.contracts._1_0.personas;
 
+import co.gov.colpensiones.beps.comunes.utilidades.Util;
+
 public class WS_BDUALocator extends org.apache.axis.client.Service implements co.gov.colpensiones.bdua.contracts._1_0.personas.WS_BDUA {
 
-    public WS_BDUALocator() {
+	public WS_BDUALocator() throws Exception {
+    	ServicioWebViabilidadPort_address = Util.obtenerUrlServicioWebViabilidad();
     }
-
 
     public WS_BDUALocator(org.apache.axis.EngineConfiguration config) {
         super(config);
