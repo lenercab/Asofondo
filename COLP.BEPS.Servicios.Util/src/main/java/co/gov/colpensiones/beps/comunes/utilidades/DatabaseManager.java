@@ -606,8 +606,7 @@ public class DatabaseManager {
 			printLogBD(PRINT_COMMAND, getCommandAsString(command) + TEXTO_UUID + uuid);
 
 			CallableStatement stmt = conn.prepareCall(callStoredProcedure);
-
-			/* Adiciona los parametros de entrada y salida al Callable Statement */ 
+           	/* Adiciona los parametros de entrada y salida al Callable Statement */ 
 			for (DbParameter parameter : command.getParameters()) {
 				if (parameter.getParamDirection() == ParameterDirection.OUT){
 					stmt.registerOutParameter(parameter.getParameterName(), parameter.getParameterType());

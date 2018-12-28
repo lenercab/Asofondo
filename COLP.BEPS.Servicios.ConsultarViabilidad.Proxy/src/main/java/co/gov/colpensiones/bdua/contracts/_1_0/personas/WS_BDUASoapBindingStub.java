@@ -7,6 +7,12 @@
 
 package co.gov.colpensiones.bdua.contracts._1_0.personas;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
+
 import co.gov.colpensiones.beps.comunes.utilidades.Constantes;
 import co.gov.colpensiones.beps.comunes.utilidades.Util;
 
@@ -401,8 +407,13 @@ public class WS_BDUASoapBindingStub extends org.apache.axis.client.Stub implemen
         _call.setProperty(org.apache.axis.AxisEngine.PROP_DOMULTIREFS, Boolean.FALSE);
         _call.setSOAPVersion(org.apache.axis.soap.SOAPConstants.SOAP11_CONSTANTS);
         _call.setOperationName(new javax.xml.namespace.QName("http://www.colpensiones.gov.co/bdua/contracts/1.0/personas", "viabilidad"));
-//        _call.setUsername("wsBeps_Bdua");
-//        _call.setPassword("W$B3psBdu4");
+		try {
+			_call.setUsername(getProperties().getProperty("user_http"));
+			_call.setPassword(getProperties().getProperty("password_http"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
         setRequestHeaders(_call);
         setAttachments(_call);
@@ -473,6 +484,20 @@ public class WS_BDUASoapBindingStub extends org.apache.axis.client.Stub implemen
   } catch (org.apache.axis.AxisFault axisFaultException) {
   throw axisFaultException;
 }
+    }
+    
+    public Properties getProperties() throws IOException{
+    	
+   	 
+        Properties prop = new Properties();
+    	String dir = System.getProperty("jboss.home.dir");
+        String upload_location = dir + File.separator + "config-ws" + File.separator + "datos.properties";
+        InputStream inputStream = new FileInputStream(upload_location);
+        
+        prop.load(inputStream);
+         
+        return prop;
+    	
     }
 
 }

@@ -110,8 +110,9 @@ public class BLConsultarVinculadoBepsAsofondos extends BLVinculadoAsofondos{
         				TipoInformacionGeneralSolicitanteDTO informacionGeneralSolicitante = respuestaInformacionSolicitanteDTO.getDetalle();
         				
         				if (informacionGeneralSolicitante!=null){
+        					
         					String tipoPersona = informacionGeneralSolicitante.getTipoPersona();
-
+        					
         					switch (tipoPersona){
         					case ConstantesVinculadoAsofondos.COD_TIPO_VI:
         						respuestaServicio = mapearDatosVinculado(informacionGeneralSolicitante);
@@ -127,6 +128,7 @@ public class BLConsultarVinculadoBepsAsofondos extends BLVinculadoAsofondos{
         				}else{
         					respuestaServicio = new TipoInformacionSolicitanteDTO();
         					respuestaServicio.setEstadoEjecucion(respuestaNegocioServicio(ConstantesVinculadoAsofondos.COD_ERROR_LOGICA_NEGOCIO, ConstantesVinculadoAsofondos.MSJ_ERROR_NO_EXISTE_PROSPECTO));
+                                                       
         				}
     				}
     			}

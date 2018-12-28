@@ -221,10 +221,12 @@ public class BLConsultar extends BLVinculado {
 
 			} else if (tipoSolicitante.equals("VI")) {
 				/* Si es vinculado */
-				List<DataTable> informacionPrevinculado = data
+				List<DataTable> informacionVinculado = data
 						.getResultSetList();
 				TipoInformacionGeneralSolicitanteDTO detalle = mapearDatosVinculado(
-						informacionPrevinculado, identificacion);
+						informacionVinculado, identificacion);
+				
+				
 				response.setDetalle(detalle);
 
 				/* Ejecución exitosa del procedimiento */
@@ -269,7 +271,7 @@ public class BLConsultar extends BLVinculado {
 	private TipoInformacionGeneralSolicitanteDTO mapearDatosPrevinculado(
 			List<DataTable> informacionPrevinculado,
 			TipoDocumentoPersonaNatural identificacion) throws Exception {
-
+		
 		TipoInformacionGeneralSolicitanteDTO detallePrevinculado = new TipoInformacionGeneralSolicitanteDTO();
 
 		try {
@@ -373,10 +375,11 @@ public class BLConsultar extends BLVinculado {
 	 * @return objeto de tipo TipoRespuestaInformacionSolicitanteDTO que
 	 *         contiene toda la información consultada para el solicitante
 	 */
+		
 	private TipoInformacionGeneralSolicitanteDTO mapearDatosVinculado(
 			List<DataTable> informacionVinculado,
 			TipoDocumentoPersonaNatural identificacion) throws Exception {
-
+		
 		TipoInformacionGeneralSolicitanteDTO detalleVinculado = new TipoInformacionGeneralSolicitanteDTO();
 
 		try {
@@ -390,7 +393,8 @@ public class BLConsultar extends BLVinculado {
 				if (informacionVinculado.get(0).getRows().size() > 0) {
 					DataRow dtResult = informacionVinculado.get(0).getRows()
 							.get(0);
-
+					
+                    
 					/* Tipo Persona */
 					detalleVinculado.setTipoPersona(parseDataRowValue(dtResult,
 							"tipo_persona"));

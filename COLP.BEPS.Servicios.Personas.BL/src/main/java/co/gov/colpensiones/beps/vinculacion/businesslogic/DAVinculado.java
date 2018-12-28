@@ -315,7 +315,12 @@ public class DAVinculado {
 
             // Se obtienen los datos de la ejecucion del procedimiento
             data = database.executeListResultSet(command);
-
+            
+            for(DbParameter p: data.getParametrosSalida()){
+            	System.out.println(p.getParameterName() +" :"+ p.getParameterValue());
+            	
+            }
+           
         } catch (Exception e) {
             HashMap<String, String> metaData = new HashMap<String, String>();
             metaData.put(ConstantesLoggerServicios.METADATA_TIPO_DOCUMENTO, tipoDocumento.getTipoDocumento());

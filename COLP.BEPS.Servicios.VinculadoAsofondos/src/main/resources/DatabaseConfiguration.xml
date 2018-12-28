@@ -75,8 +75,8 @@
 		<tns:MetadataQuery>
 			<tns:QueryName>SP_consultaCausalNoViabilidad</tns:QueryName>
 			<tns:CommandText>SELECT vvv_descripcion_viabilidad as descripcion
-					FROM BEPS_TRANSACCIONAL.prevalidacion.vinc_valores_viabilidad
-					WHERE vvv_id_viabilidad=?</tns:CommandText>
+					FROM BEPS_TRANSACCIONAL.parametricas.vinc_valores_viabilidad
+					WHERE vvv_pk_id_viabilidad=?</tns:CommandText>
 			<tns:Parameters>
                 <tns:Parameter>
                     <tns:ParameterName>@id</tns:ParameterName>
